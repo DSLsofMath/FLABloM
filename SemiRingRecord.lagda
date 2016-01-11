@@ -18,10 +18,13 @@ open import SemiNearRingRecord
 \end{code}
 %endif
 
-\paragraph{SemiRings}
-
-For |SemiRing| we extend the |SemiNearRing| record with a
-multiplicative identity |1s|.
+A semiring is a seminearring that is extended with a distinguished
+element of |s|, |ones|, and the properties that |ones| is the left and
+right identity of multiplication.
+%
+In Agda this is another record that contains a |SemiNearRing| and the
+additional properties:
+%
 \begin{code}
 record SemiRing : Set₁ where
   field

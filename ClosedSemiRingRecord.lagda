@@ -17,8 +17,6 @@ open import SemiRingRecord
 \end{code}
 %endif
 
-\paragraph{Closure}
-
 To define the closure of a SemiRing we extend the Agda record
 structure.
 %
@@ -54,7 +52,7 @@ and that |c| actually is the closure of |w|.
 \begin{code}
   field
     entireQ : Entire Eq
-  -- |∀ a ⇾ ∃ \ b → R a b|
+      -- |∀ a ⇾ ∃ \ b → R a b|
 
   closure : s → s
   closure = fun entireQ

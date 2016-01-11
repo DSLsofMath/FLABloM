@@ -108,11 +108,6 @@ $2^n \times 2^n$.
 This work extends the matrix to allow for all sizes of matrices and
 applies the techniques to other algorithms that can be described as
 semirings or semi-near-rings with inspiration from \cite{dolan2013fun}.
-\section{Matrices}
-
-%include ../Shape.lagda
-
-%include ../Matrix.lagda
 
 \section{Structures}
 \label{sec:structs}
@@ -121,11 +116,20 @@ We define a hierarchy of rings as records in Agda. Using algebraic
 structures from the Agda standard library a record for semi-near-rings
 is built and then extended for semi-rings and closed semi-rings.
 
+\subsection{Seminearring}
 %include ../SemiNearRingRecord.lagda
 
+\subsection{Semiring}
 %include ../SemiRingRecord.lagda
 
+\subsection{Closed semiring}
 %include ../ClosedSemiRingRecord.lagda
+
+\section{Matrices}
+
+%include ../Shape.lagda
+
+%include ../Matrix.lagda
 
 \section{Lifting}
 
