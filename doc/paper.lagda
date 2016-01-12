@@ -125,6 +125,24 @@ is built and then extended for semi-rings and closed semi-rings.
 \subsection{Closed semiring}
 %include ../ClosedSemiRingRecord.lagda
 
+\subsection{Examples}
+
+Two examples of structures that are closed semirings are the booleans
+and the natural numbers extended with $\infty$ (known as the tropical
+semiring).
+%
+If we use either of these as the elements of a matrix we can compute
+properties of graphs such as the reachability between nodes (using the
+boolean semiring) and the distance between nodes (using the tropical
+semiring).
+
+The booleans form a closed semiring with disjunction $\vee$ as
+addition and conjunction $\land$ as multiplication. The closure of a
+booleans is defined to be |true|.
+
+The tropical semiring uses |min| as addition and addition of natural
+numbers as multiplication. The closure is defined to be 0.
+
 \section{Matrices}
 
 %include ../Shape.lagda
