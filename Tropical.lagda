@@ -5,29 +5,31 @@ module ShortestDistance where
 open import Data.Nat renaming (_+_ to _+N_; _*_ to _*N_)
 open import Relation.Binary.PropositionalEquality
 
+open import Preliminaries
+
 open import SemiNearRingRecord
 open import SemiRingRecord
 open import ClosedSemiRingRecord
 
-data ShortestDistance : Set where
-  Distance : ℕ → ShortestDistance
-  Unreachable : ShortestDistance
+data ℕ∞ : Set where
+  D : ℕ → ℕ∞
+  ∞ : ℕ∞
 
 SDSNR : SemiNearRing
 SDSNR = snr
   where
 
-  _+_ : ShortestDistance → ShortestDistance → ShortestDistance
-  Distance x + Distance y = Distance (x ⊓ y)
-  Distance x + Unreachable = Distance x
-  Unreachable + Distance x = Distance x
-  Unreachable + Unreachable = Unreachable
+  _+_ : ℕ∞ → ℕ∞ → ℕ∞
+  D x + D y = D (x ⊓ y)
+  D x + ∞ = D x
+  ∞ + D x = D x
+  ∞ + ∞ = ∞
 
-  _*_ : ShortestDistance → ShortestDistance → ShortestDistance
-  Distance x * Distance y = Distance (x +N y)
-  Distance x * Unreachable = Unreachable
-  Unreachable * Distance x = Unreachable
-  Unreachable * Unreachable = Unreachable
+  _*_ : ℕ∞ → ℕ∞ → ℕ∞
+  D x * D y = D (x +N y)
+  D x * ∞ = ∞
+  ∞ * D x = ∞
+  ∞ * ∞ = ∞
 
   ⊓-assoc : ∀ x y z → ((x ⊓ y) ⊓ z) ≡ (x ⊓ (y ⊓ z))
   ⊓-assoc zero zero zero = refl
@@ -40,15 +42,15 @@ SDSNR = snr
   ⊓-assoc (suc x) (suc y) (suc z) rewrite ⊓-assoc x y z = refl
 
   assoc : ∀ x y z → (x + y) + z ≡ x + (y + z)
-  assoc (Distance x) (Distance y) (Distance z)
+  assoc (D x) (D y) (D z)
     rewrite ⊓-assoc x y z = refl
-  assoc (Distance x) (Distance x₁) Unreachable = refl
-  assoc (Distance x) Unreachable (Distance x₁) = refl
-  assoc (Distance x) Unreachable Unreachable = refl
-  assoc Unreachable (Distance x) (Distance x₁) = refl
-  assoc Unreachable (Distance x) Unreachable = refl
-  assoc Unreachable Unreachable (Distance x) = refl
-  assoc Unreachable Unreachable Unreachable = refl
+  assoc (D x) (D x₁) ∞ = refl
+  assoc (D x) ∞ (D x₁) = refl
+  assoc (D x) ∞ ∞ = refl
+  assoc ∞ (D x) (D x₁) = refl
+  assoc ∞ (D x) ∞ = refl
+  assoc ∞ ∞ (D x) = refl
+  assoc ∞ ∞ ∞ = refl
 
 
   +-cong : ∀ {x y u v} → x ≡ y → u ≡ v → x + u ≡ y + v
@@ -61,9 +63,9 @@ SDSNR = snr
       ; ∙-cong = +-cong }
 
 
-  identl : ∀ x → Unreachable + x ≡ x
-  identl (Distance x) = refl
-  identl Unreachable = refl
+  identl : ∀ x → ∞ + x ≡ x
+  identl (D x) = refl
+  identl ∞ = refl
 
   ⊓-comm : ∀ x y → (x ⊓ y) ≡ (y ⊓ x)
   ⊓-comm zero zero = refl
@@ -72,10 +74,10 @@ SDSNR = snr
   ⊓-comm (suc x) (suc y) = cong suc (⊓-comm x y)
 
   comm : ∀ x y → x + y ≡ y + x
-  comm (Distance x) (Distance y) rewrite ⊓-comm x y = refl
-  comm (Distance x) Unreachable = refl
-  comm Unreachable (Distance x) = refl
-  comm Unreachable Unreachable = refl
+  comm (D x) (D y) rewrite ⊓-comm x y = refl
+  comm (D x) ∞ = refl
+  comm ∞ (D x) = refl
+  comm ∞ ∞ = refl
 
   commMon =
     record
@@ -84,13 +86,13 @@ SDSNR = snr
     ; comm = comm }
 
 
-  zerol : ∀ x → Unreachable * x ≡ Unreachable
-  zerol (Distance x) = refl
-  zerol Unreachable = refl
+  zerol : ∀ x → ∞ * x ≡ ∞
+  zerol (D x) = refl
+  zerol ∞ = refl
 
-  zeror : ∀ x → x * Unreachable ≡ Unreachable
-  zeror (Distance x) = refl
-  zeror Unreachable = refl
+  zeror : ∀ x → x * ∞ ≡ ∞
+  zeror (D x) = refl
+  zeror ∞ = refl
 
   _<*>_ : ∀ {x y u v} → x ≡ y → u ≡ v → x * u ≡ y * v
   refl <*> refl = refl
@@ -100,8 +102,8 @@ SDSNR = snr
   ⊓-idem (suc x) rewrite ⊓-idem x = refl
 
   idem : ∀ x → x + x ≡ x
-  idem (Distance x) rewrite ⊓-idem x = refl
-  idem Unreachable = refl
+  idem (D x) rewrite ⊓-idem x = refl
+  idem ∞ = refl
 
   h1 : ∀ {x z} → x +N 0 ≡ (x +N 0) ⊓ (x +N suc z)
   h1 {zero} {zero} = refl
@@ -121,14 +123,14 @@ SDSNR = snr
   distl-+-⊓ (suc x) (suc y) (suc z) = cong suc (distl-+-⊓ x (suc y) (suc z))
 
   distl : ∀ x y z → x * (y + z) ≡ (x * y) + (x * z)
-  distl (Distance x) (Distance y) (Distance z) = cong Distance (distl-+-⊓ x y z)
-  distl (Distance x) (Distance x₁) Unreachable = refl
-  distl (Distance x) Unreachable (Distance x₁) = refl
-  distl (Distance x) Unreachable Unreachable = refl
-  distl Unreachable (Distance x) (Distance x₁) = refl
-  distl Unreachable (Distance x) Unreachable = refl
-  distl Unreachable Unreachable (Distance x) = refl
-  distl Unreachable Unreachable Unreachable = refl
+  distl (D x) (D y) (D z) = cong D (distl-+-⊓ x y z)
+  distl (D x) (D x₁) ∞ = refl
+  distl (D x) ∞ (D x₁) = refl
+  distl (D x) ∞ ∞ = refl
+  distl ∞ (D x) (D x₁) = refl
+  distl ∞ (D x) ∞ = refl
+  distl ∞ ∞ (D x) = refl
+  distl ∞ ∞ ∞ = refl
 
   h3 : ∀ x z → (z +N suc (suc x)) ≡ suc (z +N suc x)
   h3 x zero = refl
@@ -151,20 +153,20 @@ SDSNR = snr
   distr-+-⊓ (suc x) (suc y) (suc z) = cong suc (distr-+-⊓ (suc x) y z)
 
   distr : ∀ x y z → (y + z) * x ≡ (y * x) + (z * x)
-  distr (Distance x) (Distance y) (Distance z) = cong Distance (distr-+-⊓ x y z)
-  distr (Distance x) (Distance x₁) Unreachable = refl
-  distr (Distance x) Unreachable (Distance x₁) = refl
-  distr (Distance x) Unreachable Unreachable = refl
-  distr Unreachable (Distance x) (Distance x₁) = refl
-  distr Unreachable (Distance x) Unreachable = refl
-  distr Unreachable Unreachable (Distance x) = refl
-  distr Unreachable Unreachable Unreachable = refl
+  distr (D x) (D y) (D z) = cong D (distr-+-⊓ x y z)
+  distr (D x) (D x₁) ∞ = refl
+  distr (D x) ∞ (D x₁) = refl
+  distr (D x) ∞ ∞ = refl
+  distr ∞ (D x) (D x₁) = refl
+  distr ∞ (D x) ∞ = refl
+  distr ∞ ∞ (D x) = refl
+  distr ∞ ∞ ∞ = refl
 
   snr =
     record
-      { s = ShortestDistance
+      { s = ℕ∞
       ; _≃s_ = _≡_
-      ; zers = Unreachable
+      ; zers = ∞
       ; _+s_ = _+_
       ; _*s_ = _*_
       ; isCommMon = commMon
@@ -182,22 +184,22 @@ SDSR = sr
 
   open SemiNearRing SDSNR
 
-  identl : ∀ x → Distance 0 *s x ≡ x
-  identl (Distance x) = refl
-  identl Unreachable = refl
+  identl : ∀ x → D 0 *s x ≡ x
+  identl (D x) = refl
+  identl ∞ = refl
 
   +-identr : ∀ x → x +N 0 ≡ x
   +-identr zero = refl
   +-identr (suc x) = cong suc (+-identr x)
 
-  identr : ∀ x → x *s Distance 0 ≡ x
-  identr (Distance x) = cong Distance (+-identr x)
-  identr Unreachable = refl
+  identr : ∀ x → x *s D 0 ≡ x
+  identr (D x) = cong D (+-identr x)
+  identr ∞ = refl
 
   sr =
     record
       { snr = SDSNR
-      ; ones = Distance 0
+      ; ones = D 0
       ; *-identls = identl
       ; *-identrs = identr }
 
@@ -207,14 +209,16 @@ SDCSR = csr
 
   open SemiRing SDSR
   open SemiNearRing snr
+  open ClosedSemiRing using (Eq; Closure)
+
   open import Data.Product
 
+
+
   entire : ∀ a →
-         Σ ShortestDistance
-         (λ c →
-            Distance 0 +s (a *s c) ≡ c)
-  entire (Distance x) = (Distance 0) , refl
-  entire Unreachable = Distance 0 , refl
+         ∃ (λ c → ones +s (a *s c) ≡ c)
+  entire (D x) = ones , refl
+  entire ∞ = ones , refl
 
   csr =
     record
