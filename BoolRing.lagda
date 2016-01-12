@@ -1,5 +1,5 @@
 \begin{code}
-module Bools where
+module BoolRing where
 
 open import Data.Bool
 open import Relation.Binary.PropositionalEquality

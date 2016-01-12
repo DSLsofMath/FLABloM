@@ -1,6 +1,6 @@
 \begin{code}
 
-module ShortestDistance where
+module TropicalRing where
 
 open import Data.Nat renaming (_+_ to _+N_; _*_ to _*N_)
 open import Relation.Binary.PropositionalEquality
