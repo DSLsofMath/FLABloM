@@ -1,12 +1,6 @@
-The lifting of a semi near ring is defined using a Agda module
-parametric over another semi near ring which is the elements of the
-matrix to be found in the 1-by-1 matrices, |One|.
-
 %if False
 \begin{code}
 open import SemiNearRingRecord
-
-module LiftSNR (snr : SemiNearRing) where
 
 open import Shape
 open import Matrix
@@ -17,7 +11,17 @@ open import Data.Product hiding (swap)
 
 open import Relation.Binary.PropositionalEquality hiding (trans; sym) renaming (refl to refl-≡)
 import Relation.Binary.EqReasoning as EqReasoning
-
+\end{code}
+%endif
+\begin{code}
+module LiftSNR (snr : SemiNearRing) where
+\end{code}
+\noindent
+The Agda module |LiftSNR| is parametrised on the semi-near-ring we
+want to lift to the matrix.
+%
+%if False
+\begin{code}
 open SemiNearRing snr
 
 S : {r c : Shape} → Set
@@ -25,16 +29,30 @@ S {r} {c} = M s r c
 
 infixr 60 _*S_
 infixr 50 _+S_
-
+\end{code}
+%endif
+%
+We start by defining matrix addition, it is only possible to add
+matrices of the same size, thus we can recur on the structure of the
+matrix and in the case of a 1-by-1 matrix we add the elements using
+the lifted semi-near-ring addition operation.
+\begin{code}
 _+S_ : ∀ {r c} → M s r c → M s r c → M s r c
 One x     +S One y      = One (x +s y)
 Row m0 m1 +S Row n0 n1  = Row (m0 +S n0) (m1 +S n1)
 Col m0 m1 +S Col n0 n1  = Col (m0 +S n0) (m1 +S n1)
-Q m00 m01
-  m10 m11 +S Q n00 n01
-               n10 n11 = Q (m00 +S n00) (m01 +S n01)
-                           (m10 +S n10) (m11 +S n11)
-
+Q m00 m01 m10 m11 +S Q n00 n01 n10 n11
+  = Q (m00 +S n00) (m01 +S n01)
+      (m10 +S n10) (m11 +S n11)
+\end{code}
+%
+Multiplication is defined similarly: in the 1-by-1 times 1-by-1 case
+we use the multiplication from the lifted semi-near-ring and the other
+cases follows the simple rule ``row multiplied by column''. Here the
+structure of the matrix datatype leads to a very intuitive
+formulation, and we do not need to fiddle with indices.
+%
+\begin{code}
 _*S_ : ∀ {r m c} → M s r m → M s m c → M s r c
 One x     *S One y     = One (x *s y)
 One x     *S Row n0 n1 = Row (One x *S n0) (One x *S n1)
@@ -46,11 +64,14 @@ Col m0 m1  *S Row n0 n1 = Q (m0 *S n0)   (m0 *S n1)
                             (m1 *S n0)  (m1 *S n1)
 Q m00 m01
   m10 m11 *S Col n0 n1  = Col (m00 *S n0 +S m01 *S n1) (m10 *S n0 +S m11 *S n1)
-Q m00 m01
-  m10 m11 *S Q n00 n01
-               n10 n11 = Q (m00 *S n00 +S m01 *S n10) (m00 *S n01 +S m01 *S n11)
-                           (m10 *S n00 +S m11 *S n10) (m10 *S n01 +S m11 *S n11)
+Q m00 m01 m10 m11 *S Q n00 n01 n10 n11
+  = Q (m00 *S n00 +S m01 *S n10) (m00 *S n01 +S m01 *S n11)
+      (m10 *S n00 +S m11 *S n10) (m10 *S n01 +S m11 *S n11)
 
+\end{code}
+
+%if false
+\begin{code}
 zerS : (r c : Shape) → M s r c
 zerS L        L        = One zers
 zerS L        (B s s₁) = Row (zerS L s)  (zerS L s₁)

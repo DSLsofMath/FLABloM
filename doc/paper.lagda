@@ -116,6 +116,10 @@ We define a hierarchy of rings as records in Agda. Using algebraic
 structures from the Agda standard library a record for semi-near-rings
 is built and then extended for semi-rings and closed semi-rings.
 
+The Agda defintions of these three structures are found below and in
+modules \texttt{SemiNearRingRecord}, \texttt{SemiRingRecord} and
+\texttt{ClosedSemiRingRecord}.
+
 \subsection{Seminearring}
 %include ../SemiNearRingRecord.lagda
 
@@ -143,6 +147,9 @@ booleans is defined to be |true|.
 The tropical semiring uses |min| as addition and addition of natural
 numbers as multiplication. The closure is defined to be 0.
 
+The definition and proofs are found in the modules \texttt{BoolRing}
+and \texttt{TropicalRing}.
+
 \section{Matrices}
 
 %include ../Shape.lagda
@@ -151,8 +158,9 @@ numbers as multiplication. The closure is defined to be 0.
 
 \section{Lifting}
 
-We lift the different structures from section~\ref{sec:structs} to
-work on matrices with the same shape in both dimensions.
+The main work of this project is to lift the above defined structures,
+semi-near-rings, semi-rings and closed semi-rings, to matrices where
+the base elements are the carrier type of the lifted ring.
 
 %include ../LiftSNR.lagda
 

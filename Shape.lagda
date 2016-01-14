@@ -8,10 +8,10 @@ open import Data.Nat
 \end{code}
 %endif
 
-\paragraph{Shape} In this development matrix dimensions are
-represented not using natural numbers but using a datatype that
-follows the structure of the block matrices more closely: a non-empty
-binary tree |Shape|.
+In this development matrix dimensions are represented not using
+natural numbers but using a datatype that follows the structure of the
+block matrices more closely: a non-empty binary tree |Shape|.
+%
 \begin{code}
 data Shape : Set where
   L : Shape
@@ -43,8 +43,10 @@ split (suc (suc n)) with split n
 {-# NO_TERMINATION_CHECK #-}
 \end{code}
 %endif
+Then a balanced shape is computed, but the function is partial due to
+there being no shape corresponding to 0 (this means that we cannot
+have degenerate matrices that are 0 in either dimension)
 \begin{code}
--- Compute a balanced shape
 fromNat : ℕ → Maybe Shape
 fromNat zero       = nothing
 fromNat (suc zero) = just L
