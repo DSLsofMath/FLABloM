@@ -60,6 +60,11 @@
 %format m10 = m"_{10}"
 %format m11 = m"_{11}"
 
+%format n00 = n"_{00}"
+%format n01 = n"_{01}"
+%format n10 = n"_{10}"
+%format n11 = n"_{11}"
+
 %format uu00 = uu"_{00}"
 %format us01 = us"_{01}"
 %format uu11 = uu"_{11}"

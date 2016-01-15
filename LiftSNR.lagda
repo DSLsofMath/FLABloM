@@ -38,12 +38,12 @@ matrix and in the case of a 1-by-1 matrix we add the elements using
 the lifted semi-near-ring addition operation.
 \begin{code}
 _+S_ : ∀ {r c} → M s r c → M s r c → M s r c
-One x     +S One y      = One (x +s y)
-Row m0 m1 +S Row n0 n1  = Row (m0 +S n0) (m1 +S n1)
-Col m0 m1 +S Col n0 n1  = Col (m0 +S n0) (m1 +S n1)
+One x      +S One y      = One  (x +s y)
+Row m0 m1  +S Row n0 n1  = Row  (m0 +S n0)  (m1 +S n1)
+Col m0 m1  +S Col n0 n1  = Col  (m0 +S n0)  (m1 +S n1)
 Q m00 m01 m10 m11 +S Q n00 n01 n10 n11
-  = Q (m00 +S n00) (m01 +S n01)
-      (m10 +S n10) (m11 +S n11)
+                         = Q  (m00 +S n00)  (m01 +S n01)
+                              (m10 +S n10)  (m11 +S n11)
 \end{code}
 %
 Multiplication is defined similarly: in the 1-by-1 times 1-by-1 case
@@ -54,20 +54,20 @@ formulation, and we do not need to fiddle with indices.
 %
 \begin{code}
 _*S_ : ∀ {r m c} → M s r m → M s m c → M s r c
-One x     *S One y     = One (x *s y)
-One x     *S Row n0 n1 = Row (One x *S n0) (One x *S n1)
-Row m0 m1  *S Col n0 n1 = m0 *S n0 +S m1 *S n1
-Row m0 m1  *S Q n00 n01
-                n10 n11 = Row (m0 *S n00 +S m1 *S n10) (m0 *S n01 +S m1 *S n11)
-Col m0 m1  *S One x     = Col (m0 *S One x) (m1 *S One x)
-Col m0 m1  *S Row n0 n1 = Q (m0 *S n0)   (m0 *S n1)
-                            (m1 *S n0)  (m1 *S n1)
-Q m00 m01
-  m10 m11 *S Col n0 n1  = Col (m00 *S n0 +S m01 *S n1) (m10 *S n0 +S m11 *S n1)
+One x      *S One y       = One (x *s y)
+One x      *S Row n0 n1   = Row (One x *S n0) (One x *S n1)
+Row m0 m1  *S Col n0 n1   = m0 *S n0 +S m1 *S n1
+Row m0 m1  *S Q  n00 n01
+                 n10 n11  = Row (m0 *S n00 +S m1 *S n10) (m0 *S n01 +S m1 *S n11)
+Col m0 m1  *S One x       = Col (m0 *S One x) (m1 *S One x)
+Col m0 m1  *S Row n0 n1   = Q  (m0 *S n0)  (m0 *S n1)
+                               (m1 *S n0)  (m1 *S n1)
+Q  m00 m01
+   m10 m11 *S Col n0 n1   = Col  (m00 *S n0 +S m01 *S n1)
+                                 (m10 *S n0 +S m11 *S n1)
 Q m00 m01 m10 m11 *S Q n00 n01 n10 n11
-  = Q (m00 *S n00 +S m01 *S n10) (m00 *S n01 +S m01 *S n11)
-      (m10 *S n00 +S m11 *S n10) (m10 *S n01 +S m11 *S n11)
-
+  = Q  (m00 *S n00 +S m01 *S n10)  (m00 *S n01 +S m01 *S n11)
+       (m10 *S n00 +S m11 *S n10)  (m10 *S n01 +S m11 *S n11)
 \end{code}
 
 %if false

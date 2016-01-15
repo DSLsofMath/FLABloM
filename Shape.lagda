@@ -32,10 +32,10 @@ a shape, here we split the number in two almost equal parts to find
 a corresponding shape.
 \begin{code}
 split : ℕ  ->  ℕ × ℕ
-split zero       = (zero , zero)
-split (suc zero) = (suc zero , zero)
+split zero        = (zero , zero)
+split (suc zero)  = (suc zero , zero)
 split (suc (suc n)) with split n
-... | (n1 , n2)  = (suc n1 , suc n2)
+... | (n1 , n2)   = (suc n1 , suc n2)
 
 \end{code}
 %if False
@@ -48,8 +48,8 @@ there being no shape corresponding to 0 (this means that we cannot
 have degenerate matrices that are 0 in either dimension)
 \begin{code}
 fromNat : ℕ → Maybe Shape
-fromNat zero       = nothing
-fromNat (suc zero) = just L
+fromNat zero        = nothing
+fromNat (suc zero)  = just L
 fromNat n with split n
 ... | (n1 , n2) with fromNat n1 | fromNat n2
 ...   | nothing  | nothing  = nothing

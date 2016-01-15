@@ -13,7 +13,7 @@ they contain and indexed by a |Shape| for each dimension
 \savecolumns[Matrix]
 \begin{code}
 data M (a : Set) : (rows cols : Shape) → Set where
-  One : a → M a L L
+  One :  a → M a L L
 \end{code}
 Row and column matrices are built from smaller matrices which are
 either 1-by-1 matrices or further row respectively column matrices
@@ -38,10 +38,10 @@ $X = \left[
 %
 \restorecolumns[Matrix]
 \begin{code}
-  Q : ∀ {row₁ row₂ col₁ col₂ : Shape} →
-    M a row₁ col₁ → M a row₁ col₂ →
-    M a row₂ col₁ → M a row₂ col₂ →
-    M a (B row₁ row₂) (B col₁ col₂)
+  Q   :  ∀ {row₁ row₂ col₁ col₂ : Shape} →
+         M a row₁ col₁ → M a row₁ col₂ →
+         M a row₂ col₁ → M a row₂ col₂ →
+         M a (B row₁ row₂) (B col₁ col₂)
 
 \end{code}
 
