@@ -18,6 +18,7 @@
 \usepackage{unicode-math}
 \usepackage{autofe}
 \usepackage{stmaryrd}
+\usepackage{multicol}
 
 %if techreport
 \usepackage{TRtitlepage}

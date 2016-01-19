@@ -78,7 +78,15 @@ zerS L        (B s s₁) = Row (zerS L s)  (zerS L s₁)
 zerS (B r r₁) L        = Col (zerS r L)  (zerS r₁ L)
 zerS (B r r₁) (B s s₁) =  Q  (zerS r s)  (zerS r s₁)
                            (zerS r₁ s) (zerS r₁ s₁)
+\end{code}
+%endif
 
+The equivalence relation is lifted so that the 1-by-1 case uses the
+equivalence relation from the lifted semi-near-ring and the other
+cases recursively lift the relation on their components. The recursive
+lifting has shaped all other proofs.
+%
+\begin{code}
 _≃S_ : {r c : Shape} → M s r c → M s r c → Set
 _≃S_ {L}         {L}          (One x)    (One x₁)   =  x ≃s x₁
 _≃S_ {L}         {(B c₁ c₂)}  (Row m m₁) (Row n n₁) =  (m ≃S n) × (m₁ ≃S n₁)
@@ -86,14 +94,21 @@ _≃S_ {(B r₁ r₂)} {L}          (Col m m₁) (Col n n₁) =  (m ≃S n) × (
 _≃S_ {(B r₁ r₂)} {(B c₁ c₂)}  (Q m00 m01 m10 m11)
                               (Q n00 n01 n10 n11)   =  (m00 ≃S n00) × (m01 ≃S n01) ×
                                                        (m10 ≃S n10) × (m11 ≃S n11)
+\end{code}
 
+For brevity I only include two proofs, the simplest proof is
+reflexivity of the equivalence relation lifted:
+\begin{code}
 reflS : (r c : Shape) → {X : M s r c} → X ≃S X
-reflS L         L         {X = One x}     = refls {x}
-reflS L         (B c₁ c₂) {X = Row X Y}   = reflS L c₁  , reflS L c₂
-reflS (B r₁ r₂) L         {X = Col X Y}   = reflS r₁ L  , reflS r₂ L
-reflS (B r₁ r₂) (B c₁ c₂) {X = Q X Y Z W} = reflS r₁ c₁ , reflS r₁ c₂
-                                          , reflS r₂ c₁ , reflS r₂ c₂
+reflS L         L         {One x}     =  refls {x}
+reflS L         (B c₁ c₂) {Row X Y}   =  reflS L c₁  , reflS L c₂
+reflS (B r₁ r₂) L         {Col X Y}   =  reflS r₁ L  , reflS r₂ L
+reflS (B r₁ r₂) (B c₁ c₂) {Q X Y Z W} =  reflS r₁ c₁ , reflS r₁ c₂ ,
+                                         reflS r₂ c₁ , reflS r₂ c₂
+\end{code}
 
+%if False
+\begin{code}
 symS : (r c : Shape) → {i j : M s r c} → i ≃S j → j ≃S i
 symS L L {One x} {One x₁} p = syms p
 symS L (B c₁ c₂) {Row i₁ i₂} {Row j₁ j₂} (p , q) = symS L c₁ p , symS L c₂ q
@@ -163,7 +178,13 @@ setoidS {r} {c} =
     ; isEquivalence =
       record
         { refl = reflS r c ; sym = symS r c ; trans = transS r c } }
+\end{code}
+%endif
 
+The second proof shows how we use the Agda standard library's
+equational reasoning framework to make the proofs easier to write and
+read, this tool is used heavily throughout the development.
+\begin{code}
 identSʳ : (r c : Shape) (x : M s r c) →
    x +S zerS r c ≃S x
 identSʳ r c x =
@@ -175,7 +196,9 @@ identSʳ r c x =
   ≈⟨ identSˡ r c x ⟩
     x
   ∎
-
+\end{code}
+%if False
+\begin{code}
 zerolHelp : ∀ (r : Shape) {m m' c : Shape}
   (x : M s m c)
   (y : M s m' c) →
@@ -430,7 +453,15 @@ distrS {B r r₁} {B m m₁} {B c c₁} (Q x x₁ x₂ x₃) (Q y y₁ y₂ y₃
 distrS' : {r m c : Shape} (x : M s m c) (y z : M s r m) →
   ((y *S x) +S (z *S x)) ≃S ((y +S z) *S x)
 distrS' {r} {m} {c} x y z = symS r c (distrS x y z)
+\end{code}
+%endif
 
+Finally we are able to lift the semi-near-ring to a semi-near-ring of
+matrices (please see the module \texttt{LiftSNR} for the full proof),
+however we can only lift to a square matrix (i.e. the same shape in
+both dimensions).
+\begin{multicols}{2}
+\begin{code}
 Square : Shape → SemiNearRing
 Square shape = SNR
   where
@@ -452,7 +483,9 @@ Square shape = SNR
       { isSemigroup = isSemgroupS
       ; identityˡ = identSˡ shape shape
       ; comm = commS shape shape }
-
+\end{code}
+\columnbreak
+\begin{code}
   SNR : SemiNearRing
   SNR =
     record
@@ -469,7 +502,5 @@ Square shape = SNR
       ; distl = distlS {shape} {shape}
       ; distr = distrS {shape} {shape}
       }
-
-
 \end{code}
-%endif
+\end{multicols}

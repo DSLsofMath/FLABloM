@@ -28,13 +28,14 @@ either 1-by-1 matrices or further row respectively column matrices
          M a row₂ L →
          M a (B row₁ row₂) L
 \end{code}
-block matrices of other shapes are built from 4 smaller matrices:
+block matrices of other shapes are built from 4 smaller matrices, like
 $X = \left[
   \begin{array}{cc}
     X_{11} & X_{12} \\
     X_{21} & X_{22}
   \end{array}
 \right]$
+where $X_{11}, X_{12}, X_{21}, X_{22}$ are again matrices.
 %
 \restorecolumns[Matrix]
 \begin{code}
