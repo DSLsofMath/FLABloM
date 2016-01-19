@@ -72,12 +72,12 @@ Q m00 m01 m10 m11 *S Q n00 n01 n10 n11
 
 %if false
 \begin{code}
-zerS : (r c : Shape) → M s r c
-zerS L        L        = One zers
-zerS L        (B s s₁) = Row (zerS L s)  (zerS L s₁)
-zerS (B r r₁) L        = Col (zerS r L)  (zerS r₁ L)
-zerS (B r r₁) (B s s₁) =  Q  (zerS r s)  (zerS r s₁)
-                           (zerS r₁ s) (zerS r₁ s₁)
+zerS : (r c : Shape)     → M s r c
+zerS L         L         =  One zers
+zerS L         (B s s₁)  =  Row  (zerS L s)   (zerS L s₁)
+zerS (B r r₁)  L         =  Col  (zerS r L)   (zerS r₁ L)
+zerS (B r r₁)  (B s s₁)  =  Q    (zerS r s)   (zerS r s₁)
+                                 (zerS r₁ s)  (zerS r₁ s₁)
 \end{code}
 %endif
 
@@ -88,23 +88,23 @@ lifting has shaped all other proofs.
 %
 \begin{code}
 _≃S_ : {r c : Shape} → M s r c → M s r c → Set
-_≃S_ {L}         {L}          (One x)    (One x₁)   =  x ≃s x₁
-_≃S_ {L}         {(B c₁ c₂)}  (Row m m₁) (Row n n₁) =  (m ≃S n) × (m₁ ≃S n₁)
-_≃S_ {(B r₁ r₂)} {L}          (Col m m₁) (Col n n₁) =  (m ≃S n) × (m₁ ≃S n₁)
-_≃S_ {(B r₁ r₂)} {(B c₁ c₂)}  (Q m00 m01 m10 m11)
-                              (Q n00 n01 n10 n11)   =  (m00 ≃S n00) × (m01 ≃S n01) ×
-                                                       (m10 ≃S n10) × (m11 ≃S n11)
+_≃S_ {L}          {L}          (One x)     (One x₁)    =  x ≃s x₁
+_≃S_ {L}          {(B c₁ c₂)}  (Row m m₁)  (Row n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
+_≃S_ {(B r₁ r₂)}  {L}          (Col m m₁)  (Col n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
+_≃S_ {(B r₁ r₂)}  {(B c₁ c₂)}  (Q m00  m01  m10  m11)
+                               (Q n00  n01  n10  n11)  =  (m00 ≃S n00) × (m01 ≃S n01) ×
+                                                          (m10 ≃S n10) × (m11 ≃S n11)
 \end{code}
 
 For brevity I only include two proofs, the simplest proof is
 reflexivity of the equivalence relation lifted:
 \begin{code}
-reflS : (r c : Shape) → {X : M s r c} → X ≃S X
-reflS L         L         {One x}     =  refls {x}
-reflS L         (B c₁ c₂) {Row X Y}   =  reflS L c₁  , reflS L c₂
-reflS (B r₁ r₂) L         {Col X Y}   =  reflS r₁ L  , reflS r₂ L
-reflS (B r₁ r₂) (B c₁ c₂) {Q X Y Z W} =  reflS r₁ c₁ , reflS r₁ c₂ ,
-                                         reflS r₂ c₁ , reflS r₂ c₂
+reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X
+reflS L          L          {One x}        =  refls {x}
+reflS L          (B c₁ c₂)  {Row X Y}      =  reflS L c₁   , reflS L c₂
+reflS (B r₁ r₂)  L          {Col X Y}      =  reflS r₁ L   , reflS r₂ L
+reflS (B r₁ r₂)  (B c₁ c₂)  {Q X Y Z W}    =  reflS r₁ c₁  , reflS r₁ c₂ ,
+                                              reflS r₂ c₁  , reflS r₂ c₂
 \end{code}
 
 %if False

@@ -169,6 +169,7 @@
 %format *-identls = "\text{·-}" identl "_s"
 %format *-identrs = "\text{·-}" identr "_s"
 
+%format ∙-cong = "\text{•-}" cong
 %format ∙-congS = "\text{•-}" congS
 
 %%% We keep the "upper case" versions "up" (not in subscript)
