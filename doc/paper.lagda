@@ -85,6 +85,8 @@
   \item rings (semi-near-rings, semi-rings, \dots)
   \item closure of matrices
   \end{itemize}
+
+TODO: decide on spelling in the text part: Currently mixed: ``semi-ring'' (here), ``semiring'' (in SemiRingRecord.lagda), ``SemiRing'', ``semi ring'' (in ClosedSemiRingRecord.lagda)
 \end{abstract}
 
 %%% Some venues require ACM classification categories - here is an example

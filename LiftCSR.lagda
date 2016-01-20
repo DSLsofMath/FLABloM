@@ -24,8 +24,12 @@ open LiftSR sr
 \end{code}
 %endif
 
+%PaJa: Nice to see that you found a "summetric" definition instead of Dolan's
+%
 In \cite{lehmann1977} Lehmann presents a definition of the closure on
-matrices, $A^* = 1 + A · A^*$, given
+matrices, $A^* = 1 + A · A^*$.
+%
+Given
 %
 \[
   A = \left[
@@ -37,7 +41,7 @@ matrices, $A^* = 1 + A · A^*$, given
 \]
 %
 the transitive closure of $A$ is recursively defined as
-%
+%**TODO "recursively defined" := "defined inductively"?
 \[
   A^* = \left[
   \begin{array}{ll}

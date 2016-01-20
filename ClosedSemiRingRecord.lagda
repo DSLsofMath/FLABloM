@@ -51,14 +51,11 @@ and that |c| actually is the closure of |w|.
 \restorecolumns[CSR]
 \begin{code}
   field
-    entireQ : Entire Eq
-      -- |∀ a ⇾ ∃ \ b → R a b|
+    entireQ : Entire Eq                           -- |∀ a ⇾ ∃ \ b → R a b|
 
   closure : s → s
   closure = fun entireQ
 
-  closureHasAll : {w : s} → Eq w (closure w)
+  closureHasAll : {w : s} → Eq w (closure w)      -- |ones +s w *s w* ≃s w*|  TODO: swap to match def. of Eq?
   closureHasAll = correct entireQ
-    -- |ones +s w *s w* ≃s w*|
-
 \end{code}
