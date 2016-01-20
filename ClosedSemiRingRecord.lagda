@@ -40,7 +40,7 @@ where |c| is the closure of |w|.
 \restorecolumns[CSR]
 \begin{code}
   Eq : s → s → Set
-  Eq w c = ones +s w *s c ≃s c
+  Eq w c = c ≃s ones +s w *s c
 
   Closure : s → s → Set
   Closure w c = Least _≤s_ (Eq w) c

@@ -25,7 +25,7 @@ open LiftSR sr
 %endif
 
 In \cite{lehmann1977} Lehmann presents a definition of the closure on
-matrices $A^* = 1 + A · A^*$, given
+matrices, $A^* = 1 + A · A^*$, given
 %
 \[
   A = \left[
@@ -62,55 +62,69 @@ of the element of the matrix:
 EqS : ∀ {sh} → M s sh sh → M s sh sh → Set
 EqS w c = oneS +S w *S c ≃S c
 
-entireQS : ∀ {sh} (w : M s sh sh) → Σ (M s sh sh) λ c → EqS w c
+-- from Lehmann
+lemma2-1-1 : ∀ sh (M1 M2 : M s sh sh) → (oneS +S M2) *S M1 ≃S M1 +S M2 *S M1
+lemma2-1-1 sh M1 M2 =
+  let open EqReasoning setoidS
+  in begin
+    (oneS +S M2) *S M1
+  ≈⟨ distrS M1 oneS M2 ⟩
+    oneS *S M1 +S M2 *S M1
+  ≈⟨ <+S> sh sh (*-identlS M1) (reflS sh sh) ⟩
+    M1 +S M2 *S M1
+  ∎
+
+lemma2-1-2 : ∀ sh (M1 M2 : M s sh sh) → M1 *S (oneS +S M2) ≃S M1 +S M1 *S M2
+lemma2-1-2 sh M1 M2 =
+  let open EqReasoning setoidS
+  in begin
+    M1 *S (oneS +S M2)
+  ≈⟨ distlS M1 oneS M2 ⟩
+    M1 *S oneS +S M1 *S M2
+  ≈⟨ <+S> sh sh (*-identrS M1) (reflS sh sh) ⟩
+    M1 +S M1 *S M2
+  ∎
+
+entireQS : ∀ {sh} (w : M s sh sh) → Σ (M s sh sh) λ c → c ≃S oneS +S w *S c --EqS w c
 entireQS {L} (One w) =
   let (c , p) = entireQ w
   in (One c , p)
-entireQS {B sh sh₁} (Q w11 w12 w21 w22) =
+entireQS {B sh sh₁} (Q C D E F) =
   let
-    (w11* , p11) = entireQS w11
-    Δ = w22 +S w21 *S w11* *S w12
-    (Δ* , pΔ) = entireQS Δ
+    C* , ih_C = entireQS C
+    Δ = F +S E *S C* *S D
+    Δ* , ih_Δ = entireQS Δ
   in
-  Q (w11* +S w11* *S w12 *S Δ* *S w21 *S w11*) (w11* *S w12 *S Δ*)
-    (Δ* *S w21 *S w11*)                        Δ* ,
-  {!!} ,
-  (let open EqReasoning setoidS
-  in begin
-    zerS _ _ +S w11 *S w11* *S w12 *S Δ* +S w12 *S Δ*
-  ≈⟨ identSˡ sh sh₁ (w11 *S w11* *S w12 *S Δ* +S w12 *S Δ*) ⟩ -- 0S left id for +S
-    w11 *S w11* *S w12 *S Δ* +S w12 *S Δ*
-  ≈⟨ commS sh sh₁ (w11 *S w11* *S w12 *S Δ*) (w12 *S Δ*) ⟩ -- +S commutes
-    w12 *S Δ* +S w11 *S w11* *S w12 *S Δ*
-  ≈⟨ <+S> {!!} {!!} {u = w11 *S w11* *S w12 *S Δ*} {v = (w11 *S w11*) *S (w12 *S Δ*)}
-     (reflS sh sh₁ {w12 *S Δ*}) ({!!}) ⟩
-    w12 *S Δ* +S (w11 *S w11*) *S (w12 *S Δ*)
-  ≈⟨ {!!} ⟩ -- 1 identl *S
-    oneS *S (w12 *S Δ*) +S (w11 *S w11*) *S (w12 *S Δ*)
-  ≈⟨ distrS' {sh} {sh} {sh₁} (w12 *S Δ*) (oneS) (w11 *S w11*) ⟩ -- distrS backwards
-    (oneS +S w11 *S w11*) *S w12 *S Δ*
-  ≈⟨ <*S> sh sh sh₁ {oneS +S w11 *S w11*} {w11*} {w12 *S Δ*} {w12 *S Δ*} p11 (reflS sh sh₁) ⟩ -- p11 on left of *S
-    w11* *S w12 *S Δ*
-  ∎) ,
-  (let open EqReasoning setoidS
-  in {!!}) ,
-  {!!}
--- ...
+    Q (C* +S C* *S D *S Δ* *S E *S C*) (C* *S D *S Δ*)
+      (Δ* *S E *S C*) Δ* ,
+    (let open EqReasoning setoidS
+    in begin
+      C* +S C* *S D *S Δ* *S E *S C*
 
--- 0 + w11 * w11* * w12 * Δ* + w12 * Δ* = w11* * w12 * Δ*
--- {w11* = 1 + w11 * w11*}
--- => w11 * w11* * w12 * Δ* + w12 * Δ* = 1 + w11 * w11*
+    ≈⟨ <+S> sh sh ih_C (reflS sh sh) ⟩
 
--- Lehmann says:
--- (Q w11 w12 w21 w22)* =
---   Q (w11* + w11* * w12 * Δ* * w21 * w11*) (w11* * w12 * Δ*)
---     (Δ* * w21 * w11*)                     (Δ*)
+      (oneS +S C *S C*) +S C* *S D *S Δ* *S E *S C*
 
-Square : Shape → ClosedSemiRing
-Square shape =
-  record
-    { sr = SquareSR shape
-    ; entireQ = entireQS }
+    ≈⟨ <+S> sh sh (reflS sh sh) (<*S> sh sh sh ih_C (reflS sh sh)) ⟩
+
+      (oneS +S C *S C*) +S (oneS +S C *S C*) *S (D *S Δ* *S E *S C*)
+
+    ≈⟨ <+S> sh sh (reflS sh sh) (lemma2-1-1 sh (D *S Δ* *S E *S C*) (C *S C*)) ⟩
+
+      (oneS +S C *S C*) +S (D *S Δ* *S E *S C*) +S (C *S C*) *S D *S Δ* *S E *S C*
+
+    ≈⟨ {!!} ⟩
+      {!!}
+    ) ,
+    {!!} ,
+    {!!} ,
+    {!!}
+
+-- Square : Shape → ClosedSemiRing
+-- Square shape =
+--   record
+--     { sr = SquareSR shape
+--     ; entireQ = entireQS }
 
 
 \end{code}

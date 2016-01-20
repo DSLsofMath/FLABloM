@@ -216,7 +216,7 @@ SDCSR = csr
 
 
   entire : ∀ a →
-         ∃ (λ c → ones +s (a *s c) ≡ c)
+         ∃ (λ c → c ≡ ones +s (a *s c))
   entire (D x) = ones , refl
   entire ∞ = ones , refl
 

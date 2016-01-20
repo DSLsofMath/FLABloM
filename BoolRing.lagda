@@ -115,7 +115,7 @@ BoolCSR = csr
 
   open import Data.Product
 
-  entire : (a : Bool) → Σ Bool (_≡_ true)
+  entire : (a : Bool) → Σ Bool (λ c → c ≡ true)
   entire true = true , refl
   entire false = true , refl
 
