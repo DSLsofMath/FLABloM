@@ -32,10 +32,11 @@ infixr 50 _+S_
 \end{code}
 %endif
 %
-We start by defining matrix addition, it is only possible to add
-matrices of the same size, thus we can recur on the structure of the
-matrix and in the case of a 1-by-1 matrix we add the elements using
-the lifted semi-near-ring addition operation.
+We start by defining matrix addition |+S| (we denote operations lifted to
+matrices by a $S$ subscript), it is only possible to add matrices of
+the same size, thus we can recur on the structure of the matrix and in
+the case of a 1-by-1 matrix we add the elements using the lifted
+semi-near-ring addition operation.
 \begin{code}
 _+S_ : ∀ {r c} → M s r c → M s r c → M s r c
 One x      +S One y      = One  (x +s y)
@@ -457,9 +458,10 @@ distrS' {r} {m} {c} x y z = symS r c (distrS x y z)
 %endif
 
 Finally we are able to lift the semi-near-ring to a semi-near-ring of
-matrices (please see the module \texttt{LiftSNR} for the full proof),
-however we can only lift to a square matrix (i.e. the same shape in
-both dimensions).
+matrices (see the module \texttt{LiftSNR} for the full proof), however
+we can only lift to a square matrix (i.e. the same shape in both
+dimensions).
+\begin{figure}[h!]
 \begin{multicols}{2}
 \begin{code}
 Square : Shape → SemiNearRing
@@ -483,9 +485,11 @@ Square shape = SNR
       { isSemigroup = isSemgroupS
       ; identityˡ = identSˡ shape shape
       ; comm = commS shape shape }
+
 \end{code}
 \columnbreak
 \begin{code}
+
   SNR : SemiNearRing
   SNR =
     record
@@ -504,3 +508,5 @@ Square shape = SNR
       }
 \end{code}
 \end{multicols}
+\caption{Lifting a semi-near-ring to a matrix of square shape.}
+\end{figure}

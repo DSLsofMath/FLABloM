@@ -1,3 +1,4 @@
+%if False
 \begin{code}
 open import ClosedSemiRingRecord
 
@@ -20,7 +21,44 @@ open SemiRing sr
 open SemiNearRing snr
 
 open LiftSR sr
+\end{code}
+%endif
 
+In \cite{lehmann1977} Lehmann presents a definition of the closure on
+matrices $A^* = 1 + A · A^*$, given
+%
+\[
+  A = \left[
+  \begin{array}{ll}
+    A_{11} & A_{12} \\
+    A_{21} & A_{22}
+  \end{array}
+  \right]
+\]
+%
+the transitive closure of $A$ is recursively defined as
+%
+\[
+  A^* = \left[
+  \begin{array}{ll}
+    A_{11}^* + A_{11}^* · A_{12} · Δ^* · A_{21} · A_{11}^*
+    & A_{11}^* · A_{12} · Δ^* \\
+    Δ^* · A_{21} · A_{11}^*
+    & Δ^*
+  \end{array}
+  \right]
+\]
+%
+where $Δ = A_{22} + A_{21} · A_{11}^* · A_{12}$ and the base case
+being the one-by-one matrix case where we use the transitive closure
+of the element of the matrix:
+%
+\[
+\left[ s \right]^* = \left[ s^* \right]
+\]
+
+%if False
+\begin{code}
 EqS : ∀ {sh} → M s sh sh → M s sh sh → Set
 EqS w c = oneS +S w *S c ≃S c
 
@@ -45,7 +83,7 @@ entireQS {B sh sh₁} (Q w11 w12 w21 w22) =
   ≈⟨ commS sh sh₁ (w11 *S w11* *S w12 *S Δ*) (w12 *S Δ*) ⟩ -- +S commutes
     w12 *S Δ* +S w11 *S w11* *S w12 *S Δ*
   ≈⟨ <+S> {!!} {!!} {u = w11 *S w11* *S w12 *S Δ*} {v = (w11 *S w11*) *S (w12 *S Δ*)}
-     (reflS sh sh₁ {w12 *S Δ*}) (assocS' {!!} {!!} {!!} {!!} {!!}) ⟩
+     (reflS sh sh₁ {w12 *S Δ*}) ({!!}) ⟩
     w12 *S Δ* +S (w11 *S w11*) *S (w12 *S Δ*)
   ≈⟨ {!!} ⟩ -- 1 identl *S
     oneS *S (w12 *S Δ*) +S (w11 *S w11*) *S (w12 *S Δ*)
@@ -76,3 +114,4 @@ Square shape =
 
 
 \end{code}
+%endif

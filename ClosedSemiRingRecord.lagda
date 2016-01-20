@@ -17,8 +17,8 @@ open import SemiRingRecord
 \end{code}
 %endif
 
-To define the closure of a SemiRing we extend the Agda record
-structure.
+To define the transitive closure of a SemiRing we extend the Agda
+record structure.
 %
 \savecolumns[CSR]
 \begin{code}

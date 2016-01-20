@@ -1,10 +1,11 @@
 NAME    := paper
 LHS2TEX := lhs2TeX
 LATEXMK := latexmk
+AGDAFILES = $(wildcard ../*.lagda)
 
 default: $(NAME).pdf
 
-$(NAME).tex: paper.format ../*.lagda
+$(NAME).tex: paper.format $(AGDAFILES)
 
 %.tex: %.lagda
 	$(LHS2TEX) --agda $< > $@

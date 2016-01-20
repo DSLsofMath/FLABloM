@@ -19,6 +19,7 @@
 \usepackage{autofe}
 \usepackage{stmaryrd}
 \usepackage{multicol}
+\usepackage{hyperref}
 
 %if techreport
 \usepackage{TRtitlepage}
@@ -81,21 +82,23 @@
   \begin{itemize}
   \item block matrices
   \item linear algebra
-  \item rings (semi-near-rings, semirings, \dots)
+  \item rings (semi-near-rings, semi-rings, \dots)
   \item closure of matrices
   \end{itemize}
 \end{abstract}
 
 %%% Some venues require ACM classification categories - here is an example
-\category{D.1.1}%
-  {Programming Techniques}%
-  {Applicative (Functional) Programming}%
+% \category{D.1.1}%
+%   {Programming Techniques}%
+%   {Applicative (Functional) Programming}%
 
 \terms
 design, languages, verification
 
 \keywords
 some, important, concepts, not already, mentioned, in the title
+
+%\tableofcontents
 
 \section{Introduction}
 \label{sec:intro}
@@ -165,7 +168,15 @@ the base elements are the carrier type of the lifted ring.
 
 %include ../LiftSNR.lagda
 
-\section{Conclusions and related work}
+Lifting to a semi-ring follows the same pattern, adding only the
+|ones| and proofs that |ones| is the left and right identity of
+|_*s_|.
+
+\section{Transitive closure of matrices}
+
+%include ../LiftCSR.lagda
+
+\section{Conclusions and further work}
 \label{sec:conc}
 
 There is very often a conclusion section.
