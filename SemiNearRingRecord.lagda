@@ -60,7 +60,7 @@ and we also need that |*s| respects the equivalence relation.
 
 \end{code}
 %
-The semirings in this development also have idempotent addition and
+The semi-rings in this development also have idempotent addition and
 |*s| distributes over |+s|.
 %
 \restorecolumns[SNRR]

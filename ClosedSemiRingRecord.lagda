@@ -17,7 +17,7 @@ open import SemiRingRecord
 \end{code}
 %endif
 
-To define the transitive closure of a SemiRing we extend the Agda
+To define the transitive closure of a semi-ring we extend the Agda
 record structure.
 %
 \savecolumns[CSR]
@@ -30,7 +30,7 @@ record ClosedSemiRing : Set₁ where
   open SemiNearRing snr
 
 \end{code}
-The defining equation for the closure of a semi ring is |Eq w c|,
+The defining equation for the closure of a semi-ring is |Eq w c|,
 where |c| is the closure of |w|.
 %
 % We also want to capture that the
@@ -56,6 +56,6 @@ and that |c| actually is the closure of |w|.
   closure : s → s
   closure = fun entireQ
 
-  closureHasAll : {w : s} → Eq w (closure w)      -- |ones +s w *s w* ≃s w*|  TODO: swap to match def. of Eq?
+  closureHasAll : {w : s} → Eq w (closure w)      -- |w* ≃s ones +s w *s w*|
   closureHasAll = correct entireQ
 \end{code}

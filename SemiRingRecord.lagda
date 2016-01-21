@@ -18,9 +18,9 @@ open import SemiNearRingRecord
 \end{code}
 %endif
 
-A semiring is a seminearring that is extended with a distinguished
-element of |s|, |ones|, and the properties that |ones| is the left and
-right identity of multiplication.
+A semi-ring is a semi-near-ring that is extended with a distinguished
+element of |s|, |ones|, and the properties that |*s| is associative
+and |ones| is the left and right identity of multiplication.
 %
 In Agda this is another record that contains a |SemiNearRing| and the
 additional properties:

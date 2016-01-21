@@ -86,7 +86,6 @@
   \item closure of matrices
   \end{itemize}
 
-TODO: decide on spelling in the text part: Currently mixed: ``semi-ring'' (here), ``semiring'' (in SemiRingRecord.lagda), ``SemiRing'', ``semi ring'' (in ClosedSemiRingRecord.lagda)
 \end{abstract}
 
 %%% Some venues require ACM classification categories - here is an example
@@ -113,7 +112,7 @@ $2^n \times 2^n$.
 %
 This work extends the matrix to allow for all sizes of matrices and
 applies the techniques to other algorithms that can be described as
-semirings or semi-near-rings with inspiration from \cite{dolan2013fun}.
+semi-rings or semi-near-rings with inspiration from \cite{dolan2013fun}.
 
 \section{Structures}
 \label{sec:structs}
@@ -126,31 +125,31 @@ The Agda defintions of these three structures are found below and in
 modules \texttt{SemiNearRingRecord}, \texttt{SemiRingRecord} and
 \texttt{ClosedSemiRingRecord}.
 
-\subsection{Seminearring}
+\subsection{Semi-near-ring}
 %include ../SemiNearRingRecord.lagda
 
-\subsection{Semiring}
+\subsection{Semi-ring}
 %include ../SemiRingRecord.lagda
 
-\subsection{Closed semiring}
+\subsection{Closed semi-ring}
 %include ../ClosedSemiRingRecord.lagda
 
 \subsection{Examples}
 
-Two examples of structures that are closed semirings are the booleans
+Two examples of structures that are closed semi-rings are the booleans
 and the natural numbers extended with $\infty$ (known as the tropical
-semiring).
+semi-ring).
 %
 If we use either of these as the elements of a matrix we can compute
 properties of graphs such as the reachability between nodes (using the
-boolean semiring) and the distance between nodes (using the tropical
-semiring).
+boolean semi-ring) and the distance between nodes (using the tropical
+semi-ring).
 
-The booleans form a closed semiring with disjunction $\vee$ as
+The booleans form a closed semi-ring with disjunction $\vee$ as
 addition and conjunction $\land$ as multiplication. The closure of a
 booleans is defined to be |true|.
 
-The tropical semiring uses |min| as addition and addition of natural
+The tropical semi-ring uses |min| as addition and addition of natural
 numbers as multiplication. The closure is defined to be 0.
 
 The definition and proofs are found in the modules \texttt{BoolRing}
