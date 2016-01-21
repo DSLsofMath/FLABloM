@@ -47,7 +47,14 @@ where $X_{11}, X_{12}, X_{21}, X_{22}$ are again matrices.
 \end{code}
 
 %if False
-\being{code}
+\begin{code}
+
+transpose : ∀ {a r c} → M a r c → M a c r
+transpose (One x) = One x
+transpose (Row m m₁) = Col (transpose m) (transpose m₁)
+transpose (Col m m₁) = Row (transpose m) (transpose m₁)
+transpose (Q m m₁ m₂ m₃) = Q (transpose m) (transpose m₂) (transpose m₁) (transpose m₃)
+
 -- Matrix addition and multiplication need the corresponding
 -- operations on the underlying type
 module Operations (T : Set) (_*T_ : T → T → T) (_+T_ : T → T → T) where

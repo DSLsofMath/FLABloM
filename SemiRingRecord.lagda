@@ -3,11 +3,11 @@
 module SemiRingRecord where
 
 import Algebra.FunctionProperties
-  using (LeftIdentity; RightIdentity)
+  using (LeftIdentity; RightIdentity; Associative)
 import Function using (_on_)
 import Relation.Binary.EqReasoning as EqReasoning
 import Relation.Binary.On using (isEquivalence)
-import Algebra.Structures using (module IsCommutativeMonoid; IsCommutativeMonoid)
+open import Algebra.Structures using (module IsMonoid; IsMonoid)
 open import Relation.Binary
   using (module IsEquivalence; IsEquivalence; _Preserves₂_⟶_⟶_ ; Setoid)
 open import Data.Product renaming (_,_ to _,,_) -- just to avoid clash with other commas
@@ -36,9 +36,10 @@ record SemiRing : Set₁ where
     ones : s
 
   open Algebra.FunctionProperties _≃s_
-    using (LeftIdentity; RightIdentity)
+    using (LeftIdentity; RightIdentity; Associative)
 
   field
     *-identls : LeftIdentity ones _*s_
     *-identrs : RightIdentity ones _*s_
+    *-assocs  : Associative _*s_
 \end{code}

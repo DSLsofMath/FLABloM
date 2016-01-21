@@ -78,6 +78,7 @@ lemma2-1-1 sh M1 M2 =
     M1 +S M2 *S M1
   ∎
 
+-- TODO: rename
 lemma2-1-2 : ∀ sh (M1 M2 : M s sh sh) → M1 *S (oneS +S M2) ≃S M1 +S M1 *S M2
 lemma2-1-2 sh M1 M2 =
   let open EqReasoning setoidS
@@ -117,8 +118,26 @@ entireQS {B sh sh₁} (Q C D E F) =
 
       (oneS +S C *S C*) +S (D *S Δ* *S E *S C*) +S (C *S C*) *S D *S Δ* *S E *S C*
 
-    ≈⟨ {!!} ⟩
+    ≈⟨ <+S> sh sh (reflS sh sh)
+            (commS sh sh
+              (D *S Δ* *S E *S C*)
+              ((C *S C*) *S D *S Δ* *S E *S C*)) ⟩
+
+      (oneS +S C *S C*) +S (C *S C*) *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)
+
+    ≈⟨ {!<+S> sh sh !} ⟩ -- assoc-*
+
+      (oneS +S C *S C*) +S C *S C* *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)
+
+    ≈⟨ assocS sh sh oneS (C *S C*) (C *S C* *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)) ⟩
+
+      oneS +S C *S C* +S C *S C* *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)
+    ≈⟨ <+S> sh sh (reflS sh sh) (symS sh sh {!distlS C !}) ⟩
       {!!}
+
+    -- ≈⟨ assocS sh sh oneS (C *S C*) ((D *S Δ* *S E *S C*) +S (C *S C*) *S D *S Δ* *S E *S C*) ⟩
+
+    -- oneS +S C *S (C* +S C* *S D *S Δ* *D E *S C*) +S D *S Δ* *S E *S C*
     ) ,
     {!!} ,
     {!!} ,
