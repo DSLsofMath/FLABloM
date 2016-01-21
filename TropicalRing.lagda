@@ -188,18 +188,29 @@ SDSR = sr
   identl (D x) = refl
   identl ∞ = refl
 
-  +-identr : ∀ x → x +N 0 ≡ x
-  +-identr zero = refl
-  +-identr (suc x) = cong suc (+-identr x)
+  open import Data.Nat.Properties.Simple using (+-assoc; +-right-identity)
 
   identr : ∀ x → x *s D 0 ≡ x
-  identr (D x) = cong D (+-identr x)
+  identr (D x) = cong D (+-right-identity x)
   identr ∞ = refl
+
+  assoc : ∀ x y z →
+         (x *s y) *s z ≡
+         x *s (y *s z)
+  assoc (D x) (D x₁) (D x₂) = cong D (+-assoc x x₁ x₂)
+  assoc (D x) (D x₁) ∞ = refl
+  assoc (D x) ∞ (D x₁) = refl
+  assoc (D x) ∞ ∞ = refl
+  assoc ∞ (D x) (D x₁) = refl
+  assoc ∞ (D x) ∞ = refl
+  assoc ∞ ∞ (D x) = refl
+  assoc ∞ ∞ ∞ = refl
 
   sr =
     record
       { snr = SDSNR
       ; ones = D 0
+      ; *-assocs  = assoc
       ; *-identls = identl
       ; *-identrs = identr }
 

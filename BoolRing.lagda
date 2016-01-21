@@ -102,10 +102,21 @@ BoolSR = sr
   identr true = refl
   identr false = refl
 
+  assocs : ∀ x y z → (x ∧ y) ∧ z ≡ x ∧ y ∧ z
+  assocs true true true = refl
+  assocs true true false = refl
+  assocs true false true = refl
+  assocs true false false = refl
+  assocs false true true = refl
+  assocs false true false = refl
+  assocs false false true = refl
+  assocs false false false = refl
+
   sr =
     record
     { snr = BoolSNR
     ; ones = true
+    ; *-assocs = assocs
     ; *-identls = λ x → refl
     ; *-identrs = identr }
 

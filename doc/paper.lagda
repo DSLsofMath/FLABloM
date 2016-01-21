@@ -125,13 +125,13 @@ The Agda defintions of these three structures are found below and in
 modules \texttt{SemiNearRingRecord}, \texttt{SemiRingRecord} and
 \texttt{ClosedSemiRingRecord}.
 
-\subsection{Semi-near-ring}
+\subsection{Semi-near-rings}
 %include ../SemiNearRingRecord.lagda
 
-\subsection{Semi-ring}
+\subsection{Semi-rings}
 %include ../SemiRingRecord.lagda
 
-\subsection{Closed semi-ring}
+\subsection{Closed semi-rings}
 %include ../ClosedSemiRingRecord.lagda
 
 \subsection{Examples}

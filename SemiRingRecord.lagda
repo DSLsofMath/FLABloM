@@ -39,7 +39,7 @@ record SemiRing : Set₁ where
     using (LeftIdentity; RightIdentity; Associative)
 
   field
+    *-assocs  : Associative _*s_
     *-identls : LeftIdentity ones _*s_
     *-identrs : RightIdentity ones _*s_
-    *-assocs  : Associative _*s_
 \end{code}
