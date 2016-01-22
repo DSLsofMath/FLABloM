@@ -31,10 +31,10 @@ operations |+s| and |*s| (addition and multiplication).
 \begin{code}
   field
     s : Set
-    _≃s_ : s → s → Set
-    zers : s
-    _+s_ : s → s → s
-    _*s_ : s → s → s
+    _≃s_  : s → s → Set
+    zers  : s
+    _+s_  : s → s → s
+    _*s_  : s → s → s
 
   open Algebra.Structures
     using (IsCommutativeMonoid)
@@ -51,13 +51,12 @@ and we also need that |*s| respects the equivalence relation.
 \restorecolumns[SNRR]
 \begin{code}
   field
-    isCommMon : IsCommutativeMonoid _≃s_ _+s_ zers
-    zeroˡ : LeftZero zers _*s_
-    zeroʳ : RightZero zers _*s_
-    _<*>_ : ∀ {x y u v} → (x ≃s y) → (u ≃s v) → (x *s u ≃s y *s v)
+    isCommMon  : IsCommutativeMonoid _≃s_ _+s_ zers
+    zeroˡ      : LeftZero   zers _*s_
+    zeroʳ      : RightZero  zers _*s_
+    _<*>_      : ∀ {x y u v} → (x ≃s y) → (u ≃s v) → (x *s u ≃s y *s v)
 
   infix 4 _≃s_; infixl 6 _+s_; infixl 7 _*s_
-
 \end{code}
 %
 The semi-rings in this development also have idempotent addition and

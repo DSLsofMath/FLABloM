@@ -186,8 +186,7 @@ The second proof shows how we use the Agda standard library's
 equational reasoning framework to make the proofs easier to write and
 read, this tool is used heavily throughout the development.
 \begin{code}
-identSʳ : (r c : Shape) (x : M s r c) →
-   x +S zerS r c ≃S x
+identSʳ : (r c : Shape) (x : M s r c) →   x +S zerS r c ≃S x
 identSʳ r c x =
   let open EqReasoning setoidS
   in begin

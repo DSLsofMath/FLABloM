@@ -228,8 +228,8 @@ SDCSR = csr
 
   entire : ∀ a →
          ∃ (λ c → c ≡ ones +s (a *s c))
-  entire (D x) = ones , refl
-  entire ∞ = ones , refl
+  entire (D x)  = ones , refl
+  entire ∞      = ones , refl
 
   csr =
     record

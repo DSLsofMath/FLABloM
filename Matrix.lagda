@@ -50,10 +50,10 @@ where $X_{11}, X_{12}, X_{21}, X_{22}$ are again matrices.
 \begin{code}
 
 transpose : ∀ {a r c} → M a r c → M a c r
-transpose (One x) = One x
-transpose (Row m m₁) = Col (transpose m) (transpose m₁)
-transpose (Col m m₁) = Row (transpose m) (transpose m₁)
-transpose (Q m m₁ m₂ m₃) = Q (transpose m) (transpose m₂) (transpose m₁) (transpose m₃)
+transpose (One x)              = One x
+transpose (Row m₁ m₂)          = Col  (transpose m₁) (transpose m₂)
+transpose (Col m₁ m₂)          = Row  (transpose m₁) (transpose m₂)
+transpose (Q m₁₁ m₁₂ m₂₁ m₂₂)  = Q (transpose m₁₁) (transpose m₂₁) (transpose m₁₂) (transpose m₂₂)
 
 -- Matrix addition and multiplication need the corresponding
 -- operations on the underlying type

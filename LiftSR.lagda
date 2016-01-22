@@ -20,9 +20,9 @@ open SemiNearRing snr
 open import LiftSNR snr renaming (Square to SquareSNR) public
 
 oneS : {shape : Shape} → M s shape shape
-oneS {L}              =  One ones
-oneS {B shape shape₁} =  Q oneS       (zerS _ _)
-                         (zerS _ _) oneS
+oneS {L}               =  One ones
+oneS {B shape shape₁}  =  Q oneS       (zerS _ _)
+                          (zerS _ _)   oneS
 
 *-identlS : {r c : Shape} (x : M s r c) → (oneS *S x) ≃S x
 *-identlS {L}      {L}      (One x)    = *-identls x
