@@ -19,6 +19,16 @@ open SemiNearRing snr
 
 open import LiftSNR snr renaming (Square to SquareSNR) public
 
+
+lemma-row : ∀ {c1 c2} (x y : M s L c1) (u v : M s L c2) →
+  x ≃S y → u ≃S v →
+  Row x u ≃S Row y v
+lemma-row (One x) (One x₁) (One x₂) (One x₃) p q = p , q
+lemma-row (One x) (One x₁) (Row u₁ u) (Row v v₁) p q = p , q
+lemma-row (Row x x₁) (Row y y₁) (One x₂) (One x₃) p q = p , q
+lemma-row (Row x x₁) (Row y y₁) (Row u₁ u) (Row v v₁) p q = p , q
+
+
 oneS : {shape : Shape} → M s shape shape
 oneS {L}               =  One ones
 oneS {B shape shape₁}  =  Q oneS       (zerS _ _)
@@ -145,6 +155,19 @@ oneS {B shape shape₁}  =  Q oneS       (zerS _ _)
   (z : M s m3 c) →
   (x *S y +S a *S b) *S z ≃S x *S y *S z +S a *S b *S z
 
+lem3 : ∀ {c1 c2} (m1 m2 : M s L L) (n1 : M s L c1) (n2 : M s L c2) →
+  (m1 +S m2) *S Row n1 n2 ≃S Row ((m1 +S m2) *S n1) ((m1 +S m2) *S n2)
+lem3 (One x) (One x₁) (One x₂) (One x₃) = reflS L L {One ((x +s x₁) *s x₂)} , reflS L L
+lem3 {L} {B sh1 sh2} (One x) (One x₁) (One x₂) (Row n2 n3) = (reflS L L) , (reflS L (B sh1 sh2))
+lem3 (One x) (One x₁) (Row n1 n2) (One x₂) = {!!}
+lem3 (One x) (One x₁) (Row n1 n2) (Row n3 n4) = {!!}
+
+-- *-assoc-lemma3 : ∀ {} →
+--   (x1 *S y1) *S (Row z1 z2) +S (x2 *S y2) *S (Row z1 z2)
+--   ≃S Row ((x1 *S y1) *S z1) ((x1 *S y1) *S z2)
+--       +S Row ((x2 *S y2) *S z1) ((x2 *S y2) *S z2)
+-- *-assoc-lemma3
+
 *-assocS : ∀ sh1 sh2 sh3 sh4 (x : M s sh1 sh2) (y : M s sh2 sh3) (z : M s sh3 sh4)
   → ((x *S y) *S z) ≃S x *S y *S z
 
@@ -176,13 +199,20 @@ oneS {B shape shape₁}  =  Q oneS       (zerS _ _)
 *-assocS .L ._ .L .L (Row x1 x2) (Col y1 y2) (One z) =
   *-assoc-lemma2 x1 y1 x2 y2 (One z)
 *-assocS .L ._ .L ._ (Row x1 x2) (Col y1 y2) (Row z1 z2) =
-  {!let open EqReasoning setoidS
-  in begin
-    (x1 *S y1 +S x2 *S y2) *S Row z1 z2
-  ≈⟨ ? ⟩
-    Row ((x1 *S y1 +S x2 *S y2) *S z1) (x1 *S y1 *S z2 +S x2 *S y2 *S z2)
-  ≈⟨ ? ⟩
-    ?!}
+  let
+    open EqReasoning setoidS
+    m1 = x1 *S y1
+    m2 = x2 *S y2
+  in {!let One m1 = x1 *S y1!}
+  -- begin
+  --   (x1 *S y1 +S x2 *S y2) *S Row z1 z2
+  -- ≈⟨ distrS (Row z1 z2) (x1 *S y1) (x2 *S y2) ⟩
+  --   (x1 *S y1) *S (Row z1 z2) +S (x2 *S y2) *S (Row z1 z2)
+  -- ≈⟨ {!!} ⟩
+  --   (Row ((x1 *S y1) *S z1) ((x1 *S y1) *S z2))
+  --   +S (Row ((x2 *S y2) *S z1) ((x2 *S y2) *S z2))
+  -- ≈⟨ {!!} ⟩
+  --   {!!}
 *-assocS .L ._ ._ .L (Row x1 x2) (Q y11 y12 y21 y22) (Col z1 z2) = {!!}
 *-assocS .L ._ ._ ._ (Row x1 x2) (Q y11 y12 y21 y22) (Q z11 z12 z21 z22) = {!!}
 *-assocS ._ .L .L .L (Col x1 x2) (One y) (One z) = {!!}
