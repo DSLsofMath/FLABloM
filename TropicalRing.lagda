@@ -39,11 +39,10 @@ SDSNR = snr
   ⊓-assoc (suc x) zero zero = refl
   ⊓-assoc (suc x) zero (suc z) = refl
   ⊓-assoc (suc x) (suc y) zero = refl
-  ⊓-assoc (suc x) (suc y) (suc z) rewrite ⊓-assoc x y z = refl
+  ⊓-assoc (suc x) (suc y) (suc z) = cong suc (⊓-assoc x y z)
 
   assoc : ∀ x y z → (x + y) + z ≡ x + (y + z)
-  assoc (D x) (D y) (D z)
-    rewrite ⊓-assoc x y z = refl
+  assoc (D x) (D y) (D z) = cong D (⊓-assoc x y z)
   assoc (D x) (D x₁) ∞ = refl
   assoc (D x) ∞ (D x₁) = refl
   assoc (D x) ∞ ∞ = refl
@@ -74,7 +73,7 @@ SDSNR = snr
   ⊓-comm (suc x) (suc y) = cong suc (⊓-comm x y)
 
   comm : ∀ x y → x + y ≡ y + x
-  comm (D x) (D y) rewrite ⊓-comm x y = refl
+  comm (D x) (D y) = cong D (⊓-comm x y)
   comm (D x) ∞ = refl
   comm ∞ (D x) = refl
   comm ∞ ∞ = refl
@@ -99,27 +98,27 @@ SDSNR = snr
 
   ⊓-idem : ∀ x → x ⊓ x ≡ x
   ⊓-idem zero = refl
-  ⊓-idem (suc x) rewrite ⊓-idem x = refl
+  ⊓-idem (suc x) = cong suc (⊓-idem x)
 
   idem : ∀ x → x + x ≡ x
-  idem (D x) rewrite ⊓-idem x = refl
+  idem (D x) = cong D (⊓-idem x)
   idem ∞ = refl
 
-  h1 : ∀ {x z} → x +N 0 ≡ (x +N 0) ⊓ (x +N suc z)
-  h1 {zero} {zero} = refl
-  h1 {zero} {suc z} = refl
-  h1 {suc x} {zero} = cong suc (h1 {x} {0})
-  h1 {suc x} {suc z} = cong suc (h1 {x} {suc z})
+  h1 : ∀ x z → x +N 0 ≡ (x +N 0) ⊓ (x +N suc z)
+  h1 zero zero = refl
+  h1 zero (suc z) = refl
+  h1 (suc x) zero = cong suc (h1 x 0)
+  h1 (suc x) (suc z) = cong suc (h1 x (suc z))
 
   distl-+-⊓ : ∀ x y z → (x +N y ⊓ z) ≡ ((x +N y) ⊓ (x +N z))
   distl-+-⊓ zero zero zero = refl
   distl-+-⊓ zero zero (suc z) = refl
   distl-+-⊓ zero (suc y) zero = refl
   distl-+-⊓ zero (suc y) (suc z) = refl
-  distl-+-⊓ (suc x) zero zero rewrite ⊓-idem (x +N zero) = refl
-  distl-+-⊓ (suc x) zero (suc z) = cong suc (h1 {x} {z})
-  distl-+-⊓ (suc x) (suc y) zero rewrite ⊓-comm (x +N suc y) (x +N 0)
-    = cong suc (h1 {x} {y})
+  distl-+-⊓ (suc x) zero zero = cong suc (sym (⊓-idem (x +N zero)))
+  distl-+-⊓ (suc x) zero (suc z) = cong suc (h1 x z)
+  distl-+-⊓ (suc x) (suc y) zero =
+    cong suc (sym (trans (⊓-comm (x +N suc y) (x +N zero)) (sym (h1 x y))))
   distl-+-⊓ (suc x) (suc y) (suc z) = cong suc (distl-+-⊓ x (suc y) (suc z))
 
   distl : ∀ x y z → x * (y + z) ≡ (x * y) + (x * z)

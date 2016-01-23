@@ -27,7 +27,7 @@ open LiftSR sr
 %PaJa: Nice to see that you found a "summetric" definition instead of Dolan's
 %
 In \cite{lehmann1977} Lehmann presents a definition of the closure on
-matrices, $A^* = 1 + A · A^*$:
+square matrices, $A^* = 1 + A · A^*$:
 %
 Given
 %
@@ -54,8 +54,8 @@ the transitive closure of $A$ is defined inductively as
 \]
 %
 where $Δ = A_{22} + A_{21} · A_{11}^* · A_{12}$ and the base case
-being the one-by-one matrix case where we use the transitive closure
-of the element of the matrix:
+being the one-by-one matrix where we use the transitive closure of the
+element of the matrix:
 %
 \[
 \left[ s \right]^* = \left[ s^* \right]
