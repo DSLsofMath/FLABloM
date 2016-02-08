@@ -7,7 +7,7 @@ open import Matrix
 
 open import Algebra.Structures
 open import Relation.Binary
-open import Data.Product hiding (swap)
+open import Product
 
 open import Relation.Binary.PropositionalEquality hiding (trans; sym) renaming (refl to refl-≡)
 import Relation.Binary.EqReasoning as EqReasoning
