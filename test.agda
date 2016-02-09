@@ -2,7 +2,7 @@ open import SemiNearRingRecord
 open import BoolRing
 open import TropicalRing
 open import LiftSNR
--- open import LiftSR -- not ready yet
+open import LiftSR
 -- open import LiftCSR -- not ready yet
 
 open import Shape

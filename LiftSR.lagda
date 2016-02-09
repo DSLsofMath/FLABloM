@@ -147,9 +147,9 @@ oneS {B shape shape₁}  =  Q oneS       (zerS _ _)
 
 -- assoc-lem1 : ∀ →
 assoc-lem1 : ∀
-  sh2 sh3 sh4 sh5 sh6
-  (x : M s L sh2)
-  (x₁ : M s L sh3)
+  sh1 sh2 sh3 sh4 sh5 sh6
+  (x : M s sh1 sh2)
+  (x₁ : M s sh1 sh3)
   (y : M s sh2 sh4)
   (y₁ : M s sh2 sh5)
   (y₂ : M s sh3 sh4)
@@ -184,6 +184,27 @@ assoc-lem3 (B sh1 sh2) (B sh3 sh4) (Col x x₁) (Col x₂ x₃) (One x₄) =
   (reflS sh2 L {x₁ *S One x₄})) ,
   ((reflS sh3 L {x₂ *S One x₄}) ,
   (reflS sh4 L {x₃ *S One x₄}))
+
+assoc-lem4 : ∀
+  sh1 sh3 sh4 sh6
+  (x : M s sh1 L)
+  (y : M s L sh3)
+  (z : M s sh3 sh6)
+  (y₁ : M s L sh4)
+  (z₁ : M s sh4 sh6) →
+  (x *S y) *S z +S (x *S y₁) *S z₁ ≃S
+  x *S (y *S z +S y₁ *S z₁)
+
+-- distrS then IH
+assoc-lem5 :
+  ∀ sh1 sh3 sh4 sh5
+  (x : M s sh1 sh3)
+  (y : M s sh3 L)
+  (x₁ : M s sh1 sh4)
+  (y₁ : M s sh4 L)
+  (z : M s L sh5) →
+  (x *S y +S x₁ *S y₁) *S z ≃S
+  x *S y *S z +S x₁ *S y₁ *S z
 
 
 *-assocS : ∀ sh1 sh2 sh3 sh4 (x : M s sh1 sh2) (y : M s sh2 sh3) (z : M s sh3 sh4)
@@ -279,11 +300,11 @@ assoc-lem3 (B sh1 sh2) (B sh3 sh4) (Col x x₁) (Col x₂ x₃) (One x₄) =
 --       Row (x *S y *S z +S x₁ *S y₁ *S z) (x *S y *S z₁ +S x₁ *S y₁ *S z₁)
 
 *-assocS L (B sh2 sh3) (B sh4 sh5) L (Row x x₁) (Q y y₁ y₂ y₃) (Col z z₁) =
-  assoc-lem1 sh2 sh3 sh4 sh5 L x x₁ y y₁ y₂ y₃ z z₁
+  assoc-lem1 L sh2 sh3 sh4 sh5 L x x₁ y y₁ y₂ y₃ z z₁
 
 *-assocS L (B sh2 sh3) (B sh4 sh5) (B sh6 sh7) (Row x x₁) (Q y y₁ y₂ y₃) (Q z z₁ z₂ z₃) =
-  assoc-lem1 sh2 sh3 sh4 sh5 sh6 x x₁ y y₁ y₂ y₃ z z₂ ,
-  assoc-lem1 sh2 sh3 sh4 sh5 sh7 x x₁ y y₁ y₂ y₃ z₁ z₃
+  assoc-lem1 L sh2 sh3 sh4 sh5 sh6 x x₁ y y₁ y₂ y₃ z z₂ ,
+  assoc-lem1 L sh2 sh3 sh4 sh5 sh7 x x₁ y y₁ y₂ y₃ z₁ z₃
 
 
 *-assocS (B sh1 sh2) L L L (Col x x₁) (One x₂) (One x₃) =
@@ -324,45 +345,85 @@ assoc-lem3 (B sh1 sh2) (B sh3 sh4) (Col x x₁) (Col x₂ x₃) (One x₄) =
 -- ≃S Col x x₁ *S (y *S z +S y₁ *S z₁)
 
 *-assocS (B sh1 sh2) L (B sh3 sh4) (B sh5 sh6) (Col x x₁) (Row y y₁) (Q z z₁ z₂ z₃) =
-  {!!} ,
-  {!!} ,
-  {!!} ,
-  {!!}
+  assoc-lem4 sh1 sh3 sh4 sh5 x y z y₁ z₂ ,
+  assoc-lem4 sh1 sh3 sh4 sh6 x y z₁ y₁ z₃ ,
+  assoc-lem4 sh2 sh3 sh4 sh5 x₁ y z y₁ z₂ ,
+  assoc-lem4 sh2 sh3 sh4 sh6 x₁ y z₁ y₁ z₃
 
+*-assocS (B sh1 sh2) (B sh3 sh4) L L (Q x x₁ x₂ x₃) (Col y y₁) (One x₄) =
+  assoc-lem5 sh1 sh3 sh4 L x y x₁ y₁ (One x₄) ,
+  assoc-lem5 sh2 sh3 sh4 L x₂ y x₃ y₁ (One x₄)
 
-*-assocS (B sh1 sh2) (B sh3 sh4) L L (Q x x₁ x₂ x₃) (Col y y₁) (One x₄) = {!!}
-*-assocS (B sh1 sh2) (B sh3 sh4) L (B sh5 sh6) (Q x x₁ x₂ x₃) (Col y y₁) (Row z z₁) = {!!}
-*-assocS (B sh1 sh2) (B sh3 sh4) (B sh5 sh6) L (Q x x₁ x₂ x₃) (Q y y₁ y₂ y₃) (Col z z₁) = {!!}
-*-assocS (B sh1 sh2) (B sh3 sh4) (B sh5 sh6) (B sh7 sh8) (Q x x₁ x₂ x₃) (Q y y₁ y₂ y₃) (Q z z₁ z₂ z₃) = {!!}
+*-assocS (B sh1 sh2) (B sh3 sh4) L (B sh5 sh6) (Q x x₁ x₂ x₃) (Col y y₁) (Row z z₁) =
+  assoc-lem5 sh1 sh3 sh4 sh5 x y x₁ y₁ z ,
+  assoc-lem5 sh1 sh3 sh4 sh6 x y x₁ y₁ z₁ ,
+  assoc-lem5 sh2 sh3 sh4 sh5 x₂ y x₃ y₁ z ,
+  assoc-lem5 sh2 sh3 sh4 sh6 x₂ y x₃ y₁ z₁
 
-assoc-lem1 sh2 sh3 sh4 sh5 sh6
+*-assocS (B sh1 sh2) (B sh3 sh4) (B sh5 sh6) L (Q x x₁ x₂ x₃) (Q y y₁ y₂ y₃) (Col z z₁) =
+  assoc-lem1 sh1 sh3 sh4 sh5 sh6 L x x₁ y y₁ y₂ y₃ z z₁ ,
+  assoc-lem1 sh2 sh3 sh4 sh5 sh6 L x₂ x₃ y y₁ y₂ y₃ z z₁
+
+*-assocS (B sh1 sh2) (B sh3 sh4) (B sh5 sh6) (B sh7 sh8) (Q x x₁ x₂ x₃) (Q y y₁ y₂ y₃) (Q z z₁ z₂ z₃) =
+  (assoc-lem1 sh1 sh3 sh4 sh5 sh6 sh7 x x₁ y y₁ y₂ y₃ z z₂) ,
+  assoc-lem1 sh1 sh3 sh4 sh5 sh6 sh8 x x₁ y y₁ y₂ y₃ z₁ z₃ ,
+  assoc-lem1 sh2 sh3 sh4 sh5 sh6 sh7 x₂ x₃ y y₁ y₂ y₃ z z₂ ,
+  assoc-lem1 sh2 sh3 sh4 sh5 sh6 sh8 x₂ x₃ y y₁ y₂ y₃ z₁ z₃
+
+assoc-lem1 sh1 sh2 sh3 sh4 sh5 sh6
   x x₁ y y₁ y₂ y₃ z z₁ =
   let open EqReasoning setoidS
   in begin
     (x *S y +S x₁ *S y₂) *S z +S (x *S y₁ +S x₁ *S y₃) *S z₁
-  ≈⟨ <+S> L sh6 {(x *S y +S x₁ *S y₂) *S z}{((x *S y) *S z +S (x₁ *S y₂) *S z)}
+  ≈⟨ <+S> sh1 sh6 {(x *S y +S x₁ *S y₂) *S z}{((x *S y) *S z +S (x₁ *S y₂) *S z)}
           {(x *S y₁ +S x₁ *S y₃) *S z₁}{((x *S y₁) *S z₁ +S (x₁ *S y₃) *S z₁)}
-       (distrS {L}{sh4}{sh6} z (x *S y) (x₁ *S y₂))
-       (distrS {L}{sh5}{sh6} z₁ (x *S y₁) (x₁ *S y₃)) ⟩
+       (distrS {sh1}{sh4}{sh6} z (x *S y) (x₁ *S y₂))
+       (distrS {sh1}{sh5}{sh6} z₁ (x *S y₁) (x₁ *S y₃)) ⟩
     ((x *S y) *S z +S (x₁ *S y₂) *S z) +S ((x *S y₁) *S z₁ +S (x₁ *S y₃) *S z₁)
-  ≈⟨ <+S> L sh6 {((x *S y) *S z +S (x₁ *S y₂) *S z)}{(x *S y *S z +S x₁ *S y₂ *S z)}
+  ≈⟨ <+S> sh1 sh6 {((x *S y) *S z +S (x₁ *S y₂) *S z)}{(x *S y *S z +S x₁ *S y₂ *S z)}
           {((x *S y₁) *S z₁ +S (x₁ *S y₃) *S z₁)}{(x *S y₁ *S z₁ +S x₁ *S y₃ *S z₁)}
-       (<+S> L sh6 {(x *S y) *S z}{x *S y *S z}{(x₁ *S y₂) *S z}{x₁ *S y₂ *S z}
-         (*-assocS L sh2 sh4 sh6 x y z)
-         (*-assocS L sh3 sh4 sh6 x₁ y₂ z))
-       (<+S> L sh6 {(x *S y₁) *S z₁}{x *S y₁ *S z₁}{(x₁ *S y₃) *S z₁}{x₁ *S y₃ *S z₁}
-         (*-assocS L sh2 sh5 sh6 x y₁ z₁)
-         (*-assocS L sh3 sh5 sh6 x₁ y₃ z₁)) ⟩
+       (<+S> sh1 sh6 {(x *S y) *S z}{x *S y *S z}{(x₁ *S y₂) *S z}{x₁ *S y₂ *S z}
+         (*-assocS sh1 sh2 sh4 sh6 x y z)
+         (*-assocS sh1 sh3 sh4 sh6 x₁ y₂ z))
+       (<+S> sh1 sh6 {(x *S y₁) *S z₁}{x *S y₁ *S z₁}{(x₁ *S y₃) *S z₁}{x₁ *S y₃ *S z₁}
+         (*-assocS sh1 sh2 sh5 sh6 x y₁ z₁)
+         (*-assocS sh1 sh3 sh5 sh6 x₁ y₃ z₁)) ⟩
     (x *S y *S z +S x₁ *S y₂ *S z) +S (x *S y₁ *S z₁ +S x₁ *S y₃ *S z₁)
-  ≈⟨ swapMid {L}{sh6} (x *S y *S z) (x₁ *S y₂ *S z) (x *S y₁ *S z₁) (x₁ *S y₃ *S z₁) ⟩
+  ≈⟨ swapMid {sh1}{sh6} (x *S y *S z) (x₁ *S y₂ *S z) (x *S y₁ *S z₁) (x₁ *S y₃ *S z₁) ⟩
     (x *S y *S z +S x *S y₁ *S z₁) +S (x₁ *S y₂ *S z +S x₁ *S y₃ *S z₁)
-  ≈⟨ <+S> L sh6 {(x *S y *S z +S x *S y₁ *S z₁)}{x *S (y *S z +S y₁ *S z₁)}
+  ≈⟨ <+S> sh1 sh6 {(x *S y *S z +S x *S y₁ *S z₁)}{x *S (y *S z +S y₁ *S z₁)}
           {x₁ *S y₂ *S z +S x₁ *S y₃ *S z₁}{x₁ *S (y₂ *S z +S y₃ *S z₁)}
-       (symS L sh6 {x *S (y *S z +S y₁ *S z₁)}{x *S y *S z +S x *S y₁ *S z₁}
-         (distlS {L}{sh2}{sh6} x (y *S z) (y₁ *S z₁)))
-       (symS L sh6 {x₁ *S (y₂ *S z +S y₃ *S z₁)}{x₁ *S y₂ *S z +S x₁ *S y₃ *S z₁}
-         (distlS {L}{sh3}{sh6} x₁ (y₂ *S z) (y₃ *S z₁))) ⟩
+       (symS sh1 sh6 {x *S (y *S z +S y₁ *S z₁)}{x *S y *S z +S x *S y₁ *S z₁}
+         (distlS x (y *S z) (y₁ *S z₁)))
+       (symS sh1 sh6 {x₁ *S (y₂ *S z +S y₃ *S z₁)}{x₁ *S y₂ *S z +S x₁ *S y₃ *S z₁}
+         (distlS x₁ (y₂ *S z) (y₃ *S z₁))) ⟩
     x *S (y *S z +S y₁ *S z₁) +S x₁ *S (y₂ *S z +S y₃ *S z₁)
+  ∎
+
+assoc-lem4 sh1 sh2 sh3 sh4 x y z y₁ z₁ =
+  let open EqReasoning setoidS
+  in begin
+    (x *S y) *S z +S (x *S y₁) *S z₁
+  ≈⟨ <+S> sh1 sh4  {(x *S y) *S z}{x *S y *S z}
+          {(x *S y₁) *S z₁}{x *S y₁ *S z₁}
+       (*-assocS sh1 L sh2 sh4 x y z)
+       (*-assocS sh1 L sh3 sh4 x y₁ z₁) ⟩
+    x *S y *S z +S x *S y₁ *S z₁
+  ≈⟨ symS sh1 sh4 {x *S (y *S z +S y₁ *S z₁)}{x *S y *S z +S x *S y₁ *S z₁}
+    (distlS {sh1}{L}{sh4} x (y *S z) (y₁ *S z₁)) ⟩
+    x *S (y *S z +S y₁ *S z₁)
+  ∎
+
+assoc-lem5 sh1 sh2 sh3 sh5 x y x₁ y₁ z =
+  let open EqReasoning setoidS
+  in begin
+    (x *S y +S x₁ *S y₁) *S z
+  ≈⟨ distrS z (x *S y) (x₁ *S y₁) ⟩
+    (x *S y) *S z +S (x₁ *S y₁) *S z
+  ≈⟨ <+S> sh1 sh5 {(x *S y) *S z}{x *S y *S z}{(x₁ *S y₁) *S z}{x₁ *S y₁ *S z}
+       (*-assocS sh1 sh2 L sh5 x y z)
+       (*-assocS sh1 sh3 L sh5 x₁ y₁ z) ⟩
+    x *S y *S z +S x₁ *S y₁ *S z
   ∎
 
 
