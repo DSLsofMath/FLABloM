@@ -4,7 +4,8 @@ open import ClosedSemiRingRecord
 
 module LiftCSR (csr : ClosedSemiRing) where
 
-open import Data.Product
+open import Data.Product renaming (_,_ to _,,_)
+open import Product
 import Relation.Binary.EqReasoning as EqReasoning
 
 
@@ -90,64 +91,111 @@ lemma2-1-2 sh M1 M2 =
     M1 +S M1 *S M2
   ∎
 
+entire-lem1 :
+  ∀ sh sh1
+  (C C* : M s sh sh)
+  (D : M s sh sh1) (E : M s sh1 sh)
+  (Δ* : M s sh1 sh1)
+  (ih : C* ≃S oneS +S C *S C*) →
+  C* *S D *S Δ* *S E *S C* ≃S
+  C *S C* *S D *S Δ* *S E *S C*  +S  D *S Δ* *S E *S C*
+entire-lem1 sh sh1 C C* D E Δ* ih =
+  let open EqReasoning setoidS
+  in begin
+    C* *S D *S Δ* *S E *S C*
+  ≈⟨ <*S> sh sh sh {C*}{oneS +S C *S C*}{_}{_}
+       ih (reflS sh sh) ⟩
+    (oneS +S C *S C*) *S D *S Δ* *S E *S C*
+  ≈⟨ distrS (D *S Δ* *S E *S C*) oneS (C *S C*) ⟩
+    oneS *S D *S Δ* *S E *S C*
+      +S (C *S C*) *S D *S Δ* *S E *S C*
+  ≈⟨ <+S> sh sh
+          {oneS *S D *S Δ* *S E *S C*}{D *S Δ* *S E *S C*}
+          {(C *S C*) *S D *S Δ* *S E *S C*}{C *S C* *S D *S Δ* *S E *S C*}
+       (*-identlS (D *S Δ* *S E *S C*))
+       (*-assocS sh sh sh sh C C* (D *S Δ* *S E *S C*)) ⟩
+    D *S Δ* *S E *S C*
+      +S C *S C* *S D *S Δ* *S E *S C*
+  ≈⟨ commS sh sh (D *S Δ* *S E *S C*) (C *S C* *S D *S Δ* *S E *S C*) ⟩
+    C *S C* *S D *S Δ* *S E *S C*
+      +S D *S Δ* *S E *S C*
+  ∎
+
+entire-lem2 :
+  ∀ sh sh1
+  (C C* : M s sh sh)
+  (D : M s sh sh1) (E : M s sh1 sh)
+  (Δ* : M s sh1 sh1) →
+  C *S C*
+    +S C *S C* *S D *S Δ* *S E *S C*
+    +S D *S Δ* *S E *S C* ≃S
+  C *S (C* +S C* *S D *S Δ* *S E *S C*) +S D *S Δ* *S E *S C*
+entire-lem2 sh sh1 C C* D E Δ* =
+  let open EqReasoning setoidS
+  in begin
+    C *S C*
+    +S C *S C* *S D *S Δ* *S E *S C*
+    +S D *S Δ* *S E *S C*
+  ≈⟨ symS sh sh {(C *S C*
+     +S C *S C* *S D *S Δ* *S E *S C*)
+    +S D *S Δ* *S E *S C*}{C *S C*
+    +S C *S C* *S D *S Δ* *S E *S C*
+    +S D *S Δ* *S E *S C*} (assocS sh sh (C *S C*) (C *S C* *S D *S Δ* *S E *S C*) (D *S Δ* *S E *S C*)) ⟩
+    (C *S C*
+     +S C *S C* *S D *S Δ* *S E *S C*)
+    +S D *S Δ* *S E *S C*
+  ≈⟨ <+S> sh sh
+          {C *S C* +S C *S C* *S D *S Δ* *S E *S C*}{C *S (C* +S C* *S D *S Δ* *S E *S C*)}
+          {D *S Δ* *S E *S C*}{D *S Δ* *S E *S C*}
+       (symS sh sh {C *S (C* +S C* *S D *S Δ* *S E *S C*)}
+             {(C *S C* +S C *S C* *S D *S Δ* *S E *S C*)}
+         (distlS {sh}{sh}{sh}
+           C C* (C* *S D *S Δ* *S E *S C*)))
+       (reflS sh sh) ⟩
+    C *S (C* +S C* *S D *S Δ* *S E *S C*) +S D *S Δ* *S E *S C*
+  ∎
+
+
 entireQS : ∀ {sh} (w : M s sh sh) → Σ (M s sh sh) λ c → c ≃S oneS +S w *S c --EqS w c
 entireQS {L} (One w) =
-  let (c , p) = entireQ w
-  in (One c , p)
-entireQS {B sh sh₁} (Q C D E F) =
+  let (c ,, p) = entireQ w
+  in (One c ,, p)
+entireQS {B sh sh1} (Q C D E F) =
   let
-    C* , ih_C = entireQS C
+    C* ,, ih_C = entireQS C
     Δ = F +S E *S C* *S D
-    Δ* , ih_Δ = entireQS Δ
+    Δ* ,, ih_Δ = entireQS Δ
   in
     Q (C* +S C* *S D *S Δ* *S E *S C*) (C* *S D *S Δ*)
-      (Δ* *S E *S C*) Δ* ,
+      (Δ* *S E *S C*) Δ* ,,
     (let open EqReasoning setoidS
     in begin
       C* +S C* *S D *S Δ* *S E *S C*
-
-    ≈⟨ <+S> sh sh ih_C (reflS sh sh) ⟩
-
-      (oneS +S C *S C*) +S C* *S D *S Δ* *S E *S C*
-
-    ≈⟨ <+S> sh sh (reflS sh sh) (<*S> sh sh sh ih_C (reflS sh sh)) ⟩
-
-      (oneS +S C *S C*) +S (oneS +S C *S C*) *S (D *S Δ* *S E *S C*)
-
-    ≈⟨ <+S> sh sh (reflS sh sh) (lemma2-1-1 sh (D *S Δ* *S E *S C*) (C *S C*)) ⟩
-
-      (oneS +S C *S C*) +S (D *S Δ* *S E *S C*) +S (C *S C*) *S D *S Δ* *S E *S C*
-
-    ≈⟨ <+S> sh sh (reflS sh sh)
-            (commS sh sh
-              (D *S Δ* *S E *S C*)
-              ((C *S C*) *S D *S Δ* *S E *S C*)) ⟩
-
-      (oneS +S C *S C*) +S (C *S C*) *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)
-
-    ≈⟨ {!<+S> sh sh !} ⟩ -- assoc-*
-
-      (oneS +S C *S C*) +S C *S C* *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)
-
-    ≈⟨ assocS sh sh oneS (C *S C*) (C *S C* *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)) ⟩
-
-      oneS +S C *S C* +S C *S C* *S D *S Δ* *S E *S C* +S (D *S Δ* *S E *S C*)
-    ≈⟨ <+S> sh sh (reflS sh sh) (symS sh sh {!distlS C !}) ⟩
-      {!!}
-
-    -- ≈⟨ assocS sh sh oneS (C *S C*) ((D *S Δ* *S E *S C*) +S (C *S C*) *S D *S Δ* *S E *S C*) ⟩
-
-    -- oneS +S C *S (C* +S C* *S D *S Δ* *D E *S C*) +S D *S Δ* *S E *S C*
-    ) ,
+    ≈⟨ <+S> sh sh
+            {C*}{oneS +S C *S C*}{C* *S D *S Δ* *S E *S C*}
+            {C *S C* *S D *S Δ* *S E *S C*  +S  D *S Δ* *S E *S C*}
+         ih_C
+         (entire-lem1 sh sh1 C C* D E Δ* ih_C) ⟩
+      (oneS +S C *S C*)
+        +S C *S C* *S D *S Δ* *S E *S C* +S D *S Δ* *S E *S C*
+    ≈⟨ assocS sh sh oneS (C *S C*) (C *S C* *S D *S Δ* *S E *S C* +S D *S Δ* *S E *S C*)  ⟩
+      oneS +S C *S C*
+        +S C *S C* *S D *S Δ* *S E *S C* +S D *S Δ* *S E *S C*
+    ≈⟨ <+S> sh sh {oneS}{oneS}
+            {C *S C* +S C *S C* *S D *S Δ* *S E *S C* +S D *S Δ* *S E *S C*}{(C *S (C* +S C* *S D *S Δ* *S E *S C*) +S D *S Δ* *S E *S C*)}
+         (reflS sh sh)
+         (entire-lem2 sh sh1 C C* D E Δ*) ⟩
+      oneS +S C *S (C* +S C* *S D *S Δ* *S E *S C*) +S D *S Δ* *S E *S C*
+    ∎) ,
     {!!} ,
     {!!} ,
     {!!}
 
--- Square : Shape → ClosedSemiRing
--- Square shape =
---   record
---     { sr = SquareSR shape
---     ; entireQ = entireQS }
+Square : Shape → ClosedSemiRing
+Square shape =
+  record
+    { sr = SquareSR shape
+    ; entireQ = entireQS }
 
 
 \end{code}
