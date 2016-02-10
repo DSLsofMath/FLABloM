@@ -187,7 +187,30 @@ entireQS {B sh sh1} (Q C D E F) =
          (entire-lem2 sh sh1 C C* D E Δ*) ⟩
       oneS +S C *S (C* +S C* *S D *S Δ* *S E *S C*) +S D *S Δ* *S E *S C*
     ∎) ,
-    {!!} ,
+    (let open EqReasoning setoidS
+    in begin
+      C* *S D *S Δ*
+    ≈⟨ <*S> sh sh sh1 {C*}{oneS +S C *S C*}
+            {D *S Δ*}{D *S Δ*}
+         ih_C (reflS sh sh1) ⟩
+      (oneS +S C *S C*) *S D *S Δ*
+    ≈⟨ distrS (D *S Δ*) oneS (C *S C*) ⟩
+      oneS *S (D *S Δ*) +S (C *S C*) *S (D *S Δ*)
+    ≈⟨ <+S> sh sh1 {oneS *S (D *S Δ*)}{D *S Δ*}{_}{_}
+         (*-identlS (D *S Δ*))
+         (reflS sh sh1) ⟩
+      D *S Δ* +S (C *S C*) *S (D *S Δ*)
+    ≈⟨ commS sh sh1 (D *S Δ*) ((C *S C*) *S (D *S Δ*)) ⟩
+      (C *S C*) *S D *S Δ* +S D *S Δ*
+    ≈⟨ <+S> sh sh1 {(C *S C*) *S D *S Δ*}{C *S C* *S D *S Δ*}{_}{_}
+         (*-assocS sh sh sh sh1 C C* (D *S Δ*))
+         (reflS sh sh1) ⟩
+      C *S C* *S D *S Δ* +S D *S Δ*
+    ≈⟨ symS sh sh1 {zerS sh sh1 +S C *S C* *S D *S Δ* +S D *S Δ*}
+            {C *S C* *S D *S Δ* +S D *S Δ*}
+         (identSˡ sh sh1 (C *S C* *S D *S Δ* +S D *S Δ*)) ⟩
+      zerS sh sh1 +S C *S C* *S D *S Δ* +S D *S Δ*
+    ∎) ,
     {!!} ,
     {!!}
 
