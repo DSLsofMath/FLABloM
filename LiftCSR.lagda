@@ -315,7 +315,40 @@ entireQS {B sh sh1} (Q C D E F) =
         +S E *S (C* +S C* *S D *S Δ* *S E *S C*)
         +S F *S Δ* *S E *S C*
     ∎) ,
-    {!!}
+    (let open EqReasoning setoidS
+    in begin
+      Δ*
+    ≈⟨ ih_Δ ⟩
+      oneS +S Δ *S Δ*
+    ≡⟨ refl ⟩
+      oneS +S (F +S E *S C* *S D) *S Δ*
+    ≈⟨ <+S> sh1 sh1 {oneS}{oneS}{(F +S E *S C* *S D) *S Δ*}{F *S Δ* +S (E *S C* *S D) *S Δ*}
+         (reflS sh1 sh1)
+         (distrS Δ* F (E *S C* *S D)) ⟩
+      oneS +S F *S Δ* +S (E *S C* *S D) *S Δ*
+    ≈⟨ <+S> sh1 sh1 {_}{_}{F *S Δ* +S (E *S C* *S D) *S Δ*}{(E *S C* *S D) *S Δ* +S F *S Δ*}
+         (reflS sh1 sh1)
+         (commS sh1 sh1 (F *S Δ*) ((E *S C* *S D) *S Δ*)) ⟩
+      oneS +S (E *S C* *S D) *S Δ* +S F *S Δ*
+    ≈⟨ <+S> sh1 sh1 {oneS}{oneS}
+            {(E *S C* *S D) *S Δ* +S F *S Δ*}{E *S (C* *S D) *S Δ* +S F *S Δ*}
+         (reflS sh1 sh1)
+         (<+S> sh1 sh1 {(E *S C* *S D) *S Δ*}{E *S (C* *S D) *S Δ*}
+               {F *S Δ*}{F *S Δ*}
+           (*-assocS sh1 sh sh1 sh1 E (C* *S D) Δ*)
+           (reflS sh1 sh1)) ⟩
+      oneS +S E *S (C* *S D) *S Δ* +S F *S Δ*
+    ≈⟨ <+S> sh1 sh1 {oneS}{oneS}{E *S (C* *S D) *S Δ* +S F *S Δ*}{E *S C* *S D *S Δ* +S F *S Δ*}
+         (reflS sh1 sh1)
+         (<+S> sh1 sh1 {E *S (C* *S D) *S Δ*}{E *S C* *S D *S Δ*}{F *S Δ*}{F *S Δ*}
+           (<*S> sh1 sh sh1 {E}{E}{(C* *S D) *S Δ*}{C* *S D *S Δ*}
+             (reflS sh1 sh)
+             (*-assocS sh sh sh1 sh1 C* D Δ*))
+           (reflS sh1 sh1)) ⟩
+      oneS +S E *S C* *S D *S Δ* +S F *S Δ*
+    ∎)
+
+
 
 Square : Shape → ClosedSemiRing
 Square shape =
