@@ -1,11 +1,7 @@
 % -*- latex -*-
 
 %let submit = False
-%if submit
-\documentclass[onecolumn,times,authoryear]{sigplanconf}
-%else
-\documentclass[onecolumn,preprint,times]{sigplanconf}
-%endif
+\documentclass[a4paper]{easychair}
 
 %%% Standard definitions from the lhs2TeX installation
 %include polycode.fmt
@@ -16,13 +12,13 @@
 % \usepackage{ucs}
 % \usepackage[utf8x]{inputenc}
 \usepackage{unicode-math}
-\usepackage{autofe}
+% \usepackage{autofe}
 \usepackage{stmaryrd}
 \usepackage{multicol}
-\usepackage{hyperref}
+% \usepackage{hyperref}
 
 %if techreport
-\usepackage{TRtitlepage}
+% \usepackage{TRtitlepage}
 %endif
 
 %%% Some useful macros
@@ -39,11 +35,12 @@
 \newcommand{\refSecsI}[1]{Sections \ref{#1}}
 \newcommand{\refTab}[1]{Tab. \ref{#1}}
 
-\toappear{}
+%\toappear{}
 
 % \usepackage[style=abbrvnat]{biblatex}
 % %%% Keep references in a separate bib-file
 % \addbibresource{paper.bib}
+
 
 
 
@@ -54,21 +51,25 @@
 \CopyrightYear{}
 \copyrightdata{}
 %elif not techreport
-\titlebanner{Preprint}
-\preprintfooter{Preprint}
+% \titlebanner{Preprint}
+% \preprintfooter{Preprint}
 %endif
 
 %if techreport
-\TRtitlepage
-  {The title}             % argument 1 <= the title
-  {Tess Ting \\[1em] Test Ing} % argument 2 <= authors
-  {}                                     % argument 3 <= report number
+% \TRtitlepage
+%   {The title}             % argument 1 <= the title
+%   {Tess Ting \\[1em] Test Ing} % argument 2 <= authors
+%   {}                                     % argument 3 <= report number
 %else
 \title{Functional linear algebra with block matrices}
 
-\authorinfo{Adam Sandberg Eriksson}
-           {Chalmers Univeristy of Technology, Sweden}
-           {\texttt{saadam@@chalmers.se}}
+% \authorinfo{Adam Sandberg Eriksson}
+%            {Chalmers Univeristy of Technology, Sweden}
+%            {\texttt{saadam@@chalmers.se}}
+\author{Adam Sandberg Eriksson}
+\institute{Chalmers University of Technology, Sweden}
+
+
 
 \maketitle
 %endif
@@ -93,11 +94,11 @@
 %   {Programming Techniques}%
 %   {Applicative (Functional) Programming}%
 
-\terms
-design, languages, verification
+% \terms
+% design, languages, verification
 
-\keywords
-some, important, concepts, not already, mentioned, in the title
+% \keywords
+% some, important, concepts, not already, mentioned, in the title
 
 %\tableofcontents
 
@@ -192,6 +193,6 @@ Somebody helped with something.
 The reviewers suggested many improvements to the paper.
 
 %------------------------------------------------------------------------------
-\bibliographystyle{abbrvnat}
-\bibliography{paper}
+% \bibliographystyle{abbrvnat}
+% \bibliography{paper}
 \end{document}
