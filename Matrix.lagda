@@ -20,14 +20,11 @@ Row and column matrices are built from smaller matrices which are
 either 1-by-1 matrices or further row respectively column matrices
 \restorecolumns[Matrix]
 \begin{code}
-  Row :  {c₁ c₂ : Shape} →
-         M a L c₁ → M a L c₂ →
-         M a L (B c₁ c₂)
+  Row :  {c₁ c₂ : Shape} →        M a L c₁ → M a L c₂ →  M a L (B c₁ c₂)
 
-  Col :  {r₁ r₂ : Shape} →
-         M a r₁ L →
-         M a r₂ L →
-         M a (B r₁ r₂) L
+  Col :  {r₁ r₂ : Shape} →        M a r₁ L →
+                                  M a r₂ L →
+                                  M a (B r₁ r₂) L
 \end{code}
 and matrices of other shapes are built from 4 smaller matrices, like
 $X = \left[
@@ -40,10 +37,10 @@ where $X_{11}, X_{12}, X_{21}, X_{22}$ are again matrices.
 %
 \restorecolumns[Matrix]
 \begin{code}
-  Q   :  {r₁ r₂ c₁ c₂ : Shape} →
-         M a r₁ c₁ → M a r₁ c₂ →
-         M a r₂ c₁ → M a r₂ c₂ →
-         M a (B r₁ r₂) (B c₁ c₂)
+  Q   :  {r₁ r₂ c₁ c₂ : Shape} →  M a r₁ c₁ → M a r₁ c₂ →
+                                  M a r₂ c₁ → M a r₂ c₂ →
+                                  M a (B r₁ r₂) (B c₁ c₂)
+
 \end{code}
 
 This matrix representation allows for simple formulations of matrix

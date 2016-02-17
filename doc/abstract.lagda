@@ -42,14 +42,14 @@
 \begin{document}
 
 \title{FLABloM: Functional linear algebra with block matrices}
-\author{Adam Sandberg Eriksson}
+\author{Adam Sandberg Eriksson \and Patrik Jansson}
 \institute{
   Chalmers University of Technology,
   Sweden\\
-  \email{saadam@@chalmers.se}}
+  \email{\{saadam,patrikj\}@@chalmers.se}}
 
 \titlerunning{Functional linear algebra with block matrices}
-\authorrunning{Adam Sandberg Eriksson}
+\authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
 
 \maketitle
 
@@ -75,8 +75,9 @@
 \section{Introduction}
 \label{sec:intro}
 
-In \cite{bernardy2015certified} Bernardy and Jansson used a nice
-formulation of matrices to certify Valiant's parsing algorithm.
+In \cite{bernardy2015certified} Bernardy \& Jansson used a clever
+formulation of matrices to certify Valiant's
+\cite{valiant_general_1975} parsing algorithm.
 %
 Their matrix formulation was restricted to matrices of size
 $2^n \times 2^n$ and this work extends the matrix formulation to allow
@@ -109,7 +110,7 @@ closure with $^*$.
 
 We use two examples of closed semi-rings:
 %
-(1) the booleans with disjunction as addition, conjunction as
+(1) the Booleans with disjunction as addition, conjunction as
 multiplication and the closure being |true|; and
 %
 (2) the natural numbers (|ℕ|) extended with an element |∞|, we let
@@ -127,8 +128,8 @@ natural numbers the role of |*s| and the closure is 0.
 %include ../LiftCSR.lagda
 
 
-\paragraph{Acknowledgements} Many thanks to Patrik Jansson for for the
-inspiration for this project and guidance in implementation.
+% \paragraph{Acknowledgements} Many thanks to Patrik Jansson for for the
+% inspiration for this project and guidance in implementation.
 
 \bibliographystyle{plain}
 \bibliography{paper}

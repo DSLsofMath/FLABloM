@@ -13,12 +13,12 @@ binary trees:
 %
 \begin{code}
 data Shape : Set where
-  L : Shape
-  B : (s₁ s₂ : Shape) → Shape
+  L  : Shape
+  B  : (s₁ s₂ : Shape) → Shape
 \end{code}
 %
 This representation follows the structure of the matrix
-representation closer than natural numbers and we can easily compute
+representation more closely than natural numbers and we can easily compute
 the corresponding natural number:
 %
 \begin{code}

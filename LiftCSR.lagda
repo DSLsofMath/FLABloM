@@ -25,7 +25,7 @@ open LiftSR sr
 \end{code}
 %endif
 
-%PaJa: Nice to see that you found a "summetric" definition instead of Dolan's
+%PaJa: Nice to see that you found a "symmetric" definition instead of Dolan's
 %
 In \cite{lehmann1977} Lehmann presents a definition of the closure on
 square matrices, $A^* = 1 + A · A^*$:
@@ -58,9 +58,9 @@ where $Δ = A_{22} + A_{21} · A_{11}^* · A_{12}$ and the base case
 being the 1-by-1 matrix where we use the transitive closure of the
 element of the matrix:
 %
-\[
+\(
 [ s ]^* = [ s^* ]
-\]
+\).
 
 %if False
 \begin{code}
