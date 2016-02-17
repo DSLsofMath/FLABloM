@@ -8,25 +8,27 @@ open import Data.Nat
 \end{code}
 %endif
 
-In this development matrix dimensions are represented not using
-natural numbers but using a datatype that follows the structure of the
-block matrices more closely: a non-empty binary tree |Shape|.
+To represent the dimensions of matrices we use a datatype of non-empty
+binary trees:
 %
 \begin{code}
 data Shape : Set where
   L : Shape
   B : (s₁ s₂ : Shape) → Shape
 \end{code}
-The leafs of the tree, |L|, represent 1's and nodes, |B s₁ s₂|,
-represent the sum of the two subtrees: |s₁ + s₂|
-
-Computing the natural number corresponding to the shape is done easily
-using |toNat|.
+%
+This representation follows the structure of the matrix
+representation closer than natural numbers and we can easily compute
+the corresponding natural number:
+%
 \begin{code}
-toNat : Shape → ℕ
-toNat L         = 1
-toNat (B s s₁)  = toNat s + toNat s₁
+toNat : Shape → ℕ; toNat L = 1; toNat (B l r) = toNat l + toNat r
 \end{code}
+%
+while the other direction is slightly more complicated because we want
+a somewhat balanced tree and we have no translation of 0.
+
+%if False
 However there are many representation of a non-zero natural number as
 a shape, here we split the number in two almost equal parts to find
 a corresponding shape.
@@ -38,11 +40,10 @@ split (suc (suc n)) with split n
 ... | (n1 , n2)   = (suc n1 , suc n2)
 
 \end{code}
-%if False
 \begin{code}
 {-# NO_TERMINATION_CHECK #-}
 \end{code}
-%endif
+
 Then a balanced shape is computed, but the function is partial due to
 there being no shape corresponding to 0 (this means that we cannot
 have degenerate matrices that are 0 in either dimension)
@@ -57,3 +58,4 @@ fromNat n with split n
 ...   | nothing  | just s2  = just s2
 ...   | just s1  | just s2  = just (B s1 s2)
 \end{code}
+%endif

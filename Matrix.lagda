@@ -7,8 +7,9 @@ open import Shape
 \end{code}
 %endif
 
-Matrices are parametriced by the type of objects
-they contain and indexed by a |Shape| for each dimension
+Matrices are parametrised by the type of elements they contain and
+indexed by a |Shape| for each dimension. 1-by-1 matrices lift the
+element into a matrix
 %
 \savecolumns[Matrix]
 \begin{code}
@@ -19,16 +20,16 @@ Row and column matrices are built from smaller matrices which are
 either 1-by-1 matrices or further row respectively column matrices
 \restorecolumns[Matrix]
 \begin{code}
-  Row :  ∀ {col₁ col₂ : Shape} →
-         M a L col₁ → M a L col₂ →
-         M a L (B col₁ col₂)
+  Row :  {c₁ c₂ : Shape} →
+         M a L c₁ → M a L c₂ →
+         M a L (B c₁ c₂)
 
-  Col :  ∀ {row₁ row₂ : Shape} →
-         M a row₁ L →
-         M a row₂ L →
-         M a (B row₁ row₂) L
+  Col :  {r₁ r₂ : Shape} →
+         M a r₁ L →
+         M a r₂ L →
+         M a (B r₁ r₂) L
 \end{code}
-block matrices of other shapes are built from 4 smaller matrices, like
+and matrices of other shapes are built from 4 smaller matrices, like
 $X = \left[
   \begin{array}{cc}
     X_{11} & X_{12} \\
@@ -39,12 +40,15 @@ where $X_{11}, X_{12}, X_{21}, X_{22}$ are again matrices.
 %
 \restorecolumns[Matrix]
 \begin{code}
-  Q   :  ∀ {row₁ row₂ col₁ col₂ : Shape} →
-         M a row₁ col₁ → M a row₁ col₂ →
-         M a row₂ col₁ → M a row₂ col₂ →
-         M a (B row₁ row₂) (B col₁ col₂)
-
+  Q   :  {r₁ r₂ c₁ c₂ : Shape} →
+         M a r₁ c₁ → M a r₁ c₂ →
+         M a r₂ c₁ → M a r₂ c₂ →
+         M a (B r₁ r₂) (B c₁ c₂)
 \end{code}
+
+This matrix representation allows for simple formulations of matrix
+addition, multiplication, and as we will see also the transitive
+closure of a matrix.
 
 %if False
 \begin{code}
