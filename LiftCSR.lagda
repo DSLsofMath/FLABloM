@@ -55,7 +55,7 @@ the transitive closure of $A$ is defined inductively as
 \]
 %
 where $Δ = A_{22} + A_{21} · A_{11}^* · A_{12}$ and the base case
-being the 1-by-1 matrix where we use the transitive closure of the
+is the 1-by-1 matrix where we use the transitive closure of the
 element of the matrix:
 %
 \(
