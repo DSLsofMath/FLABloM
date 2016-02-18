@@ -68,36 +68,29 @@ EqS : ∀ {sh} → M s sh sh → M s sh sh → Set
 EqS w c = oneS +S w *S c ≃S c
 
 -- from Lehmann
-lemma2-1-1 :
-  ∀ sh sh1
-  (M2 : M s sh sh)
-  (M1 : M s sh sh1) →
-  (oneS +S M2) *S M1 ≃S M1 +S M2 *S M1
-lemma2-1-1 sh sh1 M2 M1 =
+lemma2-1-1 :  ∀ sh sh1 (A : M s sh sh) (R : M s sh sh1) →
+              (oneS +S A) *S R  ≃S  R +S A *S R
+lemma2-1-1 sh sh1 A R =
   let open EqReasoning setoidS
   in begin
-    (oneS +S M2) *S M1
-  ≈⟨ distrS M1 oneS M2 ⟩
-    oneS *S M1 +S M2 *S M1
-  ≈⟨ <+S> sh sh1 {oneS *S M1}{M1}{M2 *S M1}{M2 *S M1}
-       (*-identlS {sh}{sh1} M1)
-       (reflS sh sh1) ⟩
-    M1 +S M2 *S M1
+    (oneS +S A) *S R
+  ≈⟨ distrS R oneS A ⟩
+    oneS *S R  +S  A *S R
+  ≈⟨ <+S> sh sh1 (*-identlS R) (reflS sh sh1) ⟩
+    R  +S  A *S R
   ∎
-  -- ≈⟨ <+S> {!sh!} {!!} (*-identlS M1) (reflS sh sh) ⟩
-  --   M1 +S M2 *S M1
-  -- ∎
 
 -- TODO: rename
-lemma2-1-2 : ∀ sh (M1 M2 : M s sh sh) → M1 *S (oneS +S M2) ≃S M1 +S M1 *S M2
-lemma2-1-2 sh M1 M2 =
+lemma2-1-2 :  ∀ sh sh1 (R : M s sh1 sh) (A : M s sh sh) →
+              R *S (oneS +S A)  ≃S  R +S R *S A
+lemma2-1-2 sh sh1 R A =
   let open EqReasoning setoidS
   in begin
-    M1 *S (oneS +S M2)
-  ≈⟨ distlS M1 oneS M2 ⟩
-    M1 *S oneS +S M1 *S M2
-  ≈⟨ <+S> sh sh (*-identrS M1) (reflS sh sh) ⟩
-    M1 +S M1 *S M2
+    R *S (oneS +S A)
+  ≈⟨ distlS R oneS A ⟩
+    R *S oneS +S R *S A
+  ≈⟨ <+S> sh1 sh (*-identrS R) (reflS sh1 sh) ⟩
+    R  +S  R *S A
   ∎
 
 entire-lem1 :
