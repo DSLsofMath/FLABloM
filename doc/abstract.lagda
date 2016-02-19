@@ -123,7 +123,7 @@ natural numbers the role of |*s| and the closure is 0.
 
 %include ../Matrix.lagda
 
-\paragraph{Transitive closure of matrices}
+\paragraph{Transitive closure}
 
 %include ../LiftCSR.lagda
 
