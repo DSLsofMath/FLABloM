@@ -8,8 +8,6 @@ open import LiftCSR
 open import Shape
 open import Matrix
 
-
-
 -- sh : Shape
 -- sh = B L (B L L)
 
