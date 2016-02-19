@@ -4,6 +4,8 @@ module TropicalRing where
 
 open import Data.Nat renaming (_+_ to _+N_; _*_ to _*N_)
 open import Relation.Binary.PropositionalEquality
+import Relation.Binary.EqReasoning as EqReasoning
+
 
 open import Preliminaries
 
@@ -15,8 +17,8 @@ data ℕ∞ : Set where
   D : ℕ → ℕ∞
   ∞ : ℕ∞
 
-SDSNR : SemiNearRing
-SDSNR = snr
+SNR : SemiNearRing
+SNR = snr
   where
 
   _+_ : ℕ∞ → ℕ∞ → ℕ∞
@@ -104,11 +106,11 @@ SDSNR = snr
   idem (D x) = cong D (⊓-idem x)
   idem ∞ = refl
 
-  h1 : ∀ x z → x +N 0 ≡ (x +N 0) ⊓ (x +N suc z)
-  h1 zero zero = refl
-  h1 zero (suc z) = refl
-  h1 (suc x) zero = cong suc (h1 x 0)
-  h1 (suc x) (suc z) = cong suc (h1 x (suc z))
+  distl-lem1 : ∀ x z → x +N 0 ≡ (x +N 0) ⊓ (x +N suc z)
+  distl-lem1 zero zero = refl
+  distl-lem1 zero (suc z) = refl
+  distl-lem1 (suc x) zero = cong suc (distl-lem1 x 0)
+  distl-lem1 (suc x) (suc z) = cong suc (distl-lem1 x (suc z))
 
   distl-+-⊓ : ∀ x y z → (x +N y ⊓ z) ≡ ((x +N y) ⊓ (x +N z))
   distl-+-⊓ zero zero zero = refl
@@ -116,9 +118,16 @@ SDSNR = snr
   distl-+-⊓ zero (suc y) zero = refl
   distl-+-⊓ zero (suc y) (suc z) = refl
   distl-+-⊓ (suc x) zero zero = cong suc (sym (⊓-idem (x +N zero)))
-  distl-+-⊓ (suc x) zero (suc z) = cong suc (h1 x z)
+  distl-+-⊓ (suc x) zero (suc z) = cong suc (distl-lem1 x z)
   distl-+-⊓ (suc x) (suc y) zero =
-    cong suc (sym (trans (⊓-comm (x +N suc y) (x +N zero)) (sym (h1 x y))))
+    let open EqReasoning (setoid ℕ)
+    in begin
+      suc (x +N zero)
+    ≈⟨ cong suc (distl-lem1 x y) ⟩
+      suc ((x +N zero) ⊓ (x +N suc y))
+    ≈⟨ cong suc (⊓-comm (x +N zero) (x +N suc y)) ⟩
+      suc ((x +N suc y) ⊓ (x +N zero))
+    ∎
   distl-+-⊓ (suc x) (suc y) (suc z) = cong suc (distl-+-⊓ x (suc y) (suc z))
 
   distl : ∀ x y z → x * (y + z) ≡ (x * y) + (x * z)
@@ -131,15 +140,26 @@ SDSNR = snr
   distl ∞ ∞ (D x) = refl
   distl ∞ ∞ ∞ = refl
 
-  h3 : ∀ x z → (z +N suc (suc x)) ≡ suc (z +N suc x)
-  h3 x zero = refl
-  h3 x (suc z) = cong suc (h3 x z)
+  ⊓> : ∀ x u v → u ≡ v → x ⊓ u ≡ x ⊓ v
+  ⊓> x u .u refl = refl
 
-  h2 : ∀ x z → x ≡ x ⊓ (z +N suc x)
-  h2 zero zero = refl
-  h2 zero (suc z) = refl
-  h2 (suc x) zero = cong suc (h2 x 0)
-  h2 (suc x) (suc z) rewrite h3 x z = cong suc (h2 x (suc z))
+  distr-lem1 : ∀ z x → suc (z +N x) ≡ (z +N suc x)
+  distr-lem1 zero x = refl
+  distr-lem1 (suc z) x = cong suc (distr-lem1 z x)
+
+  distr-lem2 : ∀ x z → x ≡ x ⊓ (z +N suc x)
+  distr-lem2 zero zero = refl
+  distr-lem2 zero (suc z) = refl
+  distr-lem2 (suc x) zero = cong suc (distr-lem2 x 0)
+  distr-lem2 (suc x) (suc z) =
+    let open EqReasoning (setoid ℕ)
+    in begin
+      suc x
+    ≈⟨ cong suc (distr-lem2 x (suc z)) ⟩
+      suc (x ⊓ suc (z +N suc x))
+    ≈⟨ cong suc (⊓> x (suc (z +N suc x)) (z +N suc (suc x)) (distr-lem1 z (suc x))) ⟩
+      suc (x ⊓ (z +N suc (suc x)))
+    ∎
 
   distr-+-⊓ : ∀ x y z → y ⊓ z +N x ≡ (y +N x) ⊓ (z +N x)
   distr-+-⊓ zero zero zero = refl
@@ -147,8 +167,16 @@ SDSNR = snr
   distr-+-⊓ zero (suc y) zero = refl
   distr-+-⊓ zero (suc y) (suc z) = cong suc (distr-+-⊓ zero y z)
   distr-+-⊓ (suc x) zero zero = cong suc (sym (⊓-idem x))
-  distr-+-⊓ (suc x) zero (suc z) = cong suc (h2 x z)
-  distr-+-⊓ (suc x) (suc y) zero rewrite ⊓-comm (y +N suc x) x = cong suc (h2 x y)
+  distr-+-⊓ (suc x) zero (suc z) = cong suc (distr-lem2 x z)
+  distr-+-⊓ (suc x) (suc y) zero =
+    let open EqReasoning (setoid ℕ)
+    in begin
+      suc x
+    ≈⟨ cong suc (distr-lem2 x y) ⟩
+      suc (x ⊓ (y +N suc x))
+    ≈⟨ cong suc (⊓-comm x (y +N suc x)) ⟩
+      suc ((y +N suc x) ⊓ x)
+    ∎
   distr-+-⊓ (suc x) (suc y) (suc z) = cong suc (distr-+-⊓ (suc x) y z)
 
   distr : ∀ x y z → (y + z) * x ≡ (y * x) + (z * x)
@@ -177,11 +205,11 @@ SDSNR = snr
       ; distr = distr
       }
 
-SDSR : SemiRing
-SDSR = sr
+SR : SemiRing
+SR = sr
   where
 
-  open SemiNearRing SDSNR
+  open SemiNearRing SNR
 
   identl : ∀ x → D 0 *s x ≡ x
   identl (D x) = refl
@@ -207,23 +235,21 @@ SDSR = sr
 
   sr =
     record
-      { snr = SDSNR
+      { snr = SNR
       ; ones = D 0
       ; *-assocs  = assoc
       ; *-identls = identl
       ; *-identrs = identr }
 
-SDCSR : ClosedSemiRing
-SDCSR = csr
+CSR : ClosedSemiRing
+CSR = csr
   where
 
-  open SemiRing SDSR
+  open SemiRing SR
   open SemiNearRing snr
   open ClosedSemiRing using (Eq; Closure)
 
   open import Data.Product
-
-
 
   entire : ∀ a →
          ∃ (λ c → c ≡ ones +s (a *s c))
@@ -232,7 +258,7 @@ SDCSR = csr
 
   csr =
     record
-      { sr = SDSR
+      { sr = SR
       ; entireQ = entire }
 
 \end{code}
