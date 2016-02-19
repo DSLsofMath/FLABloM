@@ -1,4 +1,11 @@
-* TODO Read "Fun with semirings"
+* TODO Make easier matrices
+  fromVec : ∀ {a} sh sh2 → Vec a (toNat sh * toNat sh2) → M a sh sh2
+
+* DONE Redo the Seminearring for non-square matrices (and define square as a special case on the outside)
+  CLOSED: [2016-02-19 Fri 11:00]
+
+* DONE Read "Fun with semirings"
+  CLOSED: [2016-02-19 Fri 11:00]
 
   https://www.cl.cam.ac.uk/~sd601/papers/semirings.pdf
 
@@ -9,9 +16,8 @@
 
 
   Graph algorithms, is the 1 essential for them to work?
-
-* TODO Redo the Seminearring for non-square matrices (and define square as a special case on the outside)
-* TODO Read "Typing linear algebra: a biproduct-oriented approad"
+* DONE Read "Typing linear algebra: a biproduct-oriented approad"
+  CLOSED: [2016-02-19 Fri 11:00]
 
   http://arxiv.org/pdf/1312.4818v1.pdf
 
@@ -32,13 +38,15 @@
 
   What kind of category does adding the closure make?
 
-* TODO Sätt igång med "rapport"
+* DONE Sätt igång med "rapport"
+  CLOSED: [2016-02-19 Fri 11:00]
 
   (baserat på mall från https://github.com/patrikja/skeleton)
 
   2015-12-01: Prioritet 1!
 
-* TODO Try to implement closure (either penetrate the ValiantAgda version or roll your own)
+* DONE Try to implement closure (either penetrate the ValiantAgda version or roll your own)
+  CLOSED: [2016-02-19 Fri 11:00]
   What is a closed seminearring? for a semiring closure satisfies
   $a^* = 1 + a ∙ a^*$, but in seminearring there is no 1...
 
@@ -49,6 +57,7 @@
   experiment file because many things change in the matrix
   representation).
 * TODO Implement matrix determinant (with block matrices)
+  CLOSED: [2016-02-19 Fri 11:00]
 
   there is a block matrix decomposition of the determinant:
 
