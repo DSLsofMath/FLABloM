@@ -1,4 +1,8 @@
 % -*- ispell-local-dictionary: "british"; -*-
+
+% Borrowed from "Certified Context-Free Parsing: A formalisation of
+% {Valiant}'s Algorithm in {Agda}"
+
 %if imports
 \begin{code}
 open import Data.Product renaming (_,_ to _,,_) -- just to avoid clash with other commas
