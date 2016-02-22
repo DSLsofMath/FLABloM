@@ -127,6 +127,8 @@ natural numbers the role of |*s| and the closure is 0.
 
 %include ../LiftCSR.lagda
 
+% TODO: how we instantiate the matrix with one of the rings described
+% above to get "interesting" algorithms.
 
 % \paragraph{Acknowledgements} Many thanks to Patrik Jansson for for the
 % inspiration for this project and guidance in implementation.
