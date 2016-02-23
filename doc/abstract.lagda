@@ -66,11 +66,11 @@
 
 %\tableofcontents
 
-\abstract{%
-  We define a block based matrix representation in Agda and lift
-  various algebraic structures (semi-near-rings, semi-rings and closed
-  semi-rings) to matrices in order to verify algorithms that can be
-  implemented using the closure operation in a semi-ring.}
+% \abstract{%
+%   We define a block based matrix representation in Agda and lift
+%   various algebraic structures (semi-near-rings, semi-rings and closed
+%   semi-rings) to matrices in order to verify algorithms that can be
+%   implemented using the closure operation in a semi-ring.}
 
 \section{Introduction}
 \label{sec:intro}
@@ -127,7 +127,7 @@ natural numbers the role of |*s| and the closure is 0.
 
 %include ../LiftCSR.lagda
 
-% TODO: how we instantiate the matrix with one of the rings described
+% IDEA: how we instantiate the matrix with one of the rings described
 % above to get "interesting" algorithms.
 
 % \paragraph{Acknowledgements} Many thanks to Patrik Jansson for for the
