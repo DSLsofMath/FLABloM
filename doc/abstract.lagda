@@ -120,6 +120,8 @@ natural numbers the role of |*s| and the closure is 0.
 
 \section{Matrices}
 
+%let abstrac = True
+%let appendix = False
 %include ../Shape.lagda
 
 %include ../Matrix.lagda
@@ -127,6 +129,21 @@ natural numbers the role of |*s| and the closure is 0.
 \paragraph{Transitive closure}
 
 %include ../LiftCSR.lagda
+
+\paragraph{Conclusions}
+We have presented an algebraic structure useful for (block) matrix
+computations and implemented and proved correctness of transitive
+closure.
+%
+Compared to \cite{bernardy2015certified} our implementation handles arbitrary
+matrix dimensions but is restricted to semi-rings.
+%
+Future work would be to handle both arbitrary dimensions and the more
+general semi-near-ring structure which would allow parallel parsing as
+an application.
+%
+The Agda development is available on github%
+\footnote{\url{https://github.com/DSLsofMath/FLABloM}}.
 
 % IDEA: how we instantiate the matrix with one of the rings described
 % above to get "interesting" algorithms.
@@ -136,4 +153,17 @@ natural numbers the role of |*s| and the closure is 0.
 
 \bibliographystyle{plain}
 \bibliography{paper}
+
+\appendix
+\section{Appendix: An overview of the formal development}
+% %let abstrac = False
+% %let appendix = True
+% %include ../Shape.lagda
+%
+% %include ../Matrix.lagda
+%
+% \paragraph{Transitive closure}
+%
+% %include ../LiftCSR.lagda
+%
 \end{document}

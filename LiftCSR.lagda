@@ -51,7 +51,7 @@ the transitive closure of $A$ is defined inductively as
 %
 \[
   A^* = \left[
-  \begin{array}{ll}
+  \begin{array}{r@@{\qquad}l}
     A_{11}^* + A_{11}^* · A_{12} · Δ^* · A_{21} · A_{11}^*
     & A_{11}^* · A_{12} · Δ^* \\
     Δ^* · A_{21} · A_{11}^*

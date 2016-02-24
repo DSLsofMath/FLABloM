@@ -8,13 +8,16 @@ open import Shape
 %endif
 
 Matrices are parametrised by the type of elements they contain and
-indexed by a |Shape| for each dimension. 1-by-1 matrices lift the
-element into a matrix
+indexed by a |Shape| for each dimension.
+%
+We use a datatype |M| with four constructors: |One|, |Row|, |Col|, and |Q|.
+%
+The first |One| lifts a element into a 1-by-1 matrix:
 %
 \savecolumns[Matrix]
 \begin{code}
 data M (a : Set) : (rows cols : Shape) → Set where
-  One :  a → M a L L
+  One :                           a → M a L L
 \end{code}
 Row and column matrices are built from smaller matrices which are
 either 1-by-1 matrices or further row respectively column matrices

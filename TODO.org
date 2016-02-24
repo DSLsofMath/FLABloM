@@ -77,3 +77,4 @@
 ** DONE Do some of the proofs (isCommMon; zeroˡ; zeroʳ; _<∙>_)
    CLOSED: [2015-11-26 Thu 09:05]
 *** lifting commutative monoid works for non square shapes?
+* TODO Kanske citera: http://www.cs.cornell.edu/~kozen/papers/kacs.pdf
