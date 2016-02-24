@@ -81,13 +81,14 @@ formulation of matrices to certify Valiant's
 %
 Their matrix formulation was restricted to matrices of size
 $2^n \times 2^n$ and this work extends the matrix formulation to allow
-for all sizes of matrices and applies the techniques to other
-algorithms that can be described as closed semi-near-rings with
-inspiration from \cite{dolan2013fun} and \cite{lehmann1977}.
+for all sizes of matrices and applies similar techniques to other
+algorithms that can be described as transitive closures of matrices
+with inspiration from \cite{dolan2013fun} and \cite{lehmann1977}.
 
-We define a hierarchy of ring structures as Agda records. A
-semi-near-ring for some type |s| needs an equivalence relation |≃s|, a
-distinguished element |zers| and operations addition |+s| and
+We define a hierarchy of ring structures as Agda records.
+%
+A semi-near-ring for some type |s| needs an equivalence relation |≃s|,
+a distinguished element |zers| and operations addition |+s| and
 multiplication |*s|.
 %
 Our semi-near-ring requires proofs that
@@ -95,20 +96,20 @@ Our semi-near-ring requires proofs that
 \item |zers| and |+s| form a commutative monoid (i.e. |+s| commutes
   and |zers| is the left and right identity of |+s|),
 \item |zers| is the left and right zero of |*s|,
-\item |+s| is idempotent (|∀ x → x +s x ≃s x|) and
+\item |+s| is idempotent (|∀ x → x +s x ≃s x|) and % TODO: is this really necessary?
 \item |*s| distributes over |+s|.
 \end{itemize}
 
-For the semi-ring we extend the semi-near-ring with an element |ones|
-and proofs that |*s| is associative and that |ones| is the left and
-right identity of |*s|.
+For the semi-ring we extend the semi-near-ring with another
+distinguished element |ones| and proofs that |*s| is associative and
+that |ones| is the left and right identity of |*s|.
 
 Finally we extend the semi-ring with an operation |closure| that
 computes the transitive closure of an element of the semi-ring (|c| is
 the closure of |w| if |c ≃s ones +s w *s c| holds), we denote the
-closure with $^*$.
+closure of $w$ with $w^*$.
 
-We use two examples of closed semi-rings:
+We use two examples of semi-rings with transitive closure:
 %
 (1) the Booleans with disjunction as addition, conjunction as
 multiplication and the closure being |true|; and
