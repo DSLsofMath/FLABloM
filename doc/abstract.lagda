@@ -81,8 +81,8 @@ formulation of matrices to certify Valiant's
 %
 Their matrix formulation was restricted to matrices of size
 $2^n \times 2^n$ and this work extends the matrix formulation to allow
-for all sizes of matrices and applies similar techniques to other
-algorithms that can be described as transitive closures of matrices
+for all sizes of matrices and applies similar techniques to algorithms
+that can be described as transitive closures of semi-rings of matrices
 with inspiration from \cite{dolan2013fun} and \cite{lehmann1977}.
 
 We define a hierarchy of ring structures as Agda records.
@@ -142,7 +142,7 @@ Future work would be to handle both arbitrary dimensions and the more
 general semi-near-ring structure which would allow parallel parsing as
 an application.
 %
-The Agda development is available on github%
+The Agda development is available on GitHub%
 \footnote{\url{https://github.com/DSLsofMath/FLABloM}}.
 
 % IDEA: how we instantiate the matrix with one of the rings described
@@ -154,8 +154,8 @@ The Agda development is available on github%
 \bibliographystyle{plain}
 \bibliography{paper}
 
-\appendix
-\section{Appendix: An overview of the formal development}
+% \appendix
+% \section{Appendix: An overview of the formal development}
 % %let abstrac = False
 % %let appendix = True
 % %include ../Shape.lagda
