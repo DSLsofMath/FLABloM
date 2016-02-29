@@ -22,17 +22,17 @@
 
 - Rings
 
-    - <BoolRing.lagda> -- Bool as a ring
-    - <TropicalRing.lagda> -- ℕ + ∞ as a ring
+    - [BoolRing.lagda](BoolRing.lagda) -- Bool as a ring
+    - [TropicalRing.lagda](TropicalRing.lagda) -- ℕ + ∞ as a ring
 
 - Matrices as rings
 
     Lifts some ring structure to a matrix ring of said structure
 
-    - <LiftSNR.lagda> -- Lift semi-near-rings
-    - <LiftSR.lagda> -- Lift semi-rings
-    - <LiftCSNR.lagda> -- Lift closed semi-near-rings (not finished)
-    - <LiftCSR.lagda> -- Lift closed semi-rings
+    - [LiftSNR.lagda](LiftSNR.lagda) -- Lift semi-near-rings
+    - [LiftSR.lagda](LiftSR.lagda) -- Lift semi-rings
+    - [LiftCSNR.lagda](LiftCSNR.lagda) -- Lift closed semi-near-rings (not finished)
+    - [LiftCSR.lagda](LiftCSR.lagda) -- Lift closed semi-rings
 
 
 
