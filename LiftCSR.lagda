@@ -68,6 +68,13 @@ element of the matrix:
 [ s ]^* = [ s^* ]
 \).
 
+We have encoded this definition of closure in Agda and implemented a
+constructive correctness proof.
+%
+The full development of around 2500 lines of literate Agda code
+(including this abstract) is available on GitHub%
+\footnote{\url{https://github.com/DSLsofMath/FLABloM}}.
+
 %if False
 \begin{code}
 EqS : ∀ {sh} → M s sh sh → M s sh sh → Set

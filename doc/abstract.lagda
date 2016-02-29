@@ -141,9 +141,6 @@ matrix dimensions but is restricted to semi-rings.
 Future work would be to handle both arbitrary dimensions and the more
 general semi-near-ring structure which would allow parallel parsing as
 an application.
-%
-The Agda development is available on GitHub%
-\footnote{\url{https://github.com/DSLsofMath/FLABloM}}.
 
 % IDEA: how we instantiate the matrix with one of the rings described
 % above to get "interesting" algorithms.
