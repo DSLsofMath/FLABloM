@@ -2,23 +2,23 @@
 
 - Preliminaries
 
-    - <Preliminaries.lagda> -- some definitions borrowed from
+    - [Preliminaries.lagda](Preliminaries.lagda) -- some definitions borrowed from
       [Valiant Agda][1].
-    - <Product.lagda> -- non-dependent product.
+    - [Product.lagda](Product.lagda) -- non-dependent product.
 
 - Structures
 
     Agda records for our ring hierarchy.
 
-    - <SemiNearRingRecord.lagda>
-    - <SemiRingRecord.lagda>
-    - <ClosedSemiNearRingRecord.lagda>
-    - <ClosedSemiRingRecord.lagda>
+    - [SemiNearRingRecord.lagda](SemiNearRingRecord.lagda)
+    - [SemiRingRecord.lagda](SemiRingRecord.lagda)
+    - [ClosedSemiNearRingRecord.lagda](ClosedSemiNearRingRecord.lagda)
+    - [ClosedSemiRingRecord.lagda](ClosedSemiRingRecord.lagda)
 
 - Matrix
 
-    - <Shape.lagda> -- datatype of matrix dimensions
-    - <Matrix.lagda> -- datatype of matrices
+    - [Shape.lagda](Shape.lagda) -- datatype of matrix dimensions
+    - [Matrix.lagda](Matrix.lagda) -- datatype of matrices
 
 - Rings
 
