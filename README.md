@@ -1,3 +1,41 @@
+# Overview
+
+- Preliminaries
+
+    - <Preliminaries.lagda> -- some definitions borrowed from
+      [Valiant Agda][1].
+    - <Product.lagda> -- non-dependent product.
+
+- Structures
+
+    Agda records for our ring hierarchy.
+
+    - <SemiNearRingRecord.lagda>
+    - <SemiRingRecord.lagda>
+    - <ClosedSemiNearRingRecord.lagda>
+    - <ClosedSemiRingRecord.lagda>
+
+- Matrix
+
+    - <Shape.lagda> -- datatype of matrix dimensions
+    - <Matrix.lagda> -- datatype of matrices
+
+- Rings
+
+    - <BoolRing.lagda> -- Bool as a ring
+    - <TropicalRing.lagda> -- ℕ + ∞ as a ring
+
+- Matrices as rings
+
+    Lifts some ring structure to a matrix ring of said structure
+
+    - <LiftSNR.lagda> -- Lift semi-near-rings
+    - <LiftSR.lagda> -- Lift semi-rings
+    - <LiftCSNR.lagda> -- Lift closed semi-near-rings (not finished)
+    - <LiftCSR.lagda> -- Lift closed semi-rings
+
+
+
 # FLABloM: Functional Linear Algebra with Block Matrices
 
 A project instance of
