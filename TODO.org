@@ -1,8 +1,28 @@
-* TODO Make easier matrices
-  fromVec : ∀ {a} sh sh2 → Vec a (toNat sh * toNat sh2) → M a sh sh2
+* TODO Kanske citera: http://www.cs.cornell.edu/~kozen/papers/kacs.pdf
 
-* DONE Redo the Seminearring for non-square matrices (and define square as a special case on the outside)
-  CLOSED: [2016-02-19 Fri 11:00]
+* Future work
+** TODO Look at empty shapes
+   perhaps add an empty shape (but probably in a separate
+   experiment file because many things change in the matrix
+   representation).
+** TODO Implement matrix determinant (with block matrices)
+   CLOSED: [2016-02-19 Fri 11:00]
+
+   there is a block matrix decomposition of the determinant:
+
+   det(A B ; C D) = det(A)det(D - CA^{-1}B) (requires A to be invertible)
+
+   A is invertible when: https://en.wikipedia.org/wiki/Invertible_matrix#Blockwise_inversion
+
+   Generalised determinants:
+   - https://en.wikipedia.org/wiki/Exterior_algebra
+   - https://en.wikipedia.org/wiki/Exterior_algebra#Alternating_multilinear_forms
+
+   Determinants that work with matrices over things that are noncommutative:
+   - Dieudonné determinant: matrices over division rings
+   - Quasideterminant: still needs negation and inversion
+** TODO Make easier matrices
+   fromVec : ∀ {a} sh sh2 → Vec a (toNat sh * toNat sh2) → M a sh sh2 ?
 
 * DONE Read "Fun with semirings"
   CLOSED: [2016-02-19 Fri 11:00]
@@ -51,30 +71,11 @@
   $a^* = 1 + a ∙ a^*$, but in seminearring there is no 1...
 
   $a^+ = a + a^+ ∙ a^+$ <--- ("quadratic equation" in ValiantAgda)
-
-* TODO Look at empty shapes
-  perhaps add an empty shape (but probably in a separate
-  experiment file because many things change in the matrix
-  representation).
-* TODO Implement matrix determinant (with block matrices)
-  CLOSED: [2016-02-19 Fri 11:00]
-
-  there is a block matrix decomposition of the determinant:
-
-  det(A B ; C D) = det(A)det(D - CA^{-1}B) (requires A to be invertible)
-
-  A is invertible when: https://en.wikipedia.org/wiki/Invertible_matrix#Blockwise_inversion
-
-  Generalised determinants:
-  - https://en.wikipedia.org/wiki/Exterior_algebra
-  - https://en.wikipedia.org/wiki/Exterior_algebra#Alternating_multilinear_forms
-
-  Determinants that work with matrices over things that are noncommutative:
-  - Dieudonné determinant: matrices over division rings
-  - Quasideterminant: still needs negation and inversion
 * DONE Complete "Square snr (B shape shape₁)"
   CLOSED: [2015-11-26 Thu 09:04]
 ** DONE Do some of the proofs (isCommMon; zeroˡ; zeroʳ; _<∙>_)
    CLOSED: [2015-11-26 Thu 09:05]
 *** lifting commutative monoid works for non square shapes?
-* TODO Kanske citera: http://www.cs.cornell.edu/~kozen/papers/kacs.pdf
+
+* DONE Redo the Seminearring for non-square matrices (and define square as a special case on the outside)
+  CLOSED: [2016-02-19 Fri 11:00]

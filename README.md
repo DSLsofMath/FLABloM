@@ -1,9 +1,12 @@
 # Overview
 
+The development is structured using a hierarchy of Agda records
+implementing semi-near-rings, semi-rings and closed semi-rings.
+
 - Preliminaries
 
-    - [Preliminaries.lagda](Preliminaries.lagda) -- some definitions borrowed from
-      [Valiant Agda][1].
+    - [Preliminaries.lagda](Preliminaries.lagda) -- some definitions,
+      borrowed from [Valiant Agda][1].
     - [Product.lagda](Product.lagda) -- non-dependent product.
 
 - Structures
@@ -22,8 +25,8 @@
 
 - Rings
 
-    - [BoolRing.lagda](BoolRing.lagda) -- Bool as a ring
-    - [TropicalRing.lagda](TropicalRing.lagda) -- ℕ + ∞ as a ring
+    - [BoolRing.lagda](BoolRing.lagda) -- Bool as a closed semi-ring
+    - [TropicalRing.lagda](TropicalRing.lagda) -- ℕ + ∞ as a closed semi-ring
 
 - Matrices as rings
 
