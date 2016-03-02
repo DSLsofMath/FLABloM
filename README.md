@@ -1,3 +1,7 @@
+# FLABloM: Functional linear algebra with block matrices
+
+[Extended abstract](http://www.cse.chalmers.se/~patrikj/papers/FLABloM_TYPES_2016_preprint.pdf) submitted to [TYPES 2016](http://www.types2016.uns.ac.rs/).
+
 # Overview
 
 The development is structured using a hierarchy of Agda records
