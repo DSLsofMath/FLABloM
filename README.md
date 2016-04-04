@@ -1,6 +1,8 @@
 # FLABloM: Functional linear algebra with block matrices
 
-[Extended abstract](http://www.cse.chalmers.se/~patrikj/papers/FLABloM_TYPES_2016_preprint.pdf) submitted to [TYPES 2016](http://www.types2016.uns.ac.rs/).
+[Extended abstract](http://www.cse.chalmers.se/~patrikj/papers/FLABloM_TYPES_2016_preprint.pdf)
+
+Accepted for presentation at [TYPES 2016](http://www.types2016.uns.ac.rs/).
 
 # Overview
 
