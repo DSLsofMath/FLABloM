@@ -340,10 +340,6 @@ assoc-lem5 :
     Col x x₁ *S (y *S z +S y₁ *S z₁)
   ∎
 
--- Col ((x *S y) *S z +S (x *S y₁) *S z₁)
---     ((x₁ *S y) *S z +S (x₁ *S y₁) *S z₁)
--- ≃S Col x x₁ *S (y *S z +S y₁ *S z₁)
-
 *-assocS (B sh1 sh2) L (B sh3 sh4) (B sh5 sh6) (Col x x₁) (Row y y₁) (Q z z₁ z₂ z₃) =
   assoc-lem4 sh1 sh3 sh4 sh5 x y z y₁ z₂ ,
   assoc-lem4 sh1 sh3 sh4 sh6 x y z₁ y₁ z₃ ,
