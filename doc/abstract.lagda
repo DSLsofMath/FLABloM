@@ -113,7 +113,7 @@ multiplication and the closure being |true|; and
 |zers = ∞|, |ones = 0|, |min| plays the role of |+s|, addition of
 natural numbers the role of |*s| and the closure is 0.
 
-\section{Matrices}
+\paragraph{Matrices}
 
 %let abstrac = True
 %let appendix = False
