@@ -12,7 +12,7 @@ indexed by a |Shape| for each dimension.
 %
 We use a datatype |M| with four constructors: |One|, |Row|, |Col|, and |Q|.
 %
-The first |One| lifts a element into a 1-by-1 matrix:
+The first |One| lifts an element into a 1-by-1 matrix:
 %
 \savecolumns[Matrix]
 \begin{code}
@@ -25,18 +25,9 @@ either 1-by-1 matrices or further row respectively column matrices
 \begin{code}
   Row :  {c₁ c₂ : Shape} →        M a L c₁ → M a L c₂ →  M a L (B c₁ c₂)
 
-  Col :  {r₁ r₂ : Shape} →        M a r₁ L →
-                                  M a r₂ L →
-                                  M a (B r₁ r₂) L
+  Col :  {r₁ r₂ : Shape} →        M a r₁ L → M a r₂ L → M a (B r₁ r₂) L
 \end{code}
-and matrices of other shapes are built from 4 smaller matrices, like
-$X = \left[
-  \begin{array}{cc}
-    X_{11} & X_{12} \\
-    X_{21} & X_{22}
-  \end{array}
-\right]$
-where $X_{11}, X_{12}, X_{21}, X_{22}$ are again matrices.
+and matrices of other shapes are built from 4 smaller matrices
 %
 \restorecolumns[Matrix]
 \begin{code}

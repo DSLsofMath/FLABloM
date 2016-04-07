@@ -53,17 +53,6 @@
 
 \maketitle
 
-%%% Some venues require ACM classification categories - here is an example
-% \category{D.1.1}%
-%   {Programming Techniques}%
-%   {Applicative (Functional) Programming}%
-
-% \terms
-% design, languages, verification
-
-% \keywords
-% some, important, concepts, not already, mentioned, in the title
-
 %\tableofcontents
 
 % \abstract{%
@@ -72,9 +61,11 @@
 %   semi-rings) to matrices in order to verify algorithms that can be
 %   implemented using the closure operation in a semi-ring.}
 
-\section{Introduction}
-\label{sec:intro}
+% \section{Introduction}
+% \label{sec:intro}
 
+\noindent
+%
 In \cite{bernardy2015certified} Bernardy \& Jansson used a clever
 formulation of matrices to certify Valiant's
 \cite{valiant_general_1975} parsing algorithm.
@@ -91,14 +82,18 @@ A semi-near-ring for some type |s| needs an equivalence relation |≃s|,
 a distinguished element |zers| and operations addition |+s| and
 multiplication |*s|.
 %
-Our semi-near-ring requires proofs that
-\begin{itemize}
-\item |zers| and |+s| form a commutative monoid (i.e. |+s| commutes
-  and |zers| is the left and right identity of |+s|),
-\item |zers| is the left and right zero of |*s|,
-\item |+s| is idempotent (|∀ x → x +s x ≃s x|) and % TODO: is this really necessary?
-\item |*s| distributes over |+s|.
-\end{itemize}
+Our semi-near-ring requires that
+%
+|zers| and |+s| form a commutative monoid (i.e. |+s| commutes and
+|zers| is the left and right identity of |+s|),
+%
+|zers| is the left and right zero of |*s|,
+%
+|+s| is idempotent (|∀ x → x +s x ≃s x|) and % TODO: is this really
+                                % necessary?
+%
+|*s| distributes over |+s|.
+
 
 For the semi-ring we extend the semi-near-ring with another
 distinguished element |ones| and proofs that |*s| is associative and
