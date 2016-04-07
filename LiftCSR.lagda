@@ -93,70 +93,66 @@ lemma2-1-1 sh sh1 A R =
     R  +  A * R
   ∎
 
--- TODO: rename
-lemma2-1-2 :  ∀ sh sh1 (R : M s sh1 sh) (A : M s sh sh) →
-              R * (I + A)  ≃S  R + R * A
-lemma2-1-2 sh sh1 R A =
-  let open EqReasoning setoidS
-  in begin
-    R * (I + A)
-  ≈⟨ distlS R I A ⟩
-    R * I + R * A
-  ≈⟨ <+> sh1 sh (*-identrS R) (reflS sh1 sh) ⟩
-    R  +  R * A
-  ∎
+private
+  module lemma1
+    (sh sh1 : Shape)
+    (C C* : M s sh sh)
+    (D    : M s sh sh1)
+    (E    : M s sh1 sh)
+    (Δ*   : M s sh1 sh1)
+    (ih   : C* ≃S I + C * C*) where
 
+    X = D * Δ* * E * C*
 
-entire-lem1 :
-  ∀ sh sh1
-  (C C* : M s sh sh)
-  (D    : M s sh sh1) (E : M s sh1 sh)
-  (Δ*   : M s sh1 sh1)
-  (ih : C* ≃S I + C * C*) →
-  let X = D * Δ* * E * C* in
-  C* * X  ≃S  C * C* * X  +  X
-entire-lem1 sh sh1 C C* D E Δ* ih =
-  let X = D * Δ* * E * C*
-      open EqReasoning setoidS
-  in begin
-    C*            * X
-  ≈⟨ <*> sh sh sh ih (reflS sh sh) ⟩
-    (I + C * C*)  * X
-  ≈⟨ distrS (X) I (C * C*) ⟩
-    I * X  +  (C * C*) * X
-  ≈⟨ <+> sh sh
-       (*-identlS X)
-       (*-assocS sh sh sh sh C C* X) ⟩
-        X  +  C * C* * X
-  ≈⟨ commS sh sh X (C * C* * X) ⟩
-    C * C* * X
-           + X
-  ∎
+    entire-lem1 : C* * X  ≃S  C * C* * X  +  X
+    entire-lem1 =
+      let open EqReasoning setoidS
+      in begin
+        C*            * X
+      ≈⟨ <*> sh sh sh ih (reflS sh sh) ⟩
+        (I + C * C*)  * X
+      ≈⟨ distrS (X) I (C * C*) ⟩
+        I * X  +  (C * C*) * X
+      ≈⟨ <+> sh sh
+             (*-identlS X)
+             (*-assocS sh sh sh sh C C* X) ⟩
+             X  +  C * C* * X
+      ≈⟨ commS sh sh X (C * C* * X) ⟩
+        C * C* * X
+               + X
+      ∎
 
-entire-lem2 :
-  ∀ sh sh1
-  (C C* : M s sh sh)
-  (D    : M s sh sh1) (E : M s sh1 sh)
-  (Δ*   : M s sh1 sh1) →
-  let X = D * Δ* * E * C* in
-  C * C*  +  (C * C* * X  +  X) ≃S
-  C * (C* +       C* * X) +  X
-entire-lem2 sh sh1 C C* D E Δ* =
-  let X = D * Δ* * E * C*
-      open EqReasoning setoidS
-  in begin
-     C * C*  +  (C * C* * X  +  X)
-  ≈⟨ symS sh sh (assocS sh sh (C * C*) (C * C* * X) X) ⟩
-    (C * C*  +   C * C* * X) +  X
-  ≈⟨ <+> sh sh
-       (symS sh sh
-         (distlS C C* (C* * X)))
-       (reflS sh sh) ⟩
-    C * (C* + C* * X)  +  X
-  ∎
+open lemma1 public using (entire-lem1)
+
+private
+  module lemma2
+    (sh sh1 : Shape)
+    (C C* : M s sh sh)
+    (D    : M s sh sh1) (E : M s sh1 sh)
+    (Δ*   : M s sh1 sh1) where
+
+    X = D * Δ* * E * C*
+
+    entire-lem2 :
+      C * C*  +  (C * C* * X  +  X) ≃S
+      C * (C* +       C* * X) +  X
+    entire-lem2 =
+      let open EqReasoning setoidS
+      in begin
+        C * C*  +  (C * C* * X  +  X)
+      ≈⟨ symS sh sh (assocS sh sh (C * C*) (C * C* * X) X) ⟩
+        (C * C*  +   C * C* * X) +  X
+      ≈⟨ <+> sh sh
+         (symS sh sh
+           (distlS C C* (C* * X)))
+           (reflS sh sh) ⟩
+         C * (C* + C* * X)  +  X
+      ∎
+
+open lemma2 public using (entire-lem2)
 
 entire-lem3 :
-  ∀ sh sh1
+  (sh sh1 : Shape)
   (C* : M s sh sh)
   (D : M s sh sh1) (E : M s sh1 sh)
   (F : M s sh1 sh1)
@@ -206,7 +202,6 @@ entire-lem3 sh1 sh C* D E F Δ* =
     E * C* * D * Δ* * E * C*
     + F           * Δ* * E * C*
   ∎
-
 
 entireQS : ∀ {sh} (c : M s sh sh) → Σ (M s sh sh) λ c* → c* ≃S I + c * c*
 entireQS {L} (One w) =
