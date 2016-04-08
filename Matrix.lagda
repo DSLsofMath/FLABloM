@@ -27,7 +27,7 @@ either 1-by-1 matrices or further row respectively column matrices
 
   Col :  {r₁ r₂ : Shape} →        M a r₁ L → M a r₂ L → M a (B r₁ r₂) L
 \end{code}
-and matrices of other shapes are built from 4 smaller matrices
+and matrices of other shapes are built from |2 × 2| smaller matrices
 %
 \restorecolumns[Matrix]
 \begin{code}

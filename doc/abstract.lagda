@@ -133,9 +133,9 @@ closure.
 Compared to \cite{bernardy2015certified} our implementation handles arbitrary
 matrix dimensions but is restricted to semi-rings.
 %
-Future work would be to handle both arbitrary dimensions and the more
-general semi-near-ring structure which would allow parallel parsing as
-an application.
+Future work would be to extend the proof to cover both arbitrary
+dimensions and the more general semi-near-ring structure which would
+allow parallel parsing as an application.
 
 % IDEA: how we instantiate the matrix with one of the rings described
 % above to get "interesting" algorithms.

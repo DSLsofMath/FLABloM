@@ -69,11 +69,10 @@ element of the matrix:
 \).
 
 We have encoded this definition of closure in Agda and implemented a
-constructive correctness proof.
+constructive correctness proof using structural induction and equational reasoning.
 %
 The full development of around 2500 lines of literate Agda code
-(including this abstract) is available on GitHub%
-\footnote{\url{https://github.com/DSLsofMath/FLABloM}}.
+(including this abstract) is available on GitHub (\url{https://github.com/DSLsofMath/FLABloM}).
 
 %if False
 \begin{code}

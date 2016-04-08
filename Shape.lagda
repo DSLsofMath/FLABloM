@@ -8,7 +8,7 @@ open import Data.Nat
 \end{code}
 %endif
 
-To represent the dimensions of matrices we use a datatype of non-empty
+To represent the dimensions of matrices we use a type of non-empty
 binary trees:
 %
 \begin{code}
