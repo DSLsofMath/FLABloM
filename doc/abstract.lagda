@@ -1,7 +1,7 @@
 % -*- latex -*-
-
-%let submit = False
+%let submit = True
 \documentclass[a4paper]{easychair}
+
 
 %%% Standard definitions from the lhs2TeX installation
 %include polycode.fmt
@@ -30,12 +30,6 @@
 \newcommand{\refSecI}[1]{Section \ref{#1}}
 \newcommand{\refSecsI}[1]{Sections \ref{#1}}
 \newcommand{\refTab}[1]{Tab. \ref{#1}}
-
-%\toappear{}
-
-% \usepackage[style=abbrvnat]{biblatex}
-% %%% Keep references in a separate bib-file
-% \addbibresource{paper.bib}
 
 \setcounter{secnumdepth}{0}
 
@@ -115,8 +109,6 @@ natural numbers the role of |*s| and the closure is 0.
 
 \paragraph{Matrices}
 
-%let abstrac = True
-%let appendix = False
 %include ../Shape.lagda
 
 %include ../Matrix.lagda
@@ -137,25 +129,7 @@ Future work would be to extend the proof to cover both arbitrary
 dimensions and the more general semi-near-ring structure which would
 allow parallel parsing as an application.
 
-% IDEA: how we instantiate the matrix with one of the rings described
-% above to get "interesting" algorithms.
-
-% \paragraph{Acknowledgements} Many thanks to Patrik Jansson for for the
-% inspiration for this project and guidance in implementation.
-
 \bibliographystyle{plain}
-\bibliography{paper}
+\bibliography{abstract}
 
-% \appendix
-% \section{Appendix: An overview of the formal development}
-% %let abstrac = False
-% %let appendix = True
-% %include ../Shape.lagda
-%
-% %include ../Matrix.lagda
-%
-% \paragraph{Transitive closure}
-%
-% %include ../LiftCSR.lagda
-%
 \end{document}
