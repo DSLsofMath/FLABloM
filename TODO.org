@@ -1,3 +1,17 @@
+* TODO Submit final version of the abstract
+  DEADLINE: <2016-04-15 fre>
+* TODO Book "dry-run" presentation slot in the week 2016-05-09/13
+  DEADLINE: <2016-04-29 fre>
+* TODO Prepare a presentation for TYPES 2016
+  DEADLINE: <2016-05-10 tis>
+* TODO Book trip to TYPES
+  DEADLINE: <2016-04-19 tis>
+* TODO Book hotel for TYPES
+  DEADLINE: <2016-04-19 tis>
+* TODO Register for TYPES
+  DEADLINE: <2016-04-19 tis>
+* TODO try to find a scholaship to apply for travel funding
+  DEADLINE: <2016-04-26 tis>
 * TODO Kanske citera: http://www.cs.cornell.edu/~kozen/papers/kacs.pdf
 
 * Future work
