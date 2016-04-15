@@ -1,5 +1,5 @@
-* TODO Submit final version of the abstract
-  DEADLINE: <2016-04-15 fre>
+* DONE Submit final version of the abstract
+  CLOSED: [2016-04-15 Fri 14:35] DEADLINE: <2016-04-15 fre>
 * TODO Book "dry-run" presentation slot in the week 2016-05-09/13
   DEADLINE: <2016-04-29 fre>
 * TODO Prepare a presentation for TYPES 2016
@@ -12,7 +12,10 @@
   DEADLINE: <2016-04-19 tis>
 * TODO try to find a scholaship to apply for travel funding
   DEADLINE: <2016-04-26 tis>
+
+
 * TODO Kanske citera: http://www.cs.cornell.edu/~kozen/papers/kacs.pdf
+
 
 * Future work
 ** TODO Look at empty shapes
@@ -37,6 +40,7 @@
    - Quasideterminant: still needs negation and inversion
 ** TODO Make easier matrices
    fromVec : ∀ {a} sh sh2 → Vec a (toNat sh * toNat sh2) → M a sh sh2 ?
+
 
 * DONE Read "Fun with semirings"
   CLOSED: [2016-02-19 Fri 11:00]
