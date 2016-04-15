@@ -2,20 +2,23 @@
 %let submit = True
 \documentclass[a4paper]{easychair}
 
-
 %%% Standard definitions from the lhs2TeX installation
 %include polycode.fmt
+
 %%% Put your own formatting directives in a separate file
 %include paper.format
 
+\usepackage{amsmath}
 \usepackage{url}
 % \usepackage{ucs}
-% \usepackage[utf8x]{inputenc}
-\usepackage{unicode-math}
-% \usepackage{autofe}
+\usepackage[utf8x]{inputenc}
+% \usepackage{unicode-math}
+\usepackage{autofe}
+\usepackage{latexsym}
 \usepackage{stmaryrd}
 \usepackage{multicol}
-% \usepackage{hyperref}
+\usepackage{hyperref}
+\usepackage{textgreek}
 
 %%% Some useful macros
 %if submit
@@ -61,7 +64,7 @@
 \noindent
 %
 In \cite{bernardy2015certified} Bernardy \& Jansson used a recursive block
-formulation of matrices to certify Valiant's
+formulation of matrices to certify Variant's
 \cite{valiant_general_1975} parsing algorithm.
 %
 Their matrix formulation was restricted to matrices of size

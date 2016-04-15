@@ -34,7 +34,7 @@ _+_ = _+S_
 %PaJa: Nice to see that you found a "symmetric" definition instead of Dolan's
 %
 In \cite{lehmann1977} Lehmann presents a definition of the closure on
-square matrices, $A^* = 1 + A · A^*$:
+square matrices, $A^* = 1 + A \cdot A^*$:
 %
 Given
 %
@@ -52,15 +52,15 @@ the transitive closure of $A$ is defined inductively as
 \[
   A^* = \left[
   \begin{array}{r@@{\qquad}l}
-    A_{11}^* + A_{11}^* · A_{12} · Δ^* · A_{21} · A_{11}^*
-    & A_{11}^* · A_{12} · Δ^* \\
-    Δ^* · A_{21} · A_{11}^*
-    & Δ^*
+    A_{11}^* + A_{11}^* \cdot A_{12} \cdot \Delta^* \cdot A_{21} \cdot A_{11}^*
+    & A_{11}^* \cdot A_{12} \cdot \Delta^* \\
+    \Delta^* \cdot A_{21} \cdot A_{11}^*
+    & \Delta^*
   \end{array}
   \right]
 \]
 %
-where $Δ = A_{22} + A_{21} · A_{11}^* · A_{12}$ and the base case
+where $\Delta = A_{22} + A_{21} \cdot A_{11}^* \cdot A_{12}$ and the base case
 is the 1-by-1 matrix where we use the transitive closure of the
 element of the matrix:
 %

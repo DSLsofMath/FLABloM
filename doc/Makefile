@@ -7,13 +7,13 @@ AGDAFILES = $(wildcard ../*.lagda)
 
 default: $(NAME).pdf
 
-$(NAME).tex: paper.format $(AGDAFILES)
+$(NAME).tex: $(AGDAFILES)
 
-%.tex: %.lagda
+%.tex: %.lagda paper.format
 	$(LHS2TEX) --agda $< > $@
 
 %.pdf: %.tex paper.bib
-	$(LATEXMK) -xelatex $<
+	$(LATEXMK) -pdf $<
 
 clean:
 	latexmk -C $(NAME).tex

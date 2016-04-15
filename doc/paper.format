@@ -109,7 +109,7 @@
 %format +s   = "\mathbin{+_s}"
 
 %format _*s_ = "\unopun{" *s "}"
-%format *s   = "\mathbin{·_s}"
+%format *s   = "\mathbin{\cdot_s}"
 %format _∙s_ = "\unopun{" ∙s "}"
 %format ∙s   = "\mathbin{∙_s}"
 
@@ -120,7 +120,7 @@
 %format +S   = "\mathbin{+\!_S}"
 
 %format _*S_ = "\unopun{" *S "}"
-%format *S   = "\mathbin{·\!_S}"
+%format *S   = "\mathbin{\cdot\!_S}"
 
 %format _≃u_ = "\unopun{" ≃u "}"
 %format ≃u   = "\mathrel{≃_u}"
@@ -249,3 +249,4 @@
 %format w* = "w^\star"
 
 %format ℕ = "\mathbb{N}"
+%format Δ = "\ensuremath{\Delta}"
