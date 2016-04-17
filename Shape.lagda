@@ -41,7 +41,7 @@ split (suc (suc n)) with split n
 
 \end{code}
 \begin{code}
-{-# NO_TERMINATION_CHECK #-}
+{-# TERMINATING #-}
 \end{code}
 
 Then a balanced shape is computed, but the function is partial due to
