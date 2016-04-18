@@ -18,7 +18,7 @@
 \usepackage{stmaryrd}
 \usepackage{multicol}
 \usepackage{hyperref}
-\usepackage{textgreek}
+%\usepackage{textgreek}
 
 %%% Some useful macros
 %if submit
@@ -64,7 +64,7 @@
 \noindent
 %
 In \cite{bernardy2015certified} Bernardy \& Jansson used a recursive block
-formulation of matrices to certify Variant's
+formulation of matrices to certify Valiant's
 \cite{valiant_general_1975} parsing algorithm.
 %
 Their matrix formulation was restricted to matrices of size
@@ -133,6 +133,6 @@ dimensions and the more general semi-near-ring structure which would
 allow parallel parsing as an application.
 
 \bibliographystyle{plain}
-\bibliography{abstract}
+\bibliography{paper}
 
 \end{document}

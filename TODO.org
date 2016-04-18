@@ -6,7 +6,7 @@
   DEADLINE: <2016-04-19 tis>
 * TODO Book hotel for TYPES
   DEADLINE: <2016-04-19 tis>
-* TODO try to find a scholaship to apply for travel funding
+* TODO try to find a scholarship to apply for travel funding
   DEADLINE: <2016-04-26 tis>
 * DONE Register for TYPES
   CLOSED: [2016-04-16 Sat 20:48] DEADLINE: <2016-04-19 tis>
@@ -54,7 +54,7 @@
 
 
   Graph algorithms, is the 1 essential for them to work?
-* DONE Read "Typing linear algebra: a biproduct-oriented approad"
+* DONE Read "Typing linear algebra: a biproduct-oriented approach"
   CLOSED: [2016-02-19 Fri 11:00]
 
   http://arxiv.org/pdf/1312.4818v1.pdf
