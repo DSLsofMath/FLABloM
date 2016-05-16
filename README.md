@@ -12,7 +12,7 @@ implementing semi-near-rings, semi-rings and closed semi-rings.
 - Preliminaries
 
     - [Preliminaries.lagda](Preliminaries.lagda) -- some definitions,
-      borrowed from [Valiant Agda][1].
+      borrowed from [ValiantAgda][1].
     - [Product.lagda](Product.lagda) -- non-dependent product.
 
 - Structures
@@ -68,3 +68,5 @@ classical linear algebra with the aim to influence the DSLsofMath
 course.
 
 [1]: http://wiki.portal.chalmers.se/cse/pmwiki.php/FP/ValiantAgda
+
+ValiantAgda Code: https://github.com/DSLsofMath/ValiantAgda
