@@ -1,8 +1,14 @@
 # FLABloM: Functional linear algebra with block matrices
 
-[Extended abstract](http://adam.sandbergericsson.se/p/flablom-types-2016-preprint.pdf)
+[Extended abstract](http://adam.sandbergericsson.se/p/flablom-types-2016-preprint.pdf) (also [here](http://www.types2016.uns.ac.rs/images/abstracts/eriksson.pdf))
 
-Accepted for presentation at [TYPES 2016](http://www.types2016.uns.ac.rs/).
+[Accepted](http://www.types2016.uns.ac.rs/index.php/programme-2/accepted) for presentation at [TYPES 2016](http://www.types2016.uns.ac.rs/).
+
+Conf. pres.: [Thursday 2016-05-26 at 15.00](http://www.types2016.uns.ac.rs/index.php/programme-2/conf-prog)
+
+
+
+(Dry-run: Friday 2016-05-19 at 11.00 in EDIT-6128, Chalmers.
 
 # Overview
 
