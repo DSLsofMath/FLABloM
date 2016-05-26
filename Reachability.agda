@@ -18,8 +18,11 @@ one : Shape
 one = L
 two : Shape
 two = B one one
+three : Shape
+three = B one two
 four : Shape
 four = B two two
+
 
 open ClosedSemiRing (Square BoolCSR four)
 open SemiRing sr
@@ -37,9 +40,10 @@ F = One false
 
 {-
 1   2
-   /|
+   /^
   / |
  /  |
+v   |
 3   4
 -}
 
@@ -56,9 +60,9 @@ full2     =  Q T T
 graph : M4
 graph =
   Q edgeless2    (Q F F
-                    T T)
+                    F T)
     (Q F T
-       F T)      edgeless2
+       F F)      edgeless2
 
 can-reach = closure graph
 
@@ -68,5 +72,11 @@ g = Q diagonal2  (Q F F
          F T)    full2
 
 
-p : can-reach ≡ g
-p = refl
+-- p : can-reach ≡ g
+-- p = refl
+
+
+ex2 : M Bool three three
+ex2 =
+  Q (T) (Row F T)
+    (Col F F) (Q T T F T)

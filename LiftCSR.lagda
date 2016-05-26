@@ -150,57 +150,64 @@ private
 
 open lemma2 public using (entire-lem2)
 
-entire-lem3 :
-  (sh sh1 : Shape)
-  (C* : M s sh sh)
-  (D : M s sh sh1) (E : M s sh1 sh)
-  (F : M s sh1 sh1)
-  (Δ* : M s sh1 sh1) →
-  let Δ = F + E * C* * D in
-  (Δ * Δ*) * E * C* ≃S
-  E * C* * D * Δ* * E * C*
-    + F            * Δ* * E * C*
-entire-lem3 sh1 sh C* D E F Δ* =
-  let Δ = F + E * C* * D
-  in let open EqReasoning setoidS
-  in begin
-    (Δ * Δ*) * E * C*
-  ≈⟨ *-assocS sh sh sh sh1 Δ Δ* (E * C*)  ⟩ -- *-assocS
-    Δ * Δ* * E * C*
-  ≡⟨ refl ⟩ -- def of Δ
-    (F + E * C* * D) * Δ* * E * C*
-  ≈⟨ (distrS {sh}{sh}{sh1}
-       (Δ* * E * C*) F (E * C* * D)) ⟩ -- <+> reflS distrS
-   F              * Δ* * E * C*
-   + (E * C* * D) * Δ* * E * C*
-  ≈⟨ (commS sh sh1 (F * Δ* * E * C*) ((E * C* * D) * Δ* * E * C*)) ⟩ -- <+> reflS commS
-   (E * C* * D) * Δ* * E * C*
-   + F           * Δ* * E * C*
-  ≈⟨ <+> sh sh1 {(E * C* * D) * Δ* * E * C*}{((E * C*) * D) * Δ* * E * C*}
-          {F * Δ* * E * C*}{F * Δ* * E * C*}
-       (<*> sh sh sh1 {(E * C* * D)}{(E * C*) * D}{Δ* * E * C*}{Δ* * E * C*}
-         (symS sh sh {(E * C*) * D}{E * C* * D}
-           (*-assocS sh sh1 sh1 sh
-             E C* D))
-         (reflS sh sh1))
-       (reflS sh sh1) ⟩ -- (<+> *-assocS reflS)
-    ((E * C*) * D) * Δ* * E * C*
-    + F           * Δ* * E * C*
-  ≈⟨ <+> sh sh1 {((E * C*) * D) * Δ* * E * C*}{(E * C*) * D * Δ* * E * C*}
-          {F * Δ* * E * C*}{F * Δ* * E * C*}
-       (*-assocS sh sh1 sh sh1
-         (E * C*) D (Δ* * E * C*))
-       (reflS sh sh1) ⟩ -- (<+> *-assocS reflS)
-    (E * C*) * D * Δ* * E * C*
-    + F           * Δ* * E * C*
-  ≈⟨ <+> sh sh1 {(E * C*) * D * Δ* * E * C*}{E * C* * D * Δ* * E * C*}
-          {_}{_}
-       (*-assocS sh sh1 sh1 sh1
-         E C* (D * Δ* * E * C*))
-       (reflS sh sh1) ⟩ -- (<+> *-assocS reflS)
-    E * C* * D * Δ* * E * C*
-    + F           * Δ* * E * C*
-  ∎
+private
+  module lemma3
+    (sh sh1 : Shape)
+    (C* : M s sh sh)
+    (D : M s sh sh1)
+    (E : M s sh1 sh)
+    (F : M s sh1 sh1)
+    (Δ* : M s sh1 sh1) where
+
+    Δ : M s sh1 sh1
+    Δ = F + E * C* * D
+
+    entire-lem3 :
+      (Δ * Δ*) * E * C* ≃S
+      E * C* * D * Δ* * E * C*
+        + F            * Δ* * E * C*
+    entire-lem3 =
+      let open EqReasoning setoidS
+      in begin
+          (Δ * Δ*) * E * C*
+        ≈⟨ *-assocS sh1 sh1 sh1 sh Δ Δ* (E * C*)  ⟩ -- *-assocS
+          Δ * Δ* * E * C*
+        ≡⟨ refl ⟩ -- def of Δ
+          (F + E * C* * D) * Δ* * E * C*
+        ≈⟨ (distrS {sh1}{sh1}{sh}
+             (Δ* * E * C*) F (E * C* * D)) ⟩ -- <+> reflS distrS
+         F              * Δ* * E * C*
+         + (E * C* * D) * Δ* * E * C*
+        ≈⟨ (commS sh1 sh (F * Δ* * E * C*) ((E * C* * D) * Δ* * E * C*)) ⟩ -- <+> reflS commS
+         (E * C* * D) * Δ* * E * C*
+         + F           * Δ* * E * C*
+        ≈⟨ <+> sh1 sh {(E * C* * D) * Δ* * E * C*}{((E * C*) * D) * Δ* * E * C*}
+                {F * Δ* * E * C*}{F * Δ* * E * C*}
+             (<*> sh1 sh1 sh {(E * C* * D)}{(E * C*) * D}{Δ* * E * C*}{Δ* * E * C*}
+               (symS sh1 sh1 {(E * C*) * D}{E * C* * D}
+                 (*-assocS sh1 sh sh sh1
+                   E C* D))
+               (reflS sh1 sh))
+             (reflS sh1 sh) ⟩ -- (<+> *-assocS reflS)
+          ((E * C*) * D) * Δ* * E * C*
+          + F           * Δ* * E * C*
+        ≈⟨ <+> sh1 sh {((E * C*) * D) * Δ* * E * C*}{(E * C*) * D * Δ* * E * C*}
+                {F * Δ* * E * C*}{F * Δ* * E * C*}
+             (*-assocS sh1 sh sh1 sh
+               (E * C*) D (Δ* * E * C*))
+             (reflS sh1 sh) ⟩ -- (<+> *-assocS reflS)
+          (E * C*) * D * Δ* * E * C*
+          + F           * Δ* * E * C*
+        ≈⟨ <+> sh1 sh {(E * C*) * D * Δ* * E * C*}{E * C* * D * Δ* * E * C*}
+                {_}{_}
+             (*-assocS sh1 sh sh sh
+               E C* (D * Δ* * E * C*))
+             (reflS sh1 sh) ⟩ -- (<+> *-assocS reflS)
+          E * C* * D * Δ* * E * C*
+          + F           * Δ* * E * C*
+        ∎
+
+open lemma3 public using (entire-lem3)
 
 entireQS : ∀ {sh} (c : M s sh sh) → Σ (M s sh sh) λ c* → c* ≃S I + c * c*
 entireQS {L} (One w) =
