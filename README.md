@@ -5,6 +5,7 @@
   for presentation at [TYPES 2016](http://www.types2016.uns.ac.rs/).
 - Conf. pres.:
   [Thursday 2016-05-26 at 15.00](http://www.types2016.uns.ac.rs/index.php/programme-2/conf-prog)
+  -- [slides](https://github.com/DSLsofMath/FLABloM/raw/master/doc/slides.pdf)
 - (Dry-run: Friday 2016-05-19 at 11.00 in EDIT-6128, Chalmers)
 
 # Overview
