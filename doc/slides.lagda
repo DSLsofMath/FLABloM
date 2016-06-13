@@ -41,8 +41,8 @@
 
 \begin{document}
 
-\title{FLABloM: Functional linear algebra with block matrices}
-\author{\underline{Adam Sandberg Eriksson} \and Patrik Jansson}
+\title{FLABloM: Functional Linear Algebra\\with Block Matrices}
+\author{Adam Sandberg Eriksson \and \underline{Patrik Jansson}}
 \institute{
   Chalmers University of Technology,
   Sweden\\
@@ -50,6 +50,31 @@
 
 % \titlerunning{Functional linear algebra with block matrices}
 % \authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
+
+\newcommand{\Row}[2] {\ensuremath{\boxed{\begin{array}{cc}#1&#2\end{array}}}}
+\newcommand{\Col}[2] {\ensuremath{\boxed{\begin{array}{c}#1\\#2\end{array}}}}
+\newcommand{\Quad}[5][0mm]{\ensuremath{\boxed{\begin{array}{cc}#2&#3\\[#1]#4&#5\end{array}}}}
+
+\newcommand{\A}{%
+  \Quad[2mm]{1}         {\Row{0}{1}}
+            {\Col{0}{0}}{\Quad{1}{1}
+                              {0}{1}}%
+}
+\newcommand{\B}{%
+  \Quad[2mm]{0}         {\Row{1}{2}}
+            {\Col{0}{0}}{\Quad{1}{7}
+                              {3}{8}}%
+}
+\newcommand{\C}{%
+  \Quad[2mm]{2}         {\Row{1}{0}}
+            {\Col{1}{0}}{\Quad{9}{8}
+                              {7}{6}}%
+}
+\newcommand{\D}{%
+  \Quad[2mm]{1}         {\Row{0}{1}}
+            {\Col{0}{0}}{\Quad{1}{1}
+                              {0}{1}}%
+}
 
 \frame{\titlepage}
 
@@ -62,17 +87,10 @@
   \item Reflexive, transitive closure of matrices
   \end{itemize}
 
-\centering
+%\centering
 \[
-\left[ \begin{array}{cc}
-1 & \left[ \begin{array}{cc}
-0 &
-1\end{array} \right] \\\\
-\left[ \begin{array}{c}
-0 \\
-0\end{array} \right] & \left[ \begin{array}{cc}
-1 & 1 \\
-0 & 1\end{array} \right]\end{array} \right]
+  \Quad[10mm]{\A}{\B}
+             {\C}{\D}
 \]
 \end{frame}
 
@@ -130,6 +148,7 @@ Shapes for one dimension: (a vector/row matrix)
 
 \end{frame}
 
+\newcommand{\emptybox}{\ensuremath{\boxed{\phantom{x}}}}
 \begin{frame}
   \frametitle{Matrices: building blocks}
 
@@ -142,27 +161,15 @@ data M (a : Set) : (rows cols : Shape) → Set
 {\footnotesize
 \[
 \begin{array}{cccc}
-\left[ a \right],\qquad &
+\emptybox,\qquad &
 %
-\left[
-  \begin{array}{ll}
-    \left[ \cdots \right] & \left[ \cdots \right]
-  \end{array}
-\right],\qquad &
+\Row{\emptybox}{\emptybox},\qquad &
 %
-\left[
-  \begin{array}{l}
-    \left[ \vdots \right] \\ \\
-    \left[ \vdots \right]
-  \end{array}
-\right],\qquad &
+\Col{\emptybox}{\emptybox},\qquad &
 %
-\left[
-  \begin{array}{ll}
-    \left[ \ddots \right] & \left[ \ddots \right] \\ \\
-    \left[ \ddots \right] & \left[ \ddots \right]
-  \end{array}
-\right] \\ \\
+\Quad{\emptybox}{\emptybox}
+     {\emptybox}{\emptybox}
+ \\ \\
 |M a L L|
 & |M a L (B c₁ c₂)|
 & |M a (B r₁ r₂) L|
@@ -269,20 +276,15 @@ Computing the reflexive, transitive closure:
 \centering
 \begin{align*}
   [ a ]^* & = [ a^* ] \\
-  \left[
-  \begin{array}{ll}
-    A_{11} & A_{12} \\ \\
-    A_{21} & A_{22}
-  \end{array}
-  \right]^*
-  & = \left[
-  \begin{array}{r@@{\qquad}l}
-    A_{11}^* + A_{11}^* \cdot A_{12} \cdot \Delta^* \cdot A_{21} \cdot A_{11}^*
-    & A_{11}^* \cdot A_{12} \cdot \Delta^* \\ \\
-    \Delta^* \cdot A_{21} \cdot A_{11}^*
-    & \Delta^*
-  \end{array}
-  \right]
+  \left.
+  \Quad[1ex]{A_{11}}{A_{12}}
+            {A_{21}}{A_{22}}
+  \right.^*
+  & =
+  \Quad[1ex]{A_{11}^* + A_{11}^* \cdot A_{12} \cdot \Delta^* \cdot A_{21} \cdot A_{11}^*}
+            {A_{11}^* \cdot A_{12} \cdot \Delta^*}
+            {\Delta^* \cdot A_{21} \cdot A_{11}^*}
+            {\Delta^*}
 \end{align*}
 }
 
@@ -309,30 +311,25 @@ with proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
   \end{tikzpicture}
 
 \[
-\left[ \begin{array}{cc}
-\left[ \begin{array}{cc}
-0 & 0 \\
-0 & 0\end{array} \right] & \left[ \begin{array}{cc}
-0 & 0 \\
-0 & 1\end{array} \right] \\\\
-\left[ \begin{array}{cc}
-0 & 1 \\
-0 & 0\end{array} \right] & \left[ \begin{array}{cc}
-0 & 0 \\
-0 & 0\end{array} \right]\end{array} \right]^*
+\left.
+\Quad[3ex]{\Quad{0}{0}
+                {0}{0}}
+          {\Quad{0}{0}
+                {0}{1}}
+          {\Quad{0}{1}
+                {0}{0}}
+          {\Quad{0}{0}
+                {0}{0}}\right.^*
 \pause
 =
-\left[ \begin{array}{cc}
-\left[ \begin{array}{cc}
-1 & 0 \\
-0 & 1\end{array} \right] & \left[ \begin{array}{cc}
-0 & 0 \\
-0 & 1\end{array} \right] \\\\
-\left[ \begin{array}{cc}
-0 & 1 \\
-0 & 0\end{array} \right] & \left[ \begin{array}{cc}
-1 & 1 \\
-0 & 1\end{array} \right]\end{array} \right]
+\Quad[3ex]{\Quad{1}{0}
+                {0}{1}}
+          {\Quad{0}{0}
+                {0}{1}}
+          {\Quad{0}{1}
+                {0}{0}}
+          {\Quad{1}{1}
+                {0}{1}}
 \]
 
   \begin{tikzpicture}[->]
