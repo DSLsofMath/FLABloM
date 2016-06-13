@@ -95,7 +95,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Matrices}
+  \frametitle{Towards a datatype for matrices}
 
   Desirable:
 
@@ -114,15 +114,20 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Matrices: shapes}
+  \frametitle{Matrix ``shapes''}
 
-A type for shapes:
+A type for shapes (generalisation of natural numbers):
 
 \begin{code}
 data Shape : Set where
   L  : Shape
-  B  : (s₁ s₂ : Shape) → Shape
+  B  : Shape → Shape → Shape
+
+two     = B L L
+three   = B two L
+three'  = B L two
 \end{code}
+
 
 \pause
 
@@ -250,21 +255,10 @@ _≃S_ : ∀ {r c} → M s r c → M s r c → Set
 _*S_ : ∀ {r m c} → M s r m → M s m c → M s r c
 One x      *S One y       = One (x *s y)
 Row m0 m1  *S Col n0 n1   = m0 *S n0 +S m1 *S n1
+Col m0 m1  *S Row n0 n1   = Q  (m0 *S n0)   (m0 *S n1)
+                               (m1 *S n0)   (m1 *S n1)
 \end{code}
 
-\end{frame}
-
-\begin{frame}
-  \frametitle{Proofs: reflexivity}
-
-\begin{code}
-reflS : ∀ {r c} → (X : M s r c) → X ≃S X
-reflS (One x)         = refls {x}
-reflS (Row X X₁)      = reflS X , reflS X₁
-reflS (Col X X₁)      = reflS X , reflS X₁
-reflS (Q X X₁ X₂ X₃)  =  reflS X , reflS X₁ ,
-                         reflS X₂ , reflS X₃
-\end{code}
 \end{frame}
 
 \begin{frame}
@@ -275,7 +269,7 @@ Computing the reflexive, transitive closure:
 {\small
 \centering
 \begin{align*}
-  [ a ]^* & = [ a^* ] \\
+  \left.\boxed{a}\right.^* & = \boxed{a^*} \\
   \left.
   \Quad[1ex]{A_{11}}{A_{12}}
             {A_{21}}{A_{22}}
@@ -351,10 +345,10 @@ with proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
 \begin{frame}
   \frametitle{Wrapping up}
 
-  Conclusions, further work, et.c.
+  Conclusions, further work, etc.
 
   \begin{itemize}
-  \item This matrix definition is useable...
+  \item This matrix definition is not the final word
   \item A more flexible matrix definition: sparse? fewer constructors?
   \item Automation (of proofs)!
   \item Generalisation to closed semi-near-ring for parsing
