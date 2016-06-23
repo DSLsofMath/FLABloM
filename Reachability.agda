@@ -75,6 +75,11 @@ g = Q diagonal2  (Q F F
 -- p : can-reach ≡ g
 -- p = refl
 
+r : M4
+r = closure can-reach
+
+-- test : r ≡ can-reach
+-- test = {!!}
 
 ex2 : M Bool three three
 ex2 =
