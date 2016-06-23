@@ -175,6 +175,7 @@ graph reachability algorithm.
 %
 If we have a graph (figure~\ref{fig:graph1}) and its incidence matrix
 (as below)
+%TODO: incidence, correct word?
 %
 we can find all reachable nodes (figure~\ref{fig:graph2}) by
 computing the transitive closure of the incidence matrix.
@@ -226,7 +227,7 @@ computing the transitive closure of the incidence matrix.
   \caption{Graph with reachable nodes}
 \end{figure}
 
-
+\newpage
 \paragraph{Conclusions}
 We have presented an algebraic structure useful for (block) matrix
 computations and implemented and proved correctness of transitive
