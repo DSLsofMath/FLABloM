@@ -31,48 +31,42 @@ _+_ = _+S_
 \end{code}
 %endif
 
-%PaJa: Nice to see that you found a "symmetric" definition instead of Dolan's
-%
 In \cite{lehmann1977} Lehmann presents a definition of the closure on
 square matrices, $A^* = 1 + A \cdot A^*$:
 %
-Given
+Given a square matrix
 %
 \[
-  A = \left[
-  \begin{array}{ll}
-    A_{11} & A_{12} \\
-    A_{21} & A_{22}
-  \end{array}
-  \right]
+  A = \Quad[1ex]
+    {A_{11}}{A_{12}}
+    {A_{21}}{A_{22}}
 \]
 %
 the transitive closure of $A$ is defined inductively as
 %
-\[
-  A^* = \left[
-  \begin{array}{r@@{\qquad}l}
-    A_{11}^* + A_{11}^* \cdot A_{12} \cdot \Delta^* \cdot A_{21} \cdot A_{11}^*
-    & A_{11}^* \cdot A_{12} \cdot \Delta^* \\
-    \Delta^* \cdot A_{21} \cdot A_{11}^*
-    & \Delta^*
-  \end{array}
-  \right]
-\]
+\begin{align*}
+  A^*
+  & =
+  \Quad[1ex]{A_{11}^* + A_{11}^* \cdot A_{12} \cdot \Delta^* \cdot A_{21} \cdot A_{11}^*}
+            {A_{11}^* \cdot A_{12} \cdot \Delta^*}
+            {\Delta^* \cdot A_{21} \cdot A_{11}^*}
+            {\Delta^*}
+\end{align*}
 %
 where $\Delta = A_{22} + A_{21} \cdot A_{11}^* \cdot A_{12}$ and the base case
 is the 1-by-1 matrix where we use the transitive closure of the
 element of the matrix:
 %
 \(
-[ s ]^* = [ s^* ]
+\boxed{a}\,^* = \boxed{a^*}
 \).
 
 We have encoded this definition of closure in Agda and implemented a
 constructive correctness proof using structural induction and equational reasoning.
 %
 The full development of around 2500 lines of literate Agda code
-(including this abstract) is available on GitHub (\url{https://github.com/DSLsofMath/FLABloM}).
+(including this abstract) is available on GitHub
+(\url{https://github.com/DSLsofMath/FLABloM}).
 
 %if False
 \begin{code}

@@ -19,6 +19,8 @@
 % \usepackage{multicol}
 \usepackage{hyperref}
 %\usepackage{textgreek}
+\usepackage{tikz}
+\usepackage{subcaption}
 
 \bibliographystyle{abbrvnat}
 
@@ -75,11 +77,14 @@
 % \section{Introduction}
 % \label{sec:intro}
 
-\category{TODO: CR-number}{subcategory}{third-level}
+\category{D.1.1}{PROGRAMMING TECHNIQUES}{Applicative (Functional) Programming}
 
-TODO: back-port some figures from the slides
+\category{D.2.4}{SOFTWARE ENGINEERING}{Software/Program Verification}
 
-TODO: uncomment some proof fragment
+% TODO: ovan är gissningar efter snabb läsning av
+% http://www.acm.org/about/class/ccs98-html
+
+%TODO: uncomment some proof fragment
 
 In \cite{bernardy2015certified} Bernardy \& Jansson used a recursive
 block formulation of matrices to certify Valiant's
@@ -138,6 +143,66 @@ natural numbers the role of |*s| and the closure is 0.
 \paragraph{Transitive closure}
 
 %include ../LiftCSR.lagda
+
+\paragraph{Graph reachability}
+
+Using this definition of transitive closure of matrices instantiated
+with the boolean semi-ring defined above we get an implementation of a
+graph reachability algorithm.
+%
+Given a graph (figure~\ref{fig:graph1}) and its incidence matrix
+%
+%
+we compute the reachable nodes (figure~\ref{fig:graph2}) using the
+transitive closure
+
+\[
+  \left.\Quad[3ex]
+    {\Quad{0}{0}
+      {0}{0}}
+    {\Quad{0}{0}
+      {0}{1}}
+    {\Quad{0}{1}
+      {0}{0}}
+    {\Quad{0}{0}
+      {0}{0}}
+  \right.^*
+  =
+  \Quad[3ex]
+  {\Quad{1}{0}
+    {0}{1}}
+  {\Quad{0}{0}
+    {0}{1}}
+  {\Quad{0}{1}
+    {0}{0}}
+  {\Quad{1}{1}
+    {0}{1}}
+\]
+
+\begin{figure}[h]\centering
+  \begin{subfigure}{0.2\textwidth}\centering
+    \begin{tikzpicture}[->]
+      \node (1) {1}; \node (2) [right of=1] {2}; \node (3) [below
+      of=1] {3}; \node (4) [below of=2] {4}; \path (3) edge (2) (2)
+      edge (4);
+    \end{tikzpicture}
+    \caption{A graph}
+    \label{fig:graph1}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}{0.2\textwidth}\centering
+    \begin{tikzpicture}[->]
+      \node (1) {1}; \node (2) [right of=1] {2}; \node (3) [below
+      of=1] {3}; \node (4) [below of=2] {4}; \path (3) edge (2) (2)
+      edge (4) (3) edge (4) (1) edge [loop above] (1) (2) edge [loop
+      above] (2) (3) edge [loop below] (3) (4) edge [loop below] (4);
+    \end{tikzpicture}
+    \caption{Reachable nodes}
+    \label{fig:graph2}
+  \end{subfigure}
+  \caption{Graph with reachable nodes}
+\end{figure}
+
 
 \paragraph{Conclusions}
 We have presented an algebraic structure useful for (block) matrix
