@@ -169,11 +169,11 @@ Using this definition of transitive closure of matrices instantiated
 with the boolean semi-ring defined above we get an implementation of a
 graph reachability algorithm.
 %
-Given a graph (figure~\ref{fig:graph1}) and its incidence matrix
+If we have a graph (figure~\ref{fig:graph1}) and its incidence matrix
+(as below)
 %
-%
-we compute the reachable nodes (figure~\ref{fig:graph2}) using the
-transitive closure
+we can find all reachable nodes (figure~\ref{fig:graph2}) by
+computing the transitive closure of the incidence matrix.
 
 \[
   \left.\Quad[3ex]
