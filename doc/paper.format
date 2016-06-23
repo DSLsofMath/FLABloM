@@ -252,5 +252,6 @@
 %format ℕ = "\mathbb{N}"
 %format Δ = "\ensuremath{\Delta}"
 
-%format identSʳ = identS"^r"
-%format identSˡ = identS"^l"
+%format identSʳ = ident"_S^r"
+%format identSˡ = ident"_S^l"
+%format reflS = refl"_S"
