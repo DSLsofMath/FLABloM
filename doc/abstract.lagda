@@ -78,7 +78,7 @@
 
 % \category{F.3.1}{Logics and Meanings of Programs}{Specifying and
 %   Verifying and Reasoning about Programs} % [Logics of programs]
-% \category{D.3.2}{Programming Languages}{Language Classifications }[Applicative (functional) languages]
+% \category{D.3.2}{Programming Languages}{Language Classifications}[Applicative (functional) languages]
 
 % Something about testing should be added
 
@@ -166,6 +166,7 @@ natural numbers the role of |*s| and the closure is~|0|.
 \paragraph{Transitive closure}
 
 %include ../LiftCSR.lagda
+%TODO: flytta texten om langd av bevis och lank till GH till senare?
 
 \paragraph{Graph reachability}
 

@@ -89,6 +89,7 @@ equivalence relation and two simple proofs.
 %
 The equivalence relation is lifted pointwise and all proofs follow the
 same structure:
+%TODO: pointwise rätt ord?
 %
 \todo{Replace with more interesting proof term}
 \begin{code}
@@ -102,7 +103,7 @@ _≃S_ : {r c : Shape} → M s r c → M s r c → Set
 \end{code}
 \newpage
 \noindent
-The simplest proof is that of reflexivity:
+The simplest proof is that of reflexively:
 %
 \begin{code}
 reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X
