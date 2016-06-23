@@ -10,9 +10,9 @@
 
 \usepackage{amsmath}
 \usepackage{url}
-% \usepackage{ucs}
+\usepackage{ucs}
 \usepackage[utf8x]{inputenc}
-\usepackage{unicode-math} % only with xelatex
+% \usepackage{unicode-math} % only with xelatex
 % \usepackage{autofe}
 % \usepackage{latexsym}
 \usepackage{stmaryrd}
@@ -33,7 +33,7 @@
 
 \setcounter{secnumdepth}{0}
 
-\input{matrix}
+\input{matrix} % definitions for matrix printing
 
 \begin{document}
 

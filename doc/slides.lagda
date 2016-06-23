@@ -10,7 +10,7 @@
 
 \usepackage{amsmath}
 \usepackage{url}
-% \usepackage{ucs}
+\usepackage{ucs}
 \usepackage[utf8x]{inputenc}
 % \usepackage{unicode-math}
 \usepackage{autofe}

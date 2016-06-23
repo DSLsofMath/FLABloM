@@ -237,9 +237,10 @@
 %format b_1
 %format b_2
 
-%format ≈⟨ = "≈\!\!⟨"
+%format ≈⟨ = "\approx\!\!⟨"
 %format ≡⟨ = "≡\!\!⟨"
 %format _≡⟨_⟩_ = "\ensuremath{\un{≡}⟨\un⟩\un}"
+%format ∎ = "\ensuremath{\blacksquare}"
 
 %format AU*SX = AU"{*}"SX
 %format XS*UB = XS"{*}"UB
@@ -250,3 +251,6 @@
 
 %format ℕ = "\mathbb{N}"
 %format Δ = "\ensuremath{\Delta}"
+
+%format identSʳ = identS"^r"
+%format identSˡ = identS"^l"

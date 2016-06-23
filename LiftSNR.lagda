@@ -183,6 +183,9 @@ setoidS {r} {c} =
 The second proof shows how we use the Agda standard library's
 equational reasoning framework to make the proofs easier to write and
 read, this tool is used heavily throughout the development.
+%
+Here we prove that the zero matrix is the right identity of addition:
+%
 \begin{code}
 identSʳ :  (r c : Shape) (x : M s r c) →
            x +S zerS r c ≃S x
@@ -196,6 +199,7 @@ identSʳ r c x =
     x
   ∎
 \end{code}
+
 %if False
 \begin{code}
 zerolHelp : ∀ (r : Shape) {m m' c : Shape}
