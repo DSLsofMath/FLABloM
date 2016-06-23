@@ -46,7 +46,11 @@
 \preprintfooter{In submission to TyDe'16}   % 'preprint' option specified.
 
 \todo{Make the title fit the contents better: A formalization of ... closure ... block}
-\title{Extended Abstract\\ FLABloM: Functional Linear Algebra with Block Matrices}
+% \title{Extended Abstract\\ FLABloM: Functional Linear Algebra with
+%   Block Matrices}
+\title{Extended abstract: An Agda formalisation of the transitive
+  closure of block matrices}
+
 \authorinfo{Adam Sandberg Eriksson \and Patrik Jansson}
            {Chalmers University of Technology, Sweden}
            {\{saadam,patrikj\}@@chalmers.se}

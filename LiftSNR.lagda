@@ -100,18 +100,19 @@ _≃S_ : {r c : Shape} → M s r c → M s r c → Set
      (m00 ≃S n00) × (m01 ≃S n01) ×
      (m10 ≃S n10) × (m11 ≃S n11)
 \end{code}
-
+\newpage
+\noindent
 The simplest proof is that of reflexivity:
 %
 \begin{code}
 reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X
 reflS L          L          {One x} =  refls {x}
-reflS L          (B c₁ c₂)          =  reflS L c₁   , reflS L c₂
-reflS (B r₁ r₂)  L                  =  reflS r₁ L   , reflS r₂ L
-reflS (B r₁ r₂)  (B c₁ c₂)          =  reflS r₁ c₁  , reflS r₁ c₂ ,
-                                       reflS r₂ c₁  , reflS r₂ c₂
+reflS L          (B c₁ c₂)  =  reflS L c₁   , reflS L c₂
+reflS (B r₁ r₂)  L          =  reflS r₁ L   , reflS r₂ L
+reflS (B r₁ r₂)  (B c₁ c₂)  =  reflS r₁ c₁  , reflS r₁ c₂ ,
+                               reflS r₂ c₁  , reflS r₂ c₂
 \end{code}
-
+%
 %if False
 \begin{code}
 symS : (r c : Shape) → {i j : M s r c} → i ≃S j → j ≃S i
@@ -185,12 +186,15 @@ setoidS {r} {c} =
         { refl = reflS r c ; sym = symS r c ; trans = transS r c } }
 \end{code}
 %endif
-
+%
 The second proof shows how we use the Agda standard library's
 equational reasoning framework to make the proofs easier to write and
 read, this tool is used heavily throughout the development.
 %
-Here we prove that the zero matrix is the right identity of addition:
+To prove that the zero matrix is the right identity of addition we use
+commutativity of addition and the proof of the left identity of
+addition (which itself is a proof by cases on the shapes of the
+matrix, similar to that of |reflS|):
 %
 \begin{code}
 identSʳ :  (r : Shape) (c : Shape) (x : M s r c) →
