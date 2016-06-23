@@ -13,12 +13,14 @@
 % \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
 % \usepackage{unicode-math}
-\usepackage{autofe}
-\usepackage{latexsym}
+% \usepackage{autofe}
+% \usepackage{latexsym}
 \usepackage{stmaryrd}
-\usepackage{multicol}
+% \usepackage{multicol}
 \usepackage{hyperref}
 %\usepackage{textgreek}
+
+\bibliographystyle{abbrvnat}
 
 %%% Some useful macros
 %if submit
@@ -36,13 +38,15 @@
 
 \setcounter{secnumdepth}{0}
 
+\input{matrix}
+
 \begin{document}
 
 \special{papersize=8.5in,11in}
 \setlength{\pdfpageheight}{\paperheight}
 \setlength{\pdfpagewidth}{\paperwidth}
 
-\conferenceinfo{TyDe '16}{TODO: Month d--d, 20yy, City, ST, Country}
+\conferenceinfo{Type-driven Development}{TODO: September 18, 2016, Nara, Japan}
 \copyrightyear{2016}
 \copyrightdata{978-1-nnnn-nnnn-n/yy/mm} %TODO
 \copyrightdoi{nnnnnnn.nnnnnnn} %TODO
@@ -50,10 +54,10 @@
 \titlebanner{Preprint}        % These are ignored unless
 \preprintfooter{In submission to TyDe'16}   % 'preprint' option specified.
 
-\title{FLABloM: Functional linear algebra with block matrices}
+\title{Extended abstract\\ FLABloM: Functional Linear Algebra with Block Matrices}
 \authorinfo{Adam Sandberg Eriksson \and Patrik Jansson}
            {Chalmers University of Technology, Sweden}
-           {saadam@@chalmers.se,patrikj@@chalmers.se}
+           {\{saadam,patrikj\}@@chalmers.se}
 
 %\titlerunning{Functional linear algebra with block matrices}
 %\authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
@@ -73,15 +77,12 @@
 
 \category{TODO: CR-number}{subcategory}{third-level}
 
-
 TODO: back-port some figures from the slides
 
 TODO: uncomment some proof fragment
 
-\noindent
-%
-In \cite{bernardy2015certified} Bernardy \& Jansson used a recursive block
-formulation of matrices to certify Valiant's
+In \cite{bernardy2015certified} Bernardy \& Jansson used a recursive
+block formulation of matrices to certify Valiant's
 \cite{valiant_general_1975} parsing algorithm.
 %
 Their matrix formulation was restricted to matrices of size
@@ -90,7 +91,10 @@ for all sizes of matrices and applies similar techniques to algorithms
 that can be described as transitive closures of semi-rings of matrices
 with inspiration from \cite{dolan2013fun} and \cite{lehmann1977}.
 
-We define a hierarchy of ring structures as Agda records.
+\paragraph{Development structure}
+
+To structure the formal development we define a hierarchy of ring
+structures as Agda records:
 %
 A semi-near-ring for some type |s| needs an equivalence relation |≃s|,
 a distinguished element |zers| and operations addition |+s| and
@@ -103,11 +107,9 @@ Our semi-near-ring requires that
 %
 |zers| is the left and right zero of |*s|,
 %
-|+s| is idempotent (|∀ x → x +s x ≃s x|) and % TODO: is this really
-                                % necessary?
+|+s| is idempotent (|∀ x → x +s x ≃s x|) and
 %
 |*s| distributes over |+s|.
-
 
 For the semi-ring we extend the semi-near-ring with another
 distinguished element |ones| and proofs that |*s| is associative and
@@ -142,8 +144,8 @@ We have presented an algebraic structure useful for (block) matrix
 computations and implemented and proved correctness of transitive
 closure.
 %
-Compared to \cite{bernardy2015certified} our implementation handles arbitrary
-matrix dimensions but is restricted to semi-rings.
+Compared to \cite{bernardy2015certified} our implementation handles
+arbitrary matrix dimensions but is restricted to semi-rings.
 %
 Future work would be to extend the proof to cover both arbitrary
 dimensions and the more general semi-near-ring structure which would
@@ -151,7 +153,6 @@ allow parallel parsing as an application.
 
 % TODO: The bibliography should be embedded for final submission.
 
-\bibliographystyle{abbrvnat}
 \bibliography{paper}
 
 \end{document}
