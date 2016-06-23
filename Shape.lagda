@@ -22,7 +22,9 @@ representation more closely than natural numbers and we can easily compute
 the corresponding natural number:
 %
 \begin{code}
-toNat : Shape → ℕ; toNat L = 1; toNat (B l r) = toNat l + toNat r
+toNat : Shape  →  ℕ
+toNat L        =  1
+toNat (B l r)  =  toNat l + toNat r
 \end{code}
 %
 while the other direction is slightly more complicated because we want

@@ -1,6 +1,6 @@
 % -*- latex -*-
 %let submit = True
-\documentclass[a4paper]{easychair}
+\documentclass[preprint]{sigplanconf}
 
 %%% Standard definitions from the lhs2TeX installation
 %include polycode.fmt
@@ -38,15 +38,25 @@
 
 \begin{document}
 
-\title{FLABloM: Functional linear algebra with block matrices}
-\author{Adam Sandberg Eriksson \and Patrik Jansson}
-\institute{
-  Chalmers University of Technology,
-  Sweden\\
-  \email{\{saadam,patrikj\}@@chalmers.se}}
+\special{papersize=8.5in,11in}
+\setlength{\pdfpageheight}{\paperheight}
+\setlength{\pdfpagewidth}{\paperwidth}
 
-\titlerunning{Functional linear algebra with block matrices}
-\authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
+\conferenceinfo{TyDe '16}{TODO: Month d--d, 20yy, City, ST, Country}
+\copyrightyear{2016}
+\copyrightdata{978-1-nnnn-nnnn-n/yy/mm} %TODO
+\copyrightdoi{nnnnnnn.nnnnnnn} %TODO
+
+\titlebanner{Preprint}        % These are ignored unless
+\preprintfooter{In submission to TyDe'16}   % 'preprint' option specified.
+
+\title{FLABloM: Functional linear algebra with block matrices}
+\authorinfo{Adam Sandberg Eriksson \and Patrik Jansson}
+           {Chalmers University of Technology, Sweden}
+           {saadam@@chalmers.se,patrikj@@chalmers.se}
+
+%\titlerunning{Functional linear algebra with block matrices}
+%\authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
 
 \maketitle
 
@@ -60,6 +70,13 @@
 
 % \section{Introduction}
 % \label{sec:intro}
+
+\category{TODO: CR-number}{subcategory}{third-level}
+
+
+TODO: back-port some figures from the slides
+
+TODO: uncomment some proof fragment
 
 \noindent
 %
@@ -132,7 +149,9 @@ Future work would be to extend the proof to cover both arbitrary
 dimensions and the more general semi-near-ring structure which would
 allow parallel parsing as an application.
 
-\bibliographystyle{plain}
+% TODO: The bibliography should be embedded for final submission.
+
+\bibliographystyle{abbrvnat}
 \bibliography{paper}
 
 \end{document}

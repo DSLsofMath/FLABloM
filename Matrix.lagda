@@ -17,24 +17,25 @@ The first |One| lifts an element into a 1-by-1 matrix:
 \savecolumns[Matrix]
 \begin{code}
 data M (a : Set) : (rows cols : Shape) → Set where
-  One :                           a → M a L L
+  One :  a → M a L L
 \end{code}
 Row and column matrices are built from smaller matrices which are
 either 1-by-1 matrices or further row respectively column matrices
 \restorecolumns[Matrix]
 \begin{code}
-  Row :  {c₁ c₂ : Shape} →        M a L c₁ → M a L c₂ →  M a L (B c₁ c₂)
-
-  Col :  {r₁ r₂ : Shape} →        M a r₁ L → M a r₂ L → M a (B r₁ r₂) L
+  Row :  {c₁ c₂ : Shape} →
+         M a L c₁ → M a L c₂ →  M a L (B c₁ c₂)
+  Col :  {r₁ r₂ : Shape} →
+         M a r₁ L → M a r₂ L → M a (B r₁ r₂) L
 \end{code}
 and matrices of other shapes are built from |2 × 2| smaller matrices
 %
 \restorecolumns[Matrix]
 \begin{code}
-  Q   :  {r₁ r₂ c₁ c₂ : Shape} →  M a r₁ c₁ → M a r₁ c₂ →
-                                  M a r₂ c₁ → M a r₂ c₂ →
-                                  M a (B r₁ r₂) (B c₁ c₂)
-
+  Q   :  {r₁ r₂ c₁ c₂ : Shape} →
+         M a r₁ c₁ → M a r₁ c₂ →
+         M a r₂ c₁ → M a r₂ c₂ →
+         M a (B r₁ r₂) (B c₁ c₂)
 \end{code}
 
 This matrix representation allows for simple formulations of matrix
