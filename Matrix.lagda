@@ -38,9 +38,10 @@ and matrices of other shapes are built from |2 × 2| smaller matrices
          M a (B r₁ r₂) (B c₁ c₂)
 \end{code}
 
-This matrix representation allows for simple formulations of matrix
-addition, multiplication, and as we will see also the transitive
-closure of a matrix.
+This matrix representation allows us to to lift a semi-ring to a
+semi-ring of matrices and allows for intuitive definitions of matrix
+operations and proofs that the lifted structures satisfy the laws of
+our semi-rings.
 
 %if False
 \begin{code}

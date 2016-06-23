@@ -12,11 +12,11 @@ open import Product
 open import Relation.Binary.PropositionalEquality hiding (trans; sym) renaming (refl to refl-≡)
 import Relation.Binary.EqReasoning as EqReasoning
 \end{code}
-%endif
+
 \begin{code}
 module LiftSNR (snr : SemiNearRing) where
 \end{code}
-\noindent
+
 The Agda module |LiftSNR| is parametrised on the semi-near-ring we
 want to lift to the matrix.
 %
@@ -71,7 +71,6 @@ Q m00 m01 m10 m11 *S Q n00 n01 n10 n11
        (m10 *S n00 +S m11 *S n10)  (m10 *S n01 +S m11 *S n11)
 \end{code}
 
-%if false
 \begin{code}
 zerS : (r c : Shape)     → M s r c
 zerS L         L         =  One zers
@@ -82,30 +81,29 @@ zerS (B r r₁)  (B s s₁)  =  Q    (zerS r s)   (zerS r s₁)
 \end{code}
 %endif
 
-The equivalence relation is lifted so that the 1-by-1 case uses the
-equivalence relation from the lifted semi-near-ring and the other
-cases recursively lift the relation on their components. The recursive
-lifting has shaped all other proofs.
+To give a taste of the formal development we include the lifted
+equivalence relation and two simple proofs. The equivalence relation
+is lifted pointwise and all proofs follow the same structure:
 %
 \begin{code}
 _≃S_ : {r c : Shape} → M s r c → M s r c → Set
-_≃S_ {L}          {L}          (One x)     (One x₁)    =  x ≃s x₁
-_≃S_ {L}          {(B c₁ c₂)}  (Row m m₁)  (Row n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
-_≃S_ {(B r₁ r₂)}  {L}          (Col m m₁)  (Col n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
-_≃S_ {(B r₁ r₂)}  {(B c₁ c₂)}  (Q m00  m01  m10  m11)
-                               (Q n00  n01  n10  n11)  =  (m00 ≃S n00) × (m01 ≃S n01) ×
-                                                          (m10 ≃S n10) × (m11 ≃S n11)
+(One x)     ≃S (One x₁)    =  x ≃s x₁
+(Row m m₁)  ≃S (Row n n₁)    =  (m ≃S n) × (m₁ ≃S n₁)
+(Col m m₁)  ≃S (Col n n₁)    =  (m ≃S n) × (m₁ ≃S n₁)
+(Q m00  m01  m10  m11) ≃S (Q n00  n01  n10  n11)  =
+     (m00 ≃S n00) × (m01 ≃S n01) ×
+     (m10 ≃S n10) × (m11 ≃S n11)
 \end{code}
 
-For brevity I only include two proofs, the simplest proof is
-reflexivity of the equivalence relation lifted:
+The simplest proof is that of reflexivity:
+%
 \begin{code}
 reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X
-reflS L          L          {One x}        =  refls {x}
-reflS L          (B c₁ c₂)  {Row X Y}      =  reflS L c₁   , reflS L c₂
-reflS (B r₁ r₂)  L          {Col X Y}      =  reflS r₁ L   , reflS r₂ L
-reflS (B r₁ r₂)  (B c₁ c₂)  {Q X Y Z W}    =  reflS r₁ c₁  , reflS r₁ c₂ ,
-                                              reflS r₂ c₁  , reflS r₂ c₂
+reflS L          L          {One x} = refls {x}
+reflS L          (B c₁ c₂)  =  reflS L c₁   , reflS L c₂
+reflS (B r₁ r₂)  L          =  reflS r₁ L   , reflS r₂ L
+reflS (B r₁ r₂)  (B c₁ c₂)  =  reflS r₁ c₁  , reflS r₁ c₂ ,
+                               reflS r₂ c₁  , reflS r₂ c₂
 \end{code}
 
 %if False
@@ -186,7 +184,8 @@ The second proof shows how we use the Agda standard library's
 equational reasoning framework to make the proofs easier to write and
 read, this tool is used heavily throughout the development.
 \begin{code}
-identSʳ : (r c : Shape) (x : M s r c) →   x +S zerS r c ≃S x
+identSʳ :  (r c : Shape) (x : M s r c) →
+           x +S zerS r c ≃S x
 identSʳ r c x =
   let open EqReasoning setoidS
   in begin
@@ -454,7 +453,6 @@ distrS' : {r m c : Shape} (x : M s m c) (y z : M s r m) →
   ((y *S x) +S (z *S x)) ≃S ((y +S z) *S x)
 distrS' {r} {m} {c} x y z = symS r c (distrS x y z)
 \end{code}
-%endif
 
 Finally we are able to lift the semi-near-ring to a semi-near-ring of
 matrices (see the module \texttt{LiftSNR} for the full proof), however
@@ -509,3 +507,4 @@ Square shape = SNR
 \end{multicols}
 \caption{Lifting a semi-near-ring to a matrix of square shape.}
 \end{figure}
+%endif

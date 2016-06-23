@@ -12,13 +12,13 @@
 \usepackage{url}
 % \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
-% \usepackage{unicode-math}
+\usepackage{unicode-math} % only with xelatex
 % \usepackage{autofe}
 % \usepackage{latexsym}
 \usepackage{stmaryrd}
 % \usepackage{multicol}
 \usepackage{hyperref}
-%\usepackage{textgreek}
+% \usepackage{textgreek}
 \usepackage{tikz}
 \usepackage{subcaption}
 
@@ -30,13 +30,6 @@
 %else
 \newcommand{\todo}[2][?]{\marginpar{\raggedright \tiny TODO: #2}}
 %endif
-
-\newcommand{\TODO}[1]{\todo{#1}}
-\newcommand{\refSec}[1]{Sec. \ref{#1}}
-\newcommand{\refSecs}[1]{Secs. \ref{#1}}
-\newcommand{\refSecI}[1]{Section \ref{#1}}
-\newcommand{\refSecsI}[1]{Sections \ref{#1}}
-\newcommand{\refTab}[1]{Tab. \ref{#1}}
 
 \setcounter{secnumdepth}{0}
 
@@ -139,6 +132,8 @@ natural numbers the role of |*s| and the closure is 0.
 %include ../Shape.lagda
 
 %include ../Matrix.lagda
+
+%include ../LiftSNR.lagda
 
 \paragraph{Transitive closure}
 

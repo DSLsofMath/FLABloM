@@ -13,7 +13,7 @@ $(NAME).tex: $(AGDAFILES)
 	$(LHS2TEX) --agda $< > $@
 
 %.pdf: %.tex paper.bib
-	$(LATEXMK) -pdf $<
+	$(LATEXMK) -xelatex $<
 
 clean:
 	latexmk -C $(NAME).tex

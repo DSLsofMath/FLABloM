@@ -11,7 +11,7 @@ data Idx : Shape →  Set where
   ∙ : Idx L
 
 -- Index into a matrix
-idx : {a : Set} {rs cs : Shape} → M a rs cs → (r : Idx rs) (c : Idx cs) → a
+idx : {a : Set} {rs cs : Shape} (m : M a rs cs) (r : Idx rs) (c : Idx cs) → a
 idx (One x) ∙ ∙ = x
 idx (Row m m₁) ∙ (Bl c) = idx m ∙ c
 idx (Row m m₁) ∙ (Br c) = idx m₁ ∙ c

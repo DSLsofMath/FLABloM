@@ -39,6 +39,30 @@
 
 \setbeamertemplate{navigation symbols}{}
 
+
+\input{matrix}
+
+\newcommand{\A}{%
+  \Quad[2mm]{1}         {\Row{0}{1}}
+            {\Col{0}{0}}{\Quad{1}{1}
+                              {0}{1}}%
+}
+\newcommand{\B}{%
+  \Quad[2mm]{0}         {\Row{1}{2}}
+            {\Col{0}{0}}{\Quad{1}{7}
+                              {3}{8}}%
+}
+\newcommand{\C}{%
+  \Quad[2mm]{2}         {\Row{1}{0}}
+            {\Col{1}{0}}{\Quad{9}{8}
+                              {7}{6}}%
+}
+\newcommand{\D}{%
+  \Quad[2mm]{1}         {\Row{0}{1}}
+            {\Col{0}{0}}{\Quad{1}{1}
+                              {0}{1}}%
+}
+
 \begin{document}
 
 \title{FLABloM: Functional Linear Algebra\\with Block Matrices}
@@ -51,7 +75,6 @@
 % \titlerunning{Functional linear algebra with block matrices}
 % \authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
 
-\input{matrix}
 
 \frame{\titlepage}
 
