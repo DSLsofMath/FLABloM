@@ -32,11 +32,13 @@ infixr 50 _+S_
 \end{code}
 %endif
 %
-We start by defining matrix addition |+S| (we denote operations lifted to
-matrices by a $S$ subscript), it is only possible to add matrices of
-the same size, thus we can recur on the structure of the matrix and in
-the case of a 1-by-1 matrix we add the elements using the lifted
-semi-near-ring addition operation.
+We start by defining matrix addition |+S| (we denote operations lifted
+to matrices by a |S| subscript).
+%
+It is only possible to add matrices of the same size, thus we can
+recur on the structure of the matrix and in the case of a 1-by-1
+matrix we add the elements using the lifted semi-near-ring addition
+operation.
 \begin{code}
 _+S_ : ∀ {r c} → M s r c → M s r c → M s r c
 One x      +S One y      = One  (x +s y)
@@ -49,8 +51,9 @@ Q m00 m01 m10 m11 +S Q n00 n01 n10 n11
 %
 Multiplication is defined similarly: in the 1-by-1 times 1-by-1 case
 we use the multiplication from the lifted semi-near-ring and the other
-cases follows the simple rule ``row multiplied by column''. Here the
-structure of the matrix datatype leads to a very intuitive
+cases follows the simple rule ``row multiplied by column''.
+%
+Here the structure of the matrix datatype leads to a very intuitive
 formulation, and we do not need to fiddle with indices.
 %
 \begin{code}
@@ -82,12 +85,15 @@ zerS (B r r₁)  (B s s₁)  =  Q    (zerS r s)   (zerS r s₁)
 %endif
 
 To give a taste of the formal development we include the lifted
-equivalence relation and two simple proofs. The equivalence relation
-is lifted pointwise and all proofs follow the same structure:
+equivalence relation and two simple proofs.
 %
+The equivalence relation is lifted pointwise and all proofs follow the
+same structure:
+%
+\todo{Replace with more interesting proof term}
 \begin{code}
 _≃S_ : {r c : Shape} → M s r c → M s r c → Set
-(One x)     ≃S (One x₁)    =  x ≃s x₁
+(One x)     ≃S (One x₁)      =  x ≃s x₁
 (Row m m₁)  ≃S (Row n n₁)    =  (m ≃S n) × (m₁ ≃S n₁)
 (Col m m₁)  ≃S (Col n n₁)    =  (m ≃S n) × (m₁ ≃S n₁)
 (Q m00  m01  m10  m11) ≃S (Q n00  n01  n10  n11)  =
@@ -99,11 +105,11 @@ The simplest proof is that of reflexivity:
 %
 \begin{code}
 reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X
-reflS L          L          {One x} = refls {x}
-reflS L          (B c₁ c₂)  =  reflS L c₁   , reflS L c₂
-reflS (B r₁ r₂)  L          =  reflS r₁ L   , reflS r₂ L
-reflS (B r₁ r₂)  (B c₁ c₂)  =  reflS r₁ c₁  , reflS r₁ c₂ ,
-                               reflS r₂ c₁  , reflS r₂ c₂
+reflS L          L          {One x} =  refls {x}
+reflS L          (B c₁ c₂)          =  reflS L c₁   , reflS L c₂
+reflS (B r₁ r₂)  L                  =  reflS r₁ L   , reflS r₂ L
+reflS (B r₁ r₂)  (B c₁ c₂)          =  reflS r₁ c₁  , reflS r₁ c₂ ,
+                                       reflS r₂ c₁  , reflS r₂ c₂
 \end{code}
 
 %if False
@@ -187,7 +193,7 @@ read, this tool is used heavily throughout the development.
 Here we prove that the zero matrix is the right identity of addition:
 %
 \begin{code}
-identSʳ :  (r c : Shape) (x : M s r c) →
+identSʳ :  (r : Shape) (c : Shape) (x : M s r c) →
            x +S zerS r c ≃S x
 identSʳ r c x =
   let open EqReasoning setoidS
@@ -205,10 +211,9 @@ identSʳ r c x =
 zerolHelp : ∀ (r : Shape) {m m' c : Shape}
   (x : M s m c)
   (y : M s m' c) →
-  zerS r m *S x ≃S zerS r c →
-  zerS r m' *S y ≃S zerS r c →
-  zerS r m *S x +S zerS r m' *S y
-  ≃S zerS r c
+  zerS r m *S x   ≃S  zerS r c  →
+  zerS r m' *S y  ≃S  zerS r c  →
+  zerS r m *S x +S zerS r m' *S y  ≃S  zerS r c
 zerolHelp r {m} {m'} {c} x y p q =
   let open EqReasoning setoidS
   in begin
@@ -308,7 +313,9 @@ zeroSʳ (B a a₁) (B b b₁) (B c c₁) (Q x x₁ x₂ x₃) =
   ≈⟨ <+S> L L {x *S u} {y *S v} {x₁ *S u₁} {y₁ *S v₁} ih ih₁ ⟩
     y *S v +S y₁ *S v₁
   ∎
-<*S> L (B b b₁) (B c c₁) {Row x x₁} {Row y y₁} {Q u u₁ u₂ u₃} {Q v v₁ v₂ v₃} (p , p₁) (q , q₁ , q₂ , q₃) =
+<*S> L (B b b₁) (B c c₁) {Row x x₁} {Row y y₁}
+     {Q u u₁ u₂ u₃} {Q v v₁ v₂ v₃}
+     (p , p₁) (q , q₁ , q₂ , q₃) =
   (let
     ih = <*S> L b c p q
     ih₁ = <*S> L b₁ c p₁ q₂
@@ -460,7 +467,7 @@ distrS' {r} {m} {c} x y z = symS r c (distrS x y z)
 
 Finally we are able to lift the semi-near-ring to a semi-near-ring of
 matrices (see the module \texttt{LiftSNR} for the full proof), however
-we can only lift to a square matrix (i.e. the same shape in both
+we can only lift to a square matrix (i.e.\ the same shape in both
 dimensions).
 \begin{figure}[h!]
 \begin{multicols}{2}
@@ -471,21 +478,21 @@ Square shape = SNR
 
   isEquivS =
     record
-      { refl = reflS shape shape
-      ; sym = symS shape shape
-      ; trans = transS shape shape }
+      { refl   = reflS shape shape
+      ; sym    = symS shape shape
+      ; trans  = transS shape shape }
 
   isSemgroupS =
     record
-      { isEquivalence = isEquivS
-      ; assoc = assocS shape shape
-      ; ∙-cong = <+S> shape shape }
+      { isEquivalence  = isEquivS
+      ; assoc          = assocS shape shape
+      ; ∙-cong         = <+S> shape shape }
 
   isCommMonS =
     record
-      { isSemigroup = isSemgroupS
-      ; identityˡ = identSˡ shape shape
-      ; comm = commS shape shape }
+      { isSemigroup  = isSemgroupS
+      ; identityˡ    = identSˡ shape shape
+      ; comm         = commS shape shape }
 
 \end{code}
 \columnbreak

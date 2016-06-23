@@ -14,12 +14,12 @@ binary trees:
 \begin{code}
 data Shape : Set where
   L  : Shape
-  B  : (s₁ s₂ : Shape) → Shape
+  B  : Shape → Shape → Shape
 \end{code}
 %
-This representation follows the structure of the matrix
-representation more closely than natural numbers and we can easily compute
-the corresponding natural number:
+This representation follows the structure of the (block) matrix
+representation more closely than natural numbers and we can easily
+compute the corresponding natural number:
 %
 \begin{code}
 toNat : Shape  →  ℕ

@@ -108,7 +108,7 @@ block formulation of matrices to certify Valiant's
 \cite{valiant_general_1975} parsing algorithm.
 %
 Their matrix formulation was restricted to matrices of size
-$2^n \times 2^n$ and this work extends the matrix formulation to allow
+\(2^n \times 2^n\) and this work extends the matrix formulation to allow
 for all sizes of matrices and applies similar techniques to algorithms
 that can be described as transitive closures of semi-rings of matrices
 with inspiration from \cite{dolan2013fun} and \cite{lehmann1977}.
@@ -140,7 +140,7 @@ that |ones| is the left and right identity of |*s|.
 Finally we extend the semi-ring with an operation |closure| that
 computes the transitive closure of an element of the semi-ring (|c| is
 the closure of |w| if |c ≃s ones +s w *s c| holds), we denote the
-closure of $w$ with $w^*$.
+closure of \(w\) with \(w^*\).
 
 We use two examples of semi-rings with transitive closure:
 %
@@ -149,7 +149,7 @@ multiplication and the closure being |true|; and
 %
 (2) the natural numbers (|ℕ|) extended with an element |∞|, we let
 |zers = ∞|, |ones = 0|, |min| plays the role of |+s|, addition of
-natural numbers the role of |*s| and the closure is 0.
+natural numbers the role of |*s| and the closure is~|0|.
 
 \paragraph{Matrices}
 

@@ -32,7 +32,7 @@ _+_ = _+S_
 %endif
 
 In \cite{lehmann1977} Lehmann presents a definition of the closure on
-square matrices, $A^* = 1 + A \cdot A^*$:
+square matrices, \(A^* = 1 + A \cdot A^*\):
 %
 Given a square matrix
 %
@@ -53,16 +53,17 @@ the transitive closure of $A$ is defined inductively as
             {\Delta^*}
 \end{align*}
 %
-where $\Delta = A_{22} + A_{21} \cdot A_{11}^* \cdot A_{12}$ and the base case
-is the 1-by-1 matrix where we use the transitive closure of the
-element of the matrix:
+where $\Delta = A_{22} + A_{21} \cdot A_{11}^* \cdot A_{12}$ and the
+base case is the 1-by-1 matrix where we use the transitive closure of
+the element of the matrix:
 %
 \(
 \boxed{a}\,^* = \boxed{a^*}
 \).
 
 We have encoded this definition of closure in Agda and implemented a
-constructive correctness proof using structural induction and equational reasoning.
+constructive correctness proof using structural induction and
+equational reasoning.
 %
 The full development of around 2500 lines of literate Agda code
 (including this abstract) is available on GitHub
@@ -335,14 +336,10 @@ entireQS {B sh sh1} (Q C D
       I + E * C* * D * Δ* + F * Δ*
     ∎)
 
-
-
 Square : Shape → ClosedSemiRing
 Square shape =
   record
     { sr = SquareSR shape
     ; entireQ = entireQS }
-
-
 \end{code}
 %endif
