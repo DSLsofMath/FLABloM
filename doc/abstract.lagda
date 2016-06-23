@@ -1,5 +1,6 @@
 % -*- latex -*-
 %let submit = True
+%\documentclass{sigplanconf}
 \documentclass[preprint]{sigplanconf}
 
 %%% Standard definitions from the lhs2TeX installation
@@ -12,13 +13,8 @@
 \usepackage{url}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
-% \usepackage{unicode-math} % only with xelatex
-% \usepackage{autofe}
-% \usepackage{latexsym}
 \usepackage{stmaryrd}
-% \usepackage{multicol}
 \usepackage{hyperref}
-% \usepackage{textgreek}
 \usepackage{tikz}
 \usepackage{subcaption}
 
@@ -41,15 +37,16 @@
 \setlength{\pdfpageheight}{\paperheight}
 \setlength{\pdfpagewidth}{\paperwidth}
 
-\conferenceinfo{Type-driven Development}{TODO: September 18, 2016, Nara, Japan}
+\conferenceinfo{Type-driven Development}{September 18, 2016, Nara, Japan}
 \copyrightyear{2016}
 \copyrightdata{978-1-nnnn-nnnn-n/yy/mm} %TODO
 \copyrightdoi{nnnnnnn.nnnnnnn} %TODO
 
-\titlebanner{Preprint}        % These are ignored unless
+\titlebanner{Preprint}                      % These are ignored unless
 \preprintfooter{In submission to TyDe'16}   % 'preprint' option specified.
 
-\title{Extended abstract\\ FLABloM: Functional Linear Algebra with Block Matrices}
+\todo{Make the title fit the contents better: A formalization of ... closure ... block}
+\title{Extended Abstract\\ FLABloM: Functional Linear Algebra with Block Matrices}
 \authorinfo{Adam Sandberg Eriksson \and Patrik Jansson}
            {Chalmers University of Technology, Sweden}
            {\{saadam,patrikj\}@@chalmers.se}
@@ -70,9 +67,36 @@
 % \section{Introduction}
 % \label{sec:intro}
 
-\category{D.1.1}{PROGRAMMING TECHNIQUES}{Applicative (Functional) Programming}
+\category{D.1.1}{Programming Techniques}{Applicative (Functional) Programming}
+%\category{D.2.4}{SOFTWARE ENGINEERING}{Software/Program Verification}
+\category{F.3.1}{Logics and Meanings of Programs}{Specifying and
+   Verifying and Reasoning about Programs} % [Logics of programs]
 
-\category{D.2.4}{SOFTWARE ENGINEERING}{Software/Program Verification}
+% \category{F.3.1}{Logics and Meanings of Programs}{Specifying and
+%   Verifying and Reasoning about Programs} % [Logics of programs]
+% \category{D.3.2}{Programming Languages}{Language Classifications }[Applicative (functional) languages]
+
+% Something about testing should be added
+
+% Some other remotely related categories:
+
+% \category{F.3.3}{Logics and Meanings of Programs}{Studies
+%   of Program Constructs}[Program and recursion schemes,
+%   Type structure]
+
+% \category{F.3.2}{Logics and Meanings of Programs}{Semantics
+%   of Programming Languages}[Denotational Semantics]
+
+% \category{D.3.1}{Programming Languages}{Formal Definitions
+%   and Theory}[Semantics]
+
+% \category{F.4.1}{Mathematical Logic and Formal
+%   Languages}{Mathematical Logic}[Model theory, Proof
+%   theory, Lambda calculus and related systems]
+
+% \category{F.3.3}{Logics and Meanings of Programs}{Studies of Program Constructs}[Type Structure]
+
+
 
 % TODO: ovan är gissningar efter snabb läsning av
 % http://www.acm.org/about/class/ccs98-html
