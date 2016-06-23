@@ -49,9 +49,11 @@ implementing semi-near-rings, semi-rings and closed semi-rings.
 
 - Documentation
 
-    - <doc/abstract.lagda> -- abstract submitted to TYPES 2016
-    - <doc/paper.lagda> -- unfinished technical report (longer version
+    - [abstract.lagda](doc/abstract.lagda) -- abstract submitted to TYPES 2016
+    - [paper.lagda](doc/paper.lagda) -- unfinished technical report (longer version
       of abstract)
+    - [slides.lagda](doc/slides.lagda) -- slides used for presentation
+      at TYPES 2016 and WG2.1 meeting 2016
 
 # FLABloM: Functional Linear Algebra with Block Matrices
 
