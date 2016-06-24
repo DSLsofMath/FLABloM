@@ -194,6 +194,7 @@ To prove that the zero matrix is the right identity of addition we use
 commutativity of addition and the proof of the left identity of
 addition (which itself is a proof by cases on the shapes of the
 matrix):
+\newpage
 %
 \begin{code}
 identSʳ :  (r : Shape) (c : Shape) (x : M s r c) →

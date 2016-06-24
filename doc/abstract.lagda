@@ -138,7 +138,48 @@ The second proof example (in Fig.\ \ref{fig:lemma1}) shows how we use
 local modules (|lemma1|) and abbreviations (|X|) to make the proof
 terms resemble hand-written proofs.
 %
-\begin{figure}[bp]
+
+\paragraph{Transitive closure}
+
+%include ../LiftCSR.lagda
+%TODO: flytta texten om langd av bevis och lank till GH till senare?
+
+\paragraph{Graph reachability}
+
+Using this definition of transitive closure of matrices instantiated
+with the boolean semi-ring defined above we get an implementation of a
+graph reachability algorithm.
+%
+If we have a graph (Fig.~\ref{fig:graph1}) and its adjacency matrix
+(as below)
+%
+we can find all reachable nodes (Fig.~\ref{fig:graph2}) by
+computing the transitive closure of the adjacency matrix.
+
+\[
+  \left.\Quad[3ex]
+    {\Quad{0}{0}
+      {0}{0}}
+    {\Quad{0}{0}
+      {0}{1}}
+    {\Quad{0}{1}
+      {0}{0}}
+    {\Quad{0}{0}
+      {0}{0}}
+  \right.^*
+  =
+  \Quad[3ex]
+  {\Quad{1}{0}
+    {0}{1}}
+  {\Quad{0}{0}
+    {0}{1}}
+  {\Quad{0}{1}
+    {0}{0}}
+  {\Quad{1}{1}
+    {0}{1}}
+\]
+
+\begin{figure}[tbp]
   \centering
 \begin{code}
   module lemma1
@@ -174,46 +215,6 @@ terms resemble hand-written proofs.
       local definition of the often used subterm |X|.}
   \label{fig:lemma1}
 \end{figure}
-
-\paragraph{Transitive closure}
-
-%include ../LiftCSR.lagda
-%TODO: flytta texten om langd av bevis och lank till GH till senare?
-
-\paragraph{Graph reachability}
-
-Using this definition of transitive closure of matrices instantiated
-with the boolean semi-ring defined above we get an implementation of a
-graph reachability algorithm.
-%
-If we have a graph (figure~\ref{fig:graph1}) and its adjacency matrix
-(as below)
-%
-we can find all reachable nodes (figure~\ref{fig:graph2}) by
-computing the transitive closure of the adjacency matrix.
-
-\[
-  \left.\Quad[3ex]
-    {\Quad{0}{0}
-      {0}{0}}
-    {\Quad{0}{0}
-      {0}{1}}
-    {\Quad{0}{1}
-      {0}{0}}
-    {\Quad{0}{0}
-      {0}{0}}
-  \right.^*
-  =
-  \Quad[3ex]
-  {\Quad{1}{0}
-    {0}{1}}
-  {\Quad{0}{0}
-    {0}{1}}
-  {\Quad{0}{1}
-    {0}{0}}
-  {\Quad{1}{1}
-    {0}{1}}
-\]
 
 \begin{figure}[tbp]\centering
   \begin{subfigure}{0.2\textwidth}\centering

@@ -95,3 +95,5 @@ lemma2-1-1 :  ∀ sh sh1 (A : M s sh sh) (R : M s sh sh1) →
       (Δ * Δ*) * E * C* ≃S
       E * C* * D * Δ* * E * C*
         + F            * Δ* * E * C*
+entireQS : ∀ {sh} (c : M s sh sh) → Σ (M s sh sh) λ c* → c* ≃S I + c * c*
+Square : Shape → ClosedSemiRing
