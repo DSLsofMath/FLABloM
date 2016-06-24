@@ -103,7 +103,7 @@ _≃S_ : {r c : Shape} → M s r c → M s r c → Set
 \end{code}
 \newpage
 \noindent
-The simplest proof is that of reflexively:
+The simplest proof is that of reflexivity:
 %
 \begin{code}
 reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X

@@ -74,7 +74,7 @@
 
 % \titlerunning{Functional linear algebra with block matrices}
 % \authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
-
+\date{2016-06-14, IFIP WG 2.1 meeting \#74}
 
 \frame{\titlepage}
 
