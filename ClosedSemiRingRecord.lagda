@@ -51,7 +51,7 @@ and that |c| actually is the closure of |w|.
 \restorecolumns[CSR]
 \begin{code}
   field
-    entireQ : Entire Eq                           -- |∀ a ⇾ ∃ \ b → R a b|
+    entireQ : Entire Eq                           -- |∀ a -> ∃ \ b → R a b|
 
   closure : s → s
   closure = fun entireQ

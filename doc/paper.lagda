@@ -1,21 +1,23 @@
 % -*- latex -*-
 
 %let submit = False
-\documentclass[a4paper]{easychair}
+%\documentclass{sigplanconf}
+\documentclass[preprint]{sigplanconf}
 
 %%% Standard definitions from the lhs2TeX installation
 %include polycode.fmt
 %%% Put your own formatting directives in a separate file
 %include paper.format
 
+\usepackage{amsmath}
 \usepackage{url}
-% \usepackage{ucs}
-% \usepackage[utf8x]{inputenc}
-\usepackage{unicode-math}
+%\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym}
 % \usepackage{autofe}
 \usepackage{stmaryrd}
-\usepackage{multicol}
-% \usepackage{hyperref}
+% \usepackage{multicol}
+\usepackage{hyperref}
 
 %if techreport
 % \usepackage{TRtitlepage}
@@ -43,6 +45,8 @@
 
 
 
+\input{matrix}  % definitions for matrix printing
+\input{unicode} % definitions for some unicode symbols
 
 \begin{document}
 
@@ -63,11 +67,9 @@
 %else
 \title{Functional linear algebra with block matrices}
 
-% \authorinfo{Adam Sandberg Eriksson}
-%            {Chalmers Univeristy of Technology, Sweden}
-%            {\texttt{saadam@@chalmers.se}}
-\author{Adam Sandberg Eriksson}
-\institute{Chalmers University of Technology, Sweden}
+\authorinfo{Adam Sandberg Eriksson \and Patrik Jansson}
+           {Chalmers University of Technology, Sweden}
+           {\{saadam,patrikj\}@@chalmers.se}
 
 
 
@@ -78,21 +80,17 @@
 %-------------------------------------------------------------------------------
 
 \begin{abstract}
-  The abstract should describe in a short and catchy way what the paper
-  is about etc.
-  \begin{itemize}
-  \item block matrices
-  \item linear algebra
-  \item rings (semi-near-rings, semi-rings, \dots)
-  \item closure of matrices
-  \end{itemize}
-
+  We define a block based matrix representation in Agda and lift
+  various algebraic structures (semi-near-rings, semi-rings and closed
+  semi-rings) to matrices in order to verify algorithms that can be
+  implemented using the closure operation in a semi-ring.
 \end{abstract}
 
-%%% Some venues require ACM classification categories - here is an example
-% \category{D.1.1}%
-%   {Programming Techniques}%
-%   {Applicative (Functional) Programming}%
+\category{D.1.1}{Programming Techniques}{Applicative (Functional) Programming}
+%\category{D.2.4}{SOFTWARE ENGINEERING}{Software/Program Verification}
+\category{F.3.1}{Logics and Meanings of Programs}{Specifying and
+   Verifying and Reasoning about Programs} % [Logics of programs]
+
 
 % \terms
 % design, languages, verification
@@ -193,6 +191,6 @@ Somebody helped with something.
 The reviewers suggested many improvements to the paper.
 
 %------------------------------------------------------------------------------
-% \bibliographystyle{abbrvnat}
-% \bibliography{paper}
+\bibliographystyle{abbrvnat}
+\bibliography{paper}
 \end{document}

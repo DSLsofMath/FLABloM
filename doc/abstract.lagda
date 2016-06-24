@@ -76,35 +76,6 @@
 \category{F.3.1}{Logics and Meanings of Programs}{Specifying and
    Verifying and Reasoning about Programs} % [Logics of programs]
 
-% \category{F.3.1}{Logics and Meanings of Programs}{Specifying and
-%   Verifying and Reasoning about Programs} % [Logics of programs]
-% \category{D.3.2}{Programming Languages}{Language Classifications}[Applicative (functional) languages]
-
-% Something about testing should be added
-
-% Some other remotely related categories:
-
-% \category{F.3.3}{Logics and Meanings of Programs}{Studies
-%   of Program Constructs}[Program and recursion schemes,
-%   Type structure]
-
-% \category{F.3.2}{Logics and Meanings of Programs}{Semantics
-%   of Programming Languages}[Denotational Semantics]
-
-% \category{D.3.1}{Programming Languages}{Formal Definitions
-%   and Theory}[Semantics]
-
-% \category{F.4.1}{Mathematical Logic and Formal
-%   Languages}{Mathematical Logic}[Model theory, Proof
-%   theory, Lambda calculus and related systems]
-
-% \category{F.3.3}{Logics and Meanings of Programs}{Studies of Program Constructs}[Type Structure]
-
-
-
-% TODO: ovan är gissningar efter snabb läsning av
-% http://www.acm.org/about/class/ccs98-html
-
 %TODO: uncomment some proof fragment
 
 In \cite{bernardy2015certified} Bernardy \& Jansson used a recursive
