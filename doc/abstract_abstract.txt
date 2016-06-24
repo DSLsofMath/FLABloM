@@ -1,0 +1,4 @@
+We define a block based matrix representation in Agda and lift various
+algebraic structures (semi-near-rings, semi-rings and closed
+semi-rings) to matrices in order to verify algorithms that can be
+implemented using the closure operation in a semi-ring.

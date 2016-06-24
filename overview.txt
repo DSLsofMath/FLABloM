@@ -1,0 +1,97 @@
+Formalisation overview:
+
+LiftSNR:
+S : {r c : Shape} → Set
+_+S_   : ∀ {r c}   → M s r c → M s r c → M s r c
+_*S_   : ∀ {r m c} → M s r m → M s m c → M s r c
+zerS   : (r c : Shape) → M s r c
+_≃S_   : {r c : Shape} → M s r c → M s r c → Set
+reflS  : (r c : Shape) →     {X : M s r c}  →  X ≃S X
+symS   : (r c : Shape) → {i j   : M s r c} → i ≃S j → j ≃S i
+transS : (r c : Shape) → {i j k : M s r c} → i ≃S j → j ≃S k → i ≃S k
+assocS : (r c : Shape) (x y z : M s r c) → ((x +S y) +S z) ≃S (x +S (y +S z))
+<+S> : (r c : Shape) {x y u v : M s r c} → x ≃S y → u ≃S v → (x +S u) ≃S (y +S v)
+identSˡ : (r c : Shape) (x : M s r c) → zerS r c +S x ≃S x
+commS : (r c : Shape) → (x y : M s r c) → (x +S y) ≃S (y +S x)
+setoidS : {r c : Shape} → Setoid _ _
+identSʳ :  (r : Shape) (c : Shape) (x : M s r c) → x +S zerS r c ≃S x
+zerolHelp : ∀ (r : Shape) {m m' c : Shape}
+  (x : M s m c)  (y : M s m' c) →
+  zerS r m *S x   ≃S  zerS r c  →
+  zerS r m' *S y  ≃S  zerS r c  →
+  zerS r m *S x +S zerS r m' *S y  ≃S  zerS r c
+zeroSˡ : (a b c : Shape) (x : M s b c) → (zerS a b *S x) ≃S zerS a c
+zerorHelp : ∀ r {m m' c}
+  (x : M s r m)  (x₁ : M s r m') →
+  x *S zerS m c ≃S zerS r c →
+  x₁ *S zerS m' c ≃S zerS r c →
+  x *S zerS m c +S x₁ *S zerS m' c
+  ≃S zerS r c
+zeroSʳ : (a b c : Shape) (x : M s a b) → (x *S zerS b c) ≃S zerS a c
+<*S> : (a b c : Shape) {x y : M s a b} {u v : M s b c} →  x ≃S y → u ≃S v → (x *S u) ≃S (y *S v)
+idemS : (r c : Shape) (x : M s r c) → x +S x ≃S x
+swapMid : {r c : Shape} (x y z w : M s r c) → (x +S y) +S (z +S w) ≃S (x +S z) +S (y +S w)
+distlHelp : ∀ {a b b₁ c₁}
+            (x : M s a b)
+            (y z : M s b c₁)
+            (x₁ : M s a b₁)
+            (y₁ z₁ : M s b₁ c₁) →
+          (x *S (y +S z)) ≃S (x *S y +S x *S z) →
+          (x₁ *S (y₁ +S z₁)) ≃S (x₁ *S y₁ +S x₁ *S z₁) →
+          (x *S (y +S z) +S x₁ *S (y₁ +S z₁))
+          ≃S ((x *S y +S x₁ *S y₁) +S x *S z +S x₁ *S z₁)
+distlS : {a b c : Shape} (x : M s a b) (y z : M s b c) → (x *S (y +S z)) ≃S ((x *S y) +S (x *S z))
+distrHelp : ∀ {r m m₁ c : Shape}
+            (x : M s m c)
+            (y z : M s r m)
+            (x₁ : M s m₁ c)
+            (y₁ z₁ : M s r m₁) →
+          ((y +S z) *S x) ≃S (y *S x +S z *S x) →
+          ((y₁ +S z₁) *S x₁) ≃S (y₁ *S x₁ +S z₁ *S x₁) →
+          ((y +S z) *S x +S (y₁ +S z₁) *S x₁)
+          ≃S ((y *S x +S y₁ *S x₁) +S z *S x +S z₁ *S x₁)
+distrS  : {r m c : Shape} (x : M s m c) (y z : M s r m) → ((y +S z) *S x) ≃S ((y *S x) +S (z *S x))
+distrS' : {r m c : Shape} (x : M s m c) (y z : M s r m) → ((y *S x) +S (z *S x)) ≃S ((y +S z) *S x)
+Square : Shape → SemiNearRing
+SNR : SemiNearRing
+
+----------------
+LiftCSR.lagda
+EqS : ∀ {sh} → M s sh sh → M s sh sh → Set
+lemma2-1-1 :  ∀ sh sh1 (A : M s sh sh) (R : M s sh sh1) →
+              (I + A) * R  ≃S  R + A * R
+  module lemma1
+    (sh sh1 : Shape)
+    (C C* : M s sh sh)
+    (D    : M s sh sh1)
+    (E    : M s sh1 sh)
+    (Δ*   : M s sh1 sh1)
+    (ih   : C* ≃S I + C * C*) where
+    X = D * Δ* * E * C*
+    entire-lem1 : C* * X  ≃S  C * C* * X  +  X
+
+  module lemma2
+    (sh sh1 : Shape)
+    (C C* : M s sh sh)
+    (D    : M s sh sh1) (E : M s sh1 sh)
+    (Δ*   : M s sh1 sh1) where
+    X = D * Δ* * E * C*
+    entire-lem2 :
+      C * C*  +  (C * C* * X  +  X) ≃S
+      C * (C* +       C* * X) +  X
+
+  module lemma3
+    (sh sh1 : Shape)
+    (C* : M s sh sh)
+    (D : M s sh sh1)
+    (E : M s sh1 sh)
+    (F : M s sh1 sh1)
+    (Δ* : M s sh1 sh1) where
+
+    Δ : M s sh1 sh1
+    Δ = F + E * C* * D
+
+    entire-lem3 :
+      (Δ * Δ*) * E * C* ≃S
+      E * C* * D * Δ* * E * C*
+        + F            * Δ* * E * C*

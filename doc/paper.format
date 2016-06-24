@@ -255,3 +255,15 @@
 %format identSʳ = ident"_S^r"
 %format identSˡ = ident"_S^l"
 %format reflS = refl"_S"
+
+%format C* = C "^*"
+%format Δ* = Δ "^*"
+%format entire-lem1 = entire "\text{-}" lem "_1"
+%format *-identlS = "{*}\text{-}" identlS
+%format *-assocS  = "{*}\text{-}" assocS
+%format lemma1 = lemma "_1"
+%format sh1    = sh "_1"
+%format identlS = identl "_S"
+%format assocS  = assoc  "_S"
+%format distrS  = distr  "_S"
+%format commS   = comm   "_S"

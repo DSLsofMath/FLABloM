@@ -11,8 +11,8 @@
 
 \usepackage{amsmath}
 \usepackage{url}
-\usepackage{ucs}
-\usepackage[utf8x]{inputenc}
+%\usepackage{ucs}
+\usepackage[utf8]{inputenc}
 \usepackage{stmaryrd}
 \usepackage{hyperref}
 \usepackage{tikz}
@@ -30,6 +30,7 @@
 \setcounter{secnumdepth}{0}
 
 \input{matrix} % definitions for matrix printing
+\input{unicode} % definitions for some unicode symbols
 
 \begin{document}
 
@@ -133,6 +134,47 @@ natural numbers the role of |*s| and the closure is~|0|.
 
 %include ../LiftSNR.lagda
 
+The second proof example (in Fig.\ \ref{fig:lemma1}) shows how we use
+local modules (|lemma1|) and abbreviations (|X|) to make the proof
+terms resemble hand-written proofs.
+%
+\begin{figure}[bp]
+  \centering
+\begin{code}
+  module lemma1
+    (sh sh1 : Shape)
+    (C C* : M s sh sh)
+    (D    : M s sh sh1)
+    (E    : M s sh1 sh)
+    (Δ*   : M s sh1 sh1)
+    (ih   : C* ≃S I + C * C*) where
+
+    X = D * Δ* * E * C*
+
+    entire-lem1 : C* * X  ≃S  C * C* * X  +  X
+    entire-lem1 =
+      let open EqReasoning setoidS
+      in  begin
+            C*            * X
+          ≈⟨ <*> sh sh sh ih (reflS sh sh) ⟩
+            (I + C * C*)  * X
+          ≈⟨ distrS X I (C * C*) ⟩
+            I * X  +  (C * C*) * X
+          ≈⟨ <+>  sh sh
+                  (*-identlS X)
+                  (*-assocS sh sh sh sh C C* X) ⟩
+            X  +  C * C* * X
+          ≈⟨ commS sh sh X (C * C* * X) ⟩
+            C * C*  *  X
+                    +  X
+          ∎
+    \end{code}
+    \caption{Example lemma from the closure proof. We use a local
+      parametrised module to introduce short parameter names and a
+      local definition of the often used subterm |X|.}
+  \label{fig:lemma1}
+\end{figure}
+
 \paragraph{Transitive closure}
 
 %include ../LiftCSR.lagda
@@ -173,7 +215,7 @@ computing the transitive closure of the adjacency matrix.
     {0}{1}}
 \]
 
-\begin{figure}[h]\centering
+\begin{figure}[tbp]\centering
   \begin{subfigure}{0.2\textwidth}\centering
     \begin{tikzpicture}[->]
       \node (1) {1}; \node (2) [right of=1] {2}; \node (3) [below
@@ -197,7 +239,7 @@ computing the transitive closure of the adjacency matrix.
   \caption{Graph with reachable nodes}
 \end{figure}
 
-\newpage
+%\newpage
 \paragraph{Conclusions}
 We have presented an algebraic structure useful for (block) matrix
 computations and implemented and proved correctness of reflexive
@@ -210,6 +252,9 @@ Future work would be to extend the proof to cover both arbitrary
 dimensions and the more general semi-near-ring structure which would
 allow parallel parsing as an application.
 %
+% We would also like to refactor the proof to make it more readable and
+% perhaps also improve the Agda proof automation to enable filling in
+% more of the proof terms.
 %We would also like to explore the which Kleene algebra properties can be relaxed.
 
 % TODO: The bibliography should be embedded for final submission.

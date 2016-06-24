@@ -84,13 +84,13 @@ zerS (B r r₁)  (B s s₁)  =  Q    (zerS r s)   (zerS r s₁)
 \end{code}
 %endif
 
-To give a taste of the formal development we include the lifted
-equivalence relation and two simple proofs.
+To give a taste of the formal development we include one simple proof
+and a fragment of the larger development.
 %
+%if False
 The equivalence relation is lifted pointwise and all proofs follow the
 same structure:
 %
-\todo{Replace with more interesting proof term}
 \begin{code}
 _≃S_ : {r c : Shape} → M s r c → M s r c → Set
 (One x)     ≃S (One x₁)      =  x ≃s x₁
@@ -113,7 +113,6 @@ reflS (B r₁ r₂)  (B c₁ c₂)  =  reflS r₁ c₁  , reflS r₁ c₂ ,
                                reflS r₂ c₁  , reflS r₂ c₂
 \end{code}
 %
-%if False
 \begin{code}
 symS : (r c : Shape) → {i j : M s r c} → i ≃S j → j ≃S i
 symS L L {One x} {One x₁} p = syms p
@@ -187,14 +186,14 @@ setoidS {r} {c} =
 \end{code}
 %endif
 %
-The second proof shows how we use the Agda standard library's
+The proof examples show how we use the Agda standard library's
 equational reasoning framework to make the proofs easier to write and
 read, this tool is used heavily throughout the development.
 %
 To prove that the zero matrix is the right identity of addition we use
 commutativity of addition and the proof of the left identity of
 addition (which itself is a proof by cases on the shapes of the
-matrix, similar to that of |reflS|):
+matrix):
 %
 \begin{code}
 identSʳ :  (r : Shape) (c : Shape) (x : M s r c) →
