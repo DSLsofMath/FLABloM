@@ -89,7 +89,6 @@ equivalence relation and two simple proofs.
 %
 The equivalence relation is lifted pointwise and all proofs follow the
 same structure:
-%TODO: pointwise rätt ord?
 %
 \todo{Replace with more interesting proof term}
 \begin{code}

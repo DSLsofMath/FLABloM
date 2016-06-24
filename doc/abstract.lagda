@@ -45,7 +45,6 @@
 \titlebanner{Preprint}                      % These are ignored unless
 \preprintfooter{In submission to TyDe'16}   % 'preprint' option specified.
 
-\todo{Make the title fit the contents better: A formalization of ... closure ... block}
 % \title{Extended Abstract\\ FLABloM: Functional Linear Algebra with
 %   Block Matrices}
 \title{Extended abstract: An Agda formalisation of the transitive
@@ -78,9 +77,9 @@
 
 %TODO: uncomment some proof fragment
 
-In \cite{bernardy2015certified} Bernardy \& Jansson used a recursive
+\citet{BernardyJansson2016ValiantAgda} used a recursive
 block formulation of matrices to certify Valiant's
-\cite{valiant_general_1975} parsing algorithm.
+parsing algorithm \cite{valiant_general_1975}.
 %
 Their matrix formulation was restricted to matrices of size
 \(2^n \times 2^n\) and this work extends the matrix formulation to allow
@@ -94,8 +93,8 @@ To structure the formal development we define a hierarchy of ring
 structures as Agda records:
 %
 A semi-near-ring for some type |s| needs an equivalence relation |≃s|,
-a distinguished element |zers| and operations addition |+s| and
-multiplication |*s|.
+a distinguished element |zers| and operations addition~|+s| and
+multiplication~|*s|.
 %
 Our semi-near-ring requires that
 %
@@ -113,9 +112,9 @@ distinguished element |ones| and proofs that |*s| is associative and
 that |ones| is the left and right identity of |*s|.
 
 Finally we extend the semi-ring with an operation |closure| that
-computes the transitive closure of an element of the semi-ring (|c| is
-the closure of |w| if |c ≃s ones +s w *s c| holds), we denote the
-closure of \(w\) with \(w^*\).
+computes the Kleene star (reflexive and transitive closure) of an
+element of the semi-ring (|c| is the closure of |w| if |c ≃s ones +s w
+*s c| holds), we denote the closure of \(w\) with \(w^*\).
 
 We use two examples of semi-rings with transitive closure:
 %
@@ -145,12 +144,11 @@ Using this definition of transitive closure of matrices instantiated
 with the boolean semi-ring defined above we get an implementation of a
 graph reachability algorithm.
 %
-If we have a graph (figure~\ref{fig:graph1}) and its incidence matrix
+If we have a graph (figure~\ref{fig:graph1}) and its adjacency matrix
 (as below)
-%TODO: incidence, correct word?
 %
 we can find all reachable nodes (figure~\ref{fig:graph2}) by
-computing the transitive closure of the incidence matrix.
+computing the transitive closure of the adjacency matrix.
 
 \[
   \left.\Quad[3ex]
@@ -202,15 +200,17 @@ computing the transitive closure of the incidence matrix.
 \newpage
 \paragraph{Conclusions}
 We have presented an algebraic structure useful for (block) matrix
-computations and implemented and proved correctness of transitive
-closure.
+computations and implemented and proved correctness of reflexive
+transitive closure.
 %
-Compared to \cite{bernardy2015certified} our implementation handles
-arbitrary matrix dimensions but is restricted to semi-rings.
+Compared to \citep{BernardyJansson2016ValiantAgda} our implementation
+handles arbitrary matrix dimensions but is restricted to semi-rings.
 %
 Future work would be to extend the proof to cover both arbitrary
 dimensions and the more general semi-near-ring structure which would
 allow parallel parsing as an application.
+%
+%We would also like to explore the which Kleene algebra properties can be relaxed.
 
 % TODO: The bibliography should be embedded for final submission.
 

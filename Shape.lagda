@@ -28,7 +28,7 @@ toNat (B l r)  =  toNat l + toNat r
 \end{code}
 %
 while the other direction is slightly more complicated because we want
-a somewhat balanced tree and we have no representation for 0.
+a somewhat balanced tree and we have no representation for~|0|.
 
 %if False
 However there are many representation of a non-zero natural number as

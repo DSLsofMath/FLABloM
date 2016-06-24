@@ -217,8 +217,6 @@ is in |P| and a function |albP : LowerBound _≤_ P a|.
 And, in turn, |albP| is a function that takes any |z : A| (with a proof that
 |z| is in |P|) to a proof that |a ≤ z|.
 
-%\todo{Perhaps introduce parametrised modules - done via the record.}
-
 \subsubsection*{Records and modules}
 The upcoming proof makes extensive use of
 \emph{records}, which we review now in detail.

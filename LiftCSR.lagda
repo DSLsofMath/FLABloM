@@ -31,7 +31,7 @@ _+_ = _+S_
 \end{code}
 %endif
 
-In \cite{lehmann1977} Lehmann presents a definition of the closure on
+\citet{lehmann1977} presents a definition of the closure on
 square matrices, \(A^* = 1 + A \cdot A^*\):
 %
 Given a square matrix
