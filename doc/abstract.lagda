@@ -1,8 +1,7 @@
 % -*- latex -*-
 %let submit = True
-%\documentclass{sigplanconf}
-\documentclass[preprint]{sigplanconf}
-
+\documentclass{sigplanconf}
+%\documentclass[preprint]{sigplanconf}
 %%% Standard definitions from the lhs2TeX installation
 %include polycode.fmt
 
@@ -13,11 +12,14 @@
 \usepackage{url}
 %\usepackage{ucs}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
 \usepackage{stmaryrd}
+\usepackage{bbm}
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{subcaption}
-
+\usepackage{flushend}
 \bibliographystyle{abbrvnat}
 
 %%% Some useful macros
@@ -33,23 +35,23 @@
 \input{unicode} % definitions for some unicode symbols
 
 \begin{document}
+\toappear{}
 
 \special{papersize=8.5in,11in}
 \setlength{\pdfpageheight}{\paperheight}
 \setlength{\pdfpagewidth}{\paperwidth}
 
-\conferenceinfo{Type-driven Development}{September 18, 2016, Nara, Japan}
-\copyrightyear{2016}
-\copyrightdata{978-1-nnnn-nnnn-n/yy/mm} %TODO
-\copyrightdoi{nnnnnnn.nnnnnnn} %TODO
+% \conferenceinfo{Type-driven Development}{September 18, 2016, Nara, Japan}
+% \copyrightyear{2016}
+% \copyrightdata{978-1-nnnn-nnnn-n/yy/mm} %TODO
+% \copyrightdoi{nnnnnnn.nnnnnnn} %TODO
 
 \titlebanner{Preprint}                      % These are ignored unless
 \preprintfooter{In submission to TyDe'16}   % 'preprint' option specified.
 
 % \title{Extended Abstract\\ FLABloM: Functional Linear Algebra with
 %   Block Matrices}
-\title{Extended abstract: An Agda formalisation of the transitive
-  closure of block matrices}
+\title{An Agda Formalisation of the Transitive Closure of Block Matrices (Extended Abstract)}
 
 \authorinfo{Adam Sandberg Eriksson \and Patrik Jansson}
            {Chalmers University of Technology, Sweden}
@@ -75,10 +77,9 @@
 %\category{D.2.4}{SOFTWARE ENGINEERING}{Software/Program Verification}
 \category{F.3.1}{Logics and Meanings of Programs}{Specifying and
    Verifying and Reasoning about Programs} % [Logics of programs]
+\keywords{Dependent types, Linear Algebra}
 
-%TODO: uncomment some proof fragment
-
-\citet{BernardyJansson2016ValiantAgda} used a recursive
+\paragraph{Introduction} \citet{BernardyJansson2016ValiantAgda} used a recursive
 block formulation of matrices to certify Valiant's
 parsing algorithm \cite{valiant_general_1975}.
 %
@@ -257,8 +258,6 @@ allow parallel parsing as an application.
 % perhaps also improve the Agda proof automation to enable filling in
 % more of the proof terms.
 %We would also like to explore the which Kleene algebra properties can be relaxed.
-
-% TODO: The bibliography should be embedded for final submission.
 
 \bibliography{paper}
 
