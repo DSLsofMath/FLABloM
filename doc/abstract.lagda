@@ -259,6 +259,11 @@ allow parallel parsing as an application.
 % more of the proof terms.
 %We would also like to explore the which Kleene algebra properties can be relaxed.
 
+\paragraph{Acknowledments} This work was partially supported by the
+projects GRACeFUL (grant agreement No 640954) and CoeGSS (grant
+agreement No 676547), which have received funding from the European
+Union’s Horizon 2020 research and innovation programme.
+
 \bibliography{paper}
 
 \end{document}

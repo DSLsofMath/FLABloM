@@ -1,5 +1,13 @@
 # FLABloM: Functional linear algebra with block matrices
 
+
+## [TyDe 2016: Type-driven Development](http://conf.researchr.org/track/icfp-2016/tyde-2016-papers)
+
+- Extended abstract accepted for TyDe 2016: "An Agda Formalisation of the Transitive Closure of Block Matrices (Extended Abstract)"
+- This work was partially supported by the projects GRACeFUL (grant agreement No 640954) and CoeGSS (grant agreement No 676547), which have received funding from the European Union’s Horizon 2020 research and innovation programme.
+
+## FLABloM: Functional linear algebra with block matrices
+
 - [Extended abstract](http://www.types2016.uns.ac.rs/images/abstracts/eriksson.pdf)
 - [Accepted](http://www.types2016.uns.ac.rs/index.php/programme-2/accepted)
   for presentation at [TYPES 2016](http://www.types2016.uns.ac.rs/).
@@ -8,7 +16,7 @@
   -- [slides](http://www.types2016.uns.ac.rs/images/Slides/A.Eriksson.pdf)
 - (Dry-run: Friday 2016-05-19 at 11.00 in EDIT-6128, Chalmers)
 
-# Overview
+## Overview
 
 The development is structured using a hierarchy of Agda records
 implementing semi-near-rings, semi-rings and closed semi-rings.
