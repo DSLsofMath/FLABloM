@@ -64,14 +64,12 @@
 
 %\tableofcontents
 
-% \abstract{%
-%   We define a block based matrix representation in Agda and lift
-%   various algebraic structures (semi-near-rings, semi-rings and closed
-%   semi-rings) to matrices in order to verify algorithms that can be
-%   implemented using the closure operation in a semi-ring.}
-
-% \section{Introduction}
-% \label{sec:intro}
+\begin{abstract}
+  We define a block based matrix representation in Agda and lift
+  various algebraic structures (semi-near-rings, semi-rings and closed
+  semi-rings) to matrices in order to verify algorithms that can be
+  implemented using the closure operation in a semi-ring.
+\end{abstract}
 
 \category{D.1.1}{Programming Techniques}{Applicative (Functional) Programming}
 %\category{D.2.4}{SOFTWARE ENGINEERING}{Software/Program Verification}
@@ -79,7 +77,11 @@
    Verifying and Reasoning about Programs} % [Logics of programs]
 \keywords{Dependent types, Linear Algebra}
 
-\paragraph{Introduction} \citet{BernardyJansson2016ValiantAgda} used a recursive
+% \section{Introduction}
+% \label{sec:intro}
+
+\paragraph{Introduction}
+\citet{BernardyJansson2016ValiantAgda} used a recursive
 block formulation of matrices to certify Valiant's
 parsing algorithm \cite{valiant_general_1975}.
 %
@@ -89,7 +91,7 @@ for all sizes of matrices and applies similar techniques to algorithms
 that can be described as transitive closures of semi-rings of matrices
 with inspiration from \cite{dolan2013fun} and \cite{lehmann1977}.
 
-\paragraph{Development structure}
+\paragraph{Development Structure}
 
 To structure the formal development we define a hierarchy of ring
 structures as Agda records:
@@ -140,12 +142,12 @@ local modules (|lemma1|) and abbreviations (|X|) to make the proof
 terms resemble hand-written proofs.
 %
 
-\paragraph{Transitive closure}
+\paragraph{Transitive Closure}
 
 %include ../LiftCSR.lagda
 %TODO: flytta texten om langd av bevis och lank till GH till senare?
 
-\paragraph{Graph reachability}
+\paragraph{Graph Reachability}
 
 Using this definition of transitive closure of matrices instantiated
 with the boolean semi-ring defined above we get an implementation of a
