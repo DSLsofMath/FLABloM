@@ -29,7 +29,7 @@
 \newcommand{\todo}[2][?]{\marginpar{\raggedright \tiny TODO: #2}}
 %endif
 
-\setcounter{secnumdepth}{0}
+%\setcounter{secnumdepth}{0}
 
 \input{matrix} % definitions for matrix printing
 \input{unicode} % definitions for some unicode symbols
@@ -77,10 +77,9 @@
    Verifying and Reasoning about Programs} % [Logics of programs]
 \keywords{Dependent types, Linear Algebra}
 
-% \section{Introduction}
-% \label{sec:intro}
+\section{Introduction}\label{sec:intro}
 
-\paragraph{Introduction}
+% \paragraph{Introduction}
 \citet{BernardyJansson2016ValiantAgda} used a recursive
 block formulation of matrices to certify Valiant's
 parsing algorithm \cite{valiant_general_1975}.
@@ -129,7 +128,7 @@ multiplication and the closure being |true|; and
 |zers = ∞|, |ones = 0|, |min| plays the role of |+s|, addition of
 natural numbers the role of |*s| and the closure is~|0|.
 
-\paragraph{Matrices}
+\section{Shapes, Matrices and Closure}
 
 %include ../Shape.lagda
 
@@ -147,7 +146,7 @@ terms resemble hand-written proofs.
 %include ../LiftCSR.lagda
 %TODO: flytta texten om langd av bevis och lank till GH till senare?
 
-\paragraph{Graph Reachability}
+\paragraph{Example: Graph Reachability}
 
 Using this definition of transitive closure of matrices instantiated
 with the boolean semi-ring defined above we get an implementation of a
@@ -244,7 +243,7 @@ computing the transitive closure of the adjacency matrix.
 \end{figure}
 
 %\newpage
-\paragraph{Conclusions}
+\section{Conclusions}
 We have presented an algebraic structure useful for (block) matrix
 computations and implemented and proved correctness of reflexive
 transitive closure.
@@ -261,7 +260,7 @@ allow parallel parsing as an application.
 % more of the proof terms.
 %We would also like to explore the which Kleene algebra properties can be relaxed.
 
-\paragraph{Acknowledments} This work was partially supported by the
+\section*{Acknowledgments} This work was partially supported by the
 projects GRACeFUL (grant agreement No 640954) and CoeGSS (grant
 agreement No 676547), which have received funding from the European
 Union’s Horizon 2020 research and innovation programme.
