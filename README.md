@@ -4,7 +4,8 @@
 ## [TyDe 2016: Type-driven Development](http://conf.researchr.org/track/icfp-2016/tyde-2016-papers)
 
 - Extended abstract accepted for TyDe 2016: "An Agda Formalisation of the Transitive Closure of Block Matrices (Extended Abstract)"
-- This work was partially supported by the projects GRACeFUL (grant agreement No 640954) and CoeGSS (grant agreement No 676547), which have received funding from the European Union’s Horizon 2020 research and innovation programme.
+    - [preprint](http://www.cse.chalmers.se/~patrikj/papers/AgdaClosureBlock_TyDe16.pdf)
+- This work was partially supported by the projects [GRACeFUL (grant agreement No 640954)](https://www.graceful-project.eu/) and [CoeGSS (grant agreement No 676547)](http://coegss.eu/), which have received funding from the European Union’s Horizon 2020 research and innovation programme.
 
 ## FLABloM: Functional linear algebra with block matrices
 
