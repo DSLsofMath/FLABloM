@@ -1,5 +1,10 @@
 # FLABloM: Functional linear algebra with block matrices
 
+Associated material for some work on block based matrix representation
+in Agda. We lift various algebraic structures (semi-near-rings,
+semi-rings and closed semi-rings) to matrices in order to verify
+algorithms that can be implemented using the closure operation in a
+semi-ring.
 
 ## [TyDe 2016: Type-driven Development](http://conf.researchr.org/track/icfp-2016/tyde-2016-papers)
 
@@ -7,8 +12,9 @@
     - [preprint](http://www.cse.chalmers.se/~patrikj/papers/AgdaClosureBlock_TyDe16.pdf)
 - This work was partially supported by the projects [GRACeFUL (grant agreement No 640954)](https://www.graceful-project.eu/) and [CoeGSS (grant agreement No 676547)](http://coegss.eu/), which have received funding from the European Union’s Horizon 2020 research and innovation programme.
 
-## FLABloM: Functional linear algebra with block matrices
+## [TYPES 2016](http://www.types2016.uns.ac.rs/) presentation
 
+- Title: "FLABloM: Functional linear algebra with block matrices"
 - [Extended abstract](http://www.types2016.uns.ac.rs/images/abstracts/eriksson.pdf)
 - [Accepted](http://www.types2016.uns.ac.rs/index.php/programme-2/accepted)
   for presentation at [TYPES 2016](http://www.types2016.uns.ac.rs/).
@@ -64,11 +70,13 @@ implementing semi-near-rings, semi-rings and closed semi-rings.
     - [slides.lagda](doc/slides.lagda) -- slides used for presentation
       at TYPES 2016 and WG2.1 meeting 2016
 
-# FLABloM: Functional Linear Algebra with Block Matrices
+## Project course instance at Chalmers
+
+Project title: "FLABloM: Functional Linear Algebra with Block Matrices"
 
 A project instance of
   [DAT235 - Research-oriented special course](https://www.student.chalmers.se/sp/course?course_id=23301)
-for Adam SE during study period 2, 2015.
+for Adam SE during study period 2 (Nov-Dec), 2015.
 
 ## Builds on courses
 
