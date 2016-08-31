@@ -18,6 +18,7 @@
 \usepackage{bbm}
 \usepackage{hyperref}
 \usepackage{tikz}
+\usepackage[labelfont=bf]{caption}
 \usepackage{subcaption}
 \usepackage{flushend}
 \bibliographystyle{abbrvnat}
