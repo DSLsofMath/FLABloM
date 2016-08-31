@@ -12,6 +12,31 @@ semi-ring.
     - [preprint](http://www.cse.chalmers.se/~patrikj/papers/AgdaClosureBlock_TyDe16.pdf)
 - This work was partially supported by the projects [GRACeFUL (grant agreement No 640954)](https://www.graceful-project.eu/) and [CoeGSS (grant agreement No 676547)](http://coegss.eu/), which have received funding from the European Union’s Horizon 2020 research and innovation programme.
 
+```Bibtex
+@inproceedings{SandbergEriksson:2016:AFT:2976022.2976025,
+  author =       {Sandberg Eriksson, Adam and Jansson, Patrik},
+  title =        {An Agda Formalisation of the Transitive Closure of
+                  Block Matrices (Extended Abstract)},
+  booktitle =    {Proceedings of the 1st International Workshop on
+                  Type-Driven Development},
+  series =       {TyDe 2016},
+  year =         2016,
+  isbn =         {978-1-4503-4435-7},
+  location =     {Nara, Japan},
+  pages =        {60--61},
+  numpages =     2,
+  url =          {http://doi.acm.org/10.1145/2976022.2976025},
+  doi =          {10.1145/2976022.2976025},
+  acmid =        2976025,
+  publisher =    {ACM},
+  address =      {New York, NY, USA},
+  keywords =     {Dependent types, Functional Programming, Linear
+                  Algebra},
+}
+```
+
+
+
 ## [TYPES 2016](http://www.types2016.uns.ac.rs/) presentation
 
 - Title: "FLABloM: Functional linear algebra with block matrices"
