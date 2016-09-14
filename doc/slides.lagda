@@ -362,6 +362,8 @@ with proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
   \item This matrix definition is not the final word
   \item A more flexible matrix definition: sparse? fewer constructors?
   \item Automation (of proofs)!
+  \item Performance/complexity of closure algorithm.
+  \item Mapping from efficient storage to matrix-datatype.
   \item Generalisation to closed semi-near-ring for parsing
     applications.
   \item Agda development available at
