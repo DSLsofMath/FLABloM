@@ -65,8 +65,8 @@
 
 \begin{document}
 
-\title{FLABloM: Functional Linear Algebra\\with Block Matrices}
-\author{Adam Sandberg Eriksson \and \underline{Patrik Jansson}}
+\title{An Agda formalisation of the transitive closure of block matrices}
+\author{\underline{Adam Sandberg Eriksson} \and Patrik Jansson}
 \institute{
   Chalmers University of Technology,
   Sweden\\
@@ -74,12 +74,13 @@
 
 % \titlerunning{Functional linear algebra with block matrices}
 % \authorrunning{Adam Sandberg Eriksson \& Patrik Jansson}
-\date{2016-06-14, IFIP WG 2.1 meeting \#74}
+% \date{2016-06-14, IFIP WG 2.1 meeting \#74}
+\date{2016-09-18\\ 1st Workshop on Type-Driven Development}
 
 \frame{\titlepage}
 
 \begin{frame}
-  \frametitle{Functional linear algebra with block matrices}
+  \frametitle{Transitive closure of block matrices}
 
   \begin{itemize}
   \item Inspired by work on parallel parsing by Bernardy \& Jansson
@@ -340,6 +341,16 @@ with proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
       (3) edge [loop below] (3)
       (4) edge [loop below] (4);
   \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related work}
+
+  \begin{itemize}
+  \item Bernardy \& Jansson: ``Certified Context-Free Parsing: A
+    formalisation of Valiant's Algorithm in Agda''
+  \item Dolan: ``Fun with Semirings''
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
