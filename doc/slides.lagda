@@ -132,25 +132,29 @@ three'  = B L two
 
 \pause
 
-Shapes for one dimension: (a vector/row matrix)
+Shapes for one dimension: a vector/row matrix with shape |B (B L L) L|
 
-\centering
-\begin{tikzpicture}[level/.style={level distance=6mm}]
-  \node {|B|}
-  child {
-    node {|B|}
-    child { node {|L|}
-      child { node {$1$} }
-    }
-    child { node {|L|}
-      child { node {$3$} }
-    }
-  }
-  child {
-    node {|L|}
-    child { child {node {$16$}} }
-  };
-\end{tikzpicture}
+\[
+\Row{\Row{1}{3}}{16}
+\]
+
+
+% \begin{tikzpicture}[level/.style={level distance=6mm}]
+%   \node {|B|}
+%   child {
+%     node {|B|}
+%     child { node {|L|}
+%       child { node {$1$} }
+%     }
+%     child { node {|L|}
+%       child { node {$3$} }
+%     }
+%   }
+%   child {
+%     node {|L|}
+%     child { child {node {$16$}} }
+%   };
+% \end{tikzpicture}
 
 \end{frame}
 
@@ -294,53 +298,55 @@ with proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
 \begin{frame}
   \frametitle{Reachability example}
 
-\centering
-  \begin{tikzpicture}[->]
-    \node (1) {1};
-    \node (2) [right of=1] {2};
-    \node (3) [below of=1] {3};
-    \node (4) [below of=2] {4};
-    \path
+
+  \begin{align*}
+    \left(
+    \begin{tikzpicture}[->,baseline=-3.5ex]
+      \node (1) {1};
+      \node (2) [right of=1] {2};
+      \node (3) [below of=1] {3};
+      \node (4) [below of=2] {4};
+      \path
       (3) edge (2)
       (2) edge (4);
-  \end{tikzpicture}
+    \end{tikzpicture}
+    \right)^*
+    \quad & \onslide<2->{ = \quad
+      \begin{tikzpicture}[->,baseline=-3.5ex]
+        \node (1) {1};
+        \node (2) [right of=1] {2};
+        \node (3) [below of=1] {3};
+        \node (4) [below of=2] {4};
+        \path
+        (3) edge (2)
+        (2) edge (4)
+        (3) edge (4)
+        (1) edge [loop above] (1)
+        (2) edge [loop above] (2)
+        (3) edge [loop below] (3)
+        (4) edge [loop below] (4);
+      \end{tikzpicture}}
+      \\
+    \left.
+    \Quad[3ex]{\Quad{0}{0}
+    {0}{0}}
+    {\Quad{0}{0}
+    {0}{1}}
+    {\Quad{0}{1}
+    {0}{0}}
+    {\Quad{0}{0}
+    {0}{0}}\right.^*
+    \quad & \onslide<2->{ = \quad
+      \Quad[3ex]{\Quad{1}{0}
+      {0}{1}}
+      {\Quad{0}{0}
+      {0}{1}}
+      {\Quad{0}{1}
+      {0}{0}}
+      {\Quad{1}{1}
+      {0}{1}}}
+  \end{align*}
 
-\[
-\left.
-\Quad[3ex]{\Quad{0}{0}
-                {0}{0}}
-          {\Quad{0}{0}
-                {0}{1}}
-          {\Quad{0}{1}
-                {0}{0}}
-          {\Quad{0}{0}
-                {0}{0}}\right.^*
-\pause
-=
-\Quad[3ex]{\Quad{1}{0}
-                {0}{1}}
-          {\Quad{0}{0}
-                {0}{1}}
-          {\Quad{0}{1}
-                {0}{0}}
-          {\Quad{1}{1}
-                {0}{1}}
-\]
-
-  \begin{tikzpicture}[->]
-    \node (1) {1};
-    \node (2) [right of=1] {2};
-    \node (3) [below of=1] {3};
-    \node (4) [below of=2] {4};
-    \path
-      (3) edge (2)
-      (2) edge (4)
-      (3) edge (4)
-      (1) edge [loop above] (1)
-      (2) edge [loop above] (2)
-      (3) edge [loop below] (3)
-      (4) edge [loop below] (4);
-  \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
