@@ -91,7 +91,7 @@ and a fragment of the larger development.
 The equivalence relation is lifted pointwise and all proofs follow the
 same structure:
 %
-\begin{code}
+\begin{spec}
 _≃S_ : {r c : Shape} → M s r c → M s r c → Set
 (One x)     ≃S (One x₁)      =  x ≃s x₁
 (Row m m₁)  ≃S (Row n n₁)    =  (m ≃S n) × (m₁ ≃S n₁)
@@ -99,20 +99,40 @@ _≃S_ : {r c : Shape} → M s r c → M s r c → Set
 (Q m00  m01  m10  m11) ≃S (Q n00  n01  n10  n11)  =
      (m00 ≃S n00) × (m01 ≃S n01) ×
      (m10 ≃S n10) × (m11 ≃S n11)
+\end{spec}
+%if False
+\begin{code}
+_≃S_ : {r c : Shape} → M s r c → M s r c → Set
+_≃S_ {L}          {L}          (One x)     (One x₁)    =  x ≃s x₁
+_≃S_ {L}          {(B c₁ c₂)}  (Row m m₁)  (Row n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
+_≃S_ {(B r₁ r₂)}  {L}          (Col m m₁)  (Col n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
+_≃S_ {(B r₁ r₂)}  {(B c₁ c₂)}  (Q m00  m01  m10  m11)
+                               (Q n00  n01  n10  n11)  =  (m00 ≃S n00) × (m01 ≃S n01) ×
+                                                          (m10 ≃S n10) × (m11 ≃S n11)
 \end{code}
+%endif
 \newpage
 \noindent
 The simplest proof is that of reflexivity:
 %
-\begin{code}
+\begin{spec}
 reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X
 reflS L          L          {One x} =  refls {x}
 reflS L          (B c₁ c₂)  =  reflS L c₁   , reflS L c₂
 reflS (B r₁ r₂)  L          =  reflS r₁ L   , reflS r₂ L
 reflS (B r₁ r₂)  (B c₁ c₂)  =  reflS r₁ c₁  , reflS r₁ c₂ ,
                                reflS r₂ c₁  , reflS r₂ c₂
+\end{spec}
+%if False
+\begin{code}
+reflS : (r c : Shape) →     {X : M s r c}  →  X ≃S X
+reflS L          L          {One x}        =  refls {x}
+reflS L          (B c₁ c₂)  {Row X Y}      =  reflS L c₁   , reflS L c₂
+reflS (B r₁ r₂)  L          {Col X Y}      =  reflS r₁ L   , reflS r₂ L
+reflS (B r₁ r₂)  (B c₁ c₂)  {Q X Y Z W}    =  reflS r₁ c₁  , reflS r₁ c₂ ,
+                                              reflS r₂ c₁  , reflS r₂ c₂
 \end{code}
-%
+%endif
 \begin{code}
 symS : (r c : Shape) → {i j : M s r c} → i ≃S j → j ≃S i
 symS L L {One x} {One x₁} p = syms p
