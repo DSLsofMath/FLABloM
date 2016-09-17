@@ -246,23 +246,35 @@ data M (a : Set) : (rows cols : Shape) → Set where
 \end{frame}
 
 \begin{frame}
-\frametitle{Lifting matrices}
-(Parts of) lifted equivalence:
-\begin{code}
-_≃S_ : ∀ {r c} → M s r c → M s r c → Set
-(One x)     ≃S (One x₁)    =  x ≃s x₁
-(Row m m₁)  ≃S (Row n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
-\end{code}
+  \frametitle{Lifting matrices}
 
-(Parts of) lifted multiplication:
+  Lifted equivalence:
 
-\begin{code}
-_*S_ : ∀ {r m c} → M s r m → M s m c → M s r c
-One x      *S One y       = One (x *s y)
-Row m0 m1  *S Col n0 n1   = m0 *S n0 +S m1 *S n1
-Col m0 m1  *S Row n0 n1   = Q  (m0 *S n0)   (m0 *S n1)
-                               (m1 *S n0)   (m1 *S n1)
-\end{code}
+  \begin{code}
+    _≃S_ : ∀ {r c} → M s r c → M s r c → Set
+    (One x)     ≃S (One x₁)    =  x ≃s x₁
+    (Row m m₁)  ≃S (Row n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
+    (Col m m₁)  ≃S (Col n n₁)  =  (m ≃S n) × (m₁ ≃S n₁)
+    (Q m00  m01  m10  m11)  ≃S (Q n00  n01  n10  n11)  =
+     (m00 ≃S n00) × (m01 ≃S n01) ×
+     (m10 ≃S n10) × (m11 ≃S n11)
+  \end{code}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Lifting matrices}
+
+
+  (Parts of) matrix multiplication:
+
+  \begin{code}
+    _*S_ : ∀ {r m c} → M s r m → M s m c → M s r c
+    One x      *S One y       = One (x *s y)
+    Row m0 m1  *S Col n0 n1   = m0 *S n0 +S m1 *S n1
+    Col m0 m1  *S Row n0 n1   = Q  (m0 *S n0)   (m0 *S n1)
+                                   (m1 *S n0)   (m1 *S n1)
+  \end{code}
+  \[\vdots\]
 
 \end{frame}
 
@@ -287,7 +299,7 @@ Computing the reflexive, transitive closure:
 \end{align*}
 }
 
-\qquad (with $\Delta = A_{22} + A_{21} \cdot A_{11}^* \cdot A_{12}$)
+\qquad ($\Delta = A_{22} + A_{21} \cdot A_{11}^* \cdot A_{12}$)
 
 with a constructive proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
 
