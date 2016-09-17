@@ -211,7 +211,7 @@ data M (a : Set) : (rows cols : Shape) → Set where
 \end{frame}
 
 \begin{frame}
-  \frametitle{Rings}
+  \frametitle{Development structure}
 
   A hierarchy of rings as Agda records:
 
@@ -236,12 +236,12 @@ data M (a : Set) : (rows cols : Shape) → Set where
 
   We take a semi-(near)-ring and lift it to square matrices.
 
-  A lifting function |Square| for each |Shape| and ring structure.
+  A lifting function for each |Shape| and ring structure.
 
   \begin{code}
-    Square    : Shape  → SemiNearRing    → SemiNearRing
-    Square'   : Shape  → SemiRing        → SemiRing
-    Square''  : Shape  → ClosedSemiRing  → ClosedSemiRing
+    LiftSNR    : Shape  → SemiNearRing    → SemiNearRing
+    LiftSR     : Shape  → SemiRing        → SemiRing
+    LiftCSR    : Shape  → ClosedSemiRing  → ClosedSemiRing
   \end{code}
 \end{frame}
 
@@ -280,8 +280,8 @@ Computing the reflexive, transitive closure:
             {A_{21}}{A_{22}}
   \right.^*
   & =
-  \Quad[1ex]{A_{11}^* + A_{11}^* \cdot A_{12} \cdot \Delta^* \cdot A_{21} \cdot A_{11}^*}
-            {A_{11}^* \cdot A_{12} \cdot \Delta^*}
+  \Quad[2ex]{A_{11}^* + A_{11}^* \cdot A_{12} \cdot \Delta^* \cdot A_{21} \cdot A_{11}^*}
+            {\quad A_{11}^* \cdot A_{12} \cdot \Delta^*}
             {\Delta^* \cdot A_{21} \cdot A_{11}^*}
             {\Delta^*}
 \end{align*}
@@ -289,10 +289,24 @@ Computing the reflexive, transitive closure:
 
 \qquad (with $\Delta = A_{22} + A_{21} \cdot A_{11}^* \cdot A_{12}$)
 
-with proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
+with a constructive proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
 
 % add example!
 % what if you have to explain this algorithm?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reachability example}
+
+  A closed semi--ring of booleans:
+
+  \begin{align*}
+    |zers| & = |false| \\
+    |ones| & = |true| \\
+    |+s|   & = \lor \\
+    |*s|   & = \land \\
+    b^*    & = |true|
+  \end{align*}
 \end{frame}
 
 \begin{frame}
