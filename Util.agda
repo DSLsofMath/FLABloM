@@ -15,12 +15,11 @@ bracket s = "\\left[ " ++ s ++ " \\right]"
 
 tex : ∀ {r c} (m : M Bool r c) → String
 tex (One x) = b2s x
-tex (Row m m₁) = bracket ("\\begin{array}{cc}\n" ++ tex m ++ " &\n" ++ tex m₁ ++ "\\end{array}")
-tex (Col m m₁) = bracket ("\\begin{array}{c}\n" ++ tex m ++ " \\\\\n" ++ tex m₁ ++ "\\end{array}")
-tex (Q m m₁ m₂ m₃) = bracket
-  ("\\begin{array}{cc}\n" ++ tex m ++ " & " ++ tex m₁ ++ " \\\\\n"
-    ++ tex m₂ ++ " & " ++ tex m₃
-    ++ "\\end{array}")
+tex (Row m m₁) = "\\Row{" ++ tex m ++ "}{" ++ tex m₁ ++ "}"
+tex (Col m m₁) = "\\Col{" ++ tex m ++ "}{" ++ tex m₁ ++ "}"
+tex (Q m m₁ m₂ m₃) =
+  "\\Quad{" ++ tex m ++ "}{" ++ tex m₁ ++ "}{"
+            ++ tex m₂ ++ "}{" ++ tex m₃ ++ "}"
 
 tex' : ∀ {r c} (m : M Bool r c) → Costring
 tex' m = toCostring (tex m)
