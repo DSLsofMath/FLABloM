@@ -248,7 +248,7 @@ data M (a : Set) : (rows cols : Shape) → Set where
 \begin{frame}
   \frametitle{Lifting matrices}
 
-  Lifted equivalence:
+  Lifting equivalence:
 
   \begin{code}
     _≃S_ : ∀ {r c} → M s r c → M s r c → Set
