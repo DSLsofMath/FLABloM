@@ -373,6 +373,9 @@ with a constructive proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
       {0}{1}}}
   \end{align*}
 
+  \onslide<3->{
+    \[w^* = 1 + w + w^2 + \dots\]
+  }
 \end{frame}
 
 \begin{frame}
@@ -388,14 +391,12 @@ with a constructive proof that it satisfies $w^* ≃ 1 + w \cdot w^*$
 \begin{frame}
   \frametitle{Wrapping up}
 
-  Conclusions, further work, etc.
-
   \begin{itemize}
   \item This matrix definition is not the final word
   \item A more flexible matrix definition: sparse? fewer constructors?
+  \item Mapping from efficient storage to matrix-datatype.
   \item Automation (of proofs)!
   \item Performance/complexity of closure algorithm.
-  \item Mapping from efficient storage to matrix-datatype.
   \item Generalisation to closed semi-near-ring for parsing
     applications.
   \item Agda development available at
