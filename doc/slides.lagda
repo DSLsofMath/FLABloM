@@ -129,7 +129,6 @@ three   = B two L
 three'  = B L two
 \end{code}
 
-
 \pause
 
 Shapes for one dimension: a vector/row matrix with shape |B (B L L) L|
@@ -137,25 +136,6 @@ Shapes for one dimension: a vector/row matrix with shape |B (B L L) L|
 \[
 \Row{\Row{1}{3}}{16}
 \]
-
-
-% \begin{tikzpicture}[level/.style={level distance=6mm}]
-%   \node {|B|}
-%   child {
-%     node {|B|}
-%     child { node {|L|}
-%       child { node {$1$} }
-%     }
-%     child { node {|L|}
-%       child { node {$3$} }
-%     }
-%   }
-%   child {
-%     node {|L|}
-%     child { child {node {$16$}} }
-%   };
-% \end{tikzpicture}
-
 \end{frame}
 
 \newcommand{\emptybox}{\ensuremath{\boxed{\phantom{x}}}}
@@ -175,9 +155,9 @@ data M (a : Set) : (rows cols : Shape) → Set
 %
 \Row{\emptybox}{\emptybox},\qquad &
 %
-\Col{\emptybox}{\emptybox},\qquad &
+\Col[1ex]{\emptybox}{\emptybox},\qquad &
 %
-\Quad{\emptybox}{\emptybox}
+\Quad[1ex]{\emptybox}{\emptybox}
      {\emptybox}{\emptybox}
  \\ \\
 |M a L L|
@@ -263,7 +243,6 @@ data M (a : Set) : (rows cols : Shape) → Set where
 
 \begin{frame}
   \frametitle{Lifting matrices}
-
 
   (Parts of) matrix multiplication:
 
