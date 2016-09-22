@@ -40,10 +40,10 @@ F = One false
 
 {-
 1   2
-   /^
+   ^|
   / |
  /  |
-v   |
+v   v
 3   4
 -}
 
@@ -64,24 +64,28 @@ graph =
     (Q F T
        F F)      edgeless2
 
+one+ : M4
+one+ = ones
+w = graph
+w2 = graph *s graph
+
 can-reach = closure graph
 
 g = Q diagonal2  (Q F F
-                    T T)
+                    F T)
       (Q F T
-         F T)    full2
+         F F)    (Q T T
+                    F T)
 
+g' = one+ +s w +s w2
 
--- p : can-reach ≡ g
--- p = refl
+p : can-reach ≡ g'
+p = refl
 
-r : M4
-r = closure can-reach
-
--- test : r ≡ can-reach
--- test = {!!}
+p' : g ≡ g'
+p' = refl
 
 ex2 : M Bool three three
 ex2 =
-  Q (T) (Row F T)
+  Q T         (Row F T)
     (Col F F) (Q T T F T)
