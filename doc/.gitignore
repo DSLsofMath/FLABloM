@@ -12,3 +12,7 @@ paper.tex
 paper.pdf
 abstract.tex
 abstract.pdf
+*.toc
+*.nav
+*.snm
+slides.pdf
