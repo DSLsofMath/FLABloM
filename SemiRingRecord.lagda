@@ -2,11 +2,11 @@
 \begin{code}
 module SemiRingRecord where
 
-import Algebra.FunctionProperties
+import Algebra.Definitions
   using (LeftIdentity; RightIdentity; Associative)
 import Function using (_on_)
-import Relation.Binary.EqReasoning as EqReasoning
-import Relation.Binary.On using (isEquivalence)
+import Relation.Binary.Reasoning.Setoid as EqReasoning
+import Relation.Binary.Construct.On using (isEquivalence)
 open import Algebra.Structures using (module IsMonoid; IsMonoid)
 open import Relation.Binary
   using (module IsEquivalence; IsEquivalence; _Preserves₂_⟶_⟶_ ; Setoid)
@@ -35,7 +35,7 @@ record SemiRing : Set₁ where
   field
     ones : s
 
-  open Algebra.FunctionProperties _≃s_
+  open Algebra.Definitions _≃s_
     using (LeftIdentity; RightIdentity; Associative)
 
   field

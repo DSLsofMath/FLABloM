@@ -4,7 +4,8 @@ module TropicalRing where
 
 open import Data.Nat renaming (_+_ to _+N_; _*_ to _*N_)
 open import Relation.Binary.PropositionalEquality
-import Relation.Binary.EqReasoning as EqReasoning
+import Relation.Binary.Reasoning.Setoid as EqReasoning
+open import Algebra.Structures           using (IsSemigroup) -- ; IsCommutativeMonoid
 
 
 open import Preliminaries
@@ -57,11 +58,14 @@ SNR = snr
   +-cong : ∀ {x y u v} → x ≡ y → u ≡ v → x + u ≡ y + v
   +-cong refl refl = refl
 
+  semigroup : IsSemigroup ? ?
   semigroup =
     record
-      { isEquivalence = isEquivalence
+      { isMagma = record { isEquivalence = isEquivalence
+                         ; ∙-cong = +-cong
+                         }
       ; assoc = assoc
-      ; ∙-cong = +-cong }
+      }
 
 
   identl : ∀ x → ∞ + x ≡ x
@@ -189,6 +193,7 @@ SNR = snr
   distr ∞ ∞ (D x) = refl
   distr ∞ ∞ ∞ = refl
 
+--  snr : ?
   snr =
     record
       { s = ℕ∞
@@ -215,7 +220,7 @@ SR = sr
   identl (D x) = refl
   identl ∞ = refl
 
-  open import Data.Nat.Properties.Simple using (+-assoc; +-right-identity)
+  open import Data.Nat.Properties using (+-assoc; +-right-identity)
 
   identr : ∀ x → x *s D 0 ≡ x
   identr (D x) = cong D (+-right-identity x)

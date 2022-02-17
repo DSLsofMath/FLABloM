@@ -3,8 +3,8 @@
 module ClosedSemiRingRecord where
 
 open import Relation.Binary.PropositionalEquality using (_≡_; refl)
-import Relation.Binary.EqReasoning as EqReasoning
-open import Algebra.FunctionProperties using (LeftZero; RightZero)
+import Relation.Binary.Reasoning.Setoid as EqReasoning
+open import Algebra.Definitions using (LeftZero; RightZero)
 open import Algebra.Structures using (module IsCommutativeMonoid;
                                              IsCommutativeMonoid)
 open import Data.Product

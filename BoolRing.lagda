@@ -25,13 +25,17 @@ assoc false  false  false  = refl
 semigroup : IsSemigroup _≡_ _∨_
 semigroup =
   record
-    { isEquivalence = isEquivalence
-    ; assoc = assoc
-    ; ∙-cong = +-cong }
+    { isMagma = record { isEquivalence = isEquivalence
+                       ; ∙-cong = +-cong }
+    ; assoc = assoc}
 
-identl : ∀ (x : Bool) → x ≡ x
-identl true   = refl
+-- identl : ∀ (x : Bool) → x ≡ x
+-- identl true   = refl
+-- identl false  = refl
+
+identl : ∀ (x : Bool) → x ∨ false ≡ x
 identl false  = refl
+identl true   = refl
 
 comm : ∀ x y → x ∨ y ≡ y ∨ x
 comm true   true   = refl
@@ -39,12 +43,15 @@ comm true   false  = refl
 comm false  true   = refl
 comm false  false  = refl
 
+open import Data.Product using (Σ; _,_)
 commMon : IsCommutativeMonoid _≡_ _∨_ false
 commMon =
   record
-    { isSemigroup = semigroup
-    ; identityˡ = identl
-    ; comm = comm }
+    { isMonoid = record { isSemigroup = semigroup
+                        ; identity = (λ x → refl) , identl
+                        }
+    ; comm = comm
+    }
 
 zeror : ∀ x → x ∧ false ≡ false
 zeror true   = refl
@@ -116,7 +123,6 @@ BoolSR = record
   ;  *-identrs  = identr
   }
 
-open import Data.Product
 entire : Bool → Σ Bool (λ c → c ≡ true)
 entire true   = true , refl
 entire false  = true , refl

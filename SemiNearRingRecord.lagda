@@ -2,16 +2,18 @@
 \begin{code}
 module SemiNearRingRecord where
 
-import Algebra.FunctionProperties
+import Algebra.Definitions
   using (LeftZero; RightZero; _DistributesOverˡ_;_DistributesOverʳ_; Idempotent)
 import Function using (_on_)
 import Level
-import Relation.Binary.EqReasoning as EqReasoning
-import Relation.Binary.On using (isEquivalence)
+import Relation.Binary.Reasoning.Setoid as EqReasoning
+import Relation.Binary.Construct.On using (isEquivalence)
 import Algebra.Structures using (module IsCommutativeMonoid; IsCommutativeMonoid)
 open import Relation.Binary
   using (module IsEquivalence; IsEquivalence; _Preserves₂_⟶_⟶_ ; Setoid)
-open import Data.Product renaming (_,_ to _,,_) -- just to avoid clash with other commas
+open import Data.Product
+     using (proj₂)
+     renaming (_,_ to _,,_) -- just to avoid clash with other commas
 
 open import Preliminaries
 \end{code}
@@ -38,7 +40,7 @@ operations |+s| and |*s| (addition and multiplication).
 
   open Algebra.Structures
     using (IsCommutativeMonoid)
-  open Algebra.FunctionProperties _≃s_
+  open Algebra.Definitions _≃s_
     using (LeftZero; RightZero)
 \end{code}
 A seminearring should be a commutative monoid under addition
@@ -64,7 +66,7 @@ The semi-rings in this development also have idempotent addition and
 %
 \restorecolumns[SNRR]
 \begin{code}
-  open Algebra.FunctionProperties _≃s_
+  open Algebra.Definitions _≃s_
     using (Idempotent; _DistributesOverˡ_; _DistributesOverʳ_)
 
   field
@@ -105,7 +107,8 @@ Finally we have a definition of inequality for the seminearring.
                       isEquivalence  = isEquivs }
 
   open IsEquivalence isEquivs public
-    hiding (reflexive) renaming (refl to refls ; sym to syms ; trans to transs)
+    hiding (reflexive; isPartialEquivalence)
+    renaming (refl to refls ; sym to syms ; trans to transs)
 
   LowerBounds  = LowerBound _≤s_
 \end{code}
